@@ -8,8 +8,9 @@ using Microsoft.Data.SqlClient;
 namespace KartBookingSession.Repositories
 {
     public class StorageManager
-    {
+    { 
         private SqlConnect conn;
+
 
 
 

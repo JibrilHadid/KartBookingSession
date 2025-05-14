@@ -9,7 +9,7 @@ namespace KartBookingSession.Model
     public class Karts
     {
         public string Kart_name { get; set; }
-        public string Kart_id { get; set; }
+        public string Kart_id { get; set; } 
 
         public Karts(int Kart_id, string KartName)
         {
@@ -18,5 +18,5 @@ namespace KartBookingSession.Model
         }
 
 
-    }
+    }//karts class
 }
