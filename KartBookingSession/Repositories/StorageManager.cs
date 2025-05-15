@@ -33,5 +33,16 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        public List<Karts> GetAllKarts()
+        {
+            List<Karts> karts = new List<Karts>();
+            string sqlString = "SELECT * FROM booking.KARTS";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+
+            }
+        }
+
+
     }
 }
