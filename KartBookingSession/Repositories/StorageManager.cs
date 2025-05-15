@@ -9,9 +9,29 @@ namespace KartBookingSession.Repositories
 {
     public class StorageManager
     {
-        private SqlConnect conn;
+        private SqlConnection conn;
 
+        public StorageManager(string connectionString)
+        {
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                Console.WriteLine("Coneection successful");
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("Connection NOT successful\n");
+                Console.WriteLine(e.Message);
+                throw;
+            }
 
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(ex.Message);
+            }
+        }
 
     }
 }

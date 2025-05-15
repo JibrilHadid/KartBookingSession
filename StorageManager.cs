@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
-namespace KartBookingSession.Repositories
+namespace KartBookingSession
 {
     public class StorageManager
     { 
-        private SqlConnect conn;
+        private SqlConnection conn;
 
 
 
