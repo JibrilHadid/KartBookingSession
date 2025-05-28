@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KartBookingSession.Model;
 using Microsoft.Data.SqlClient;
 
 namespace KartBookingSession.Repositories
@@ -39,8 +40,17 @@ namespace KartBookingSession.Repositories
             string sqlString = "SELECT * FROM booking.KARTS";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int Kartid = Convert.ToInt32(reader["KartID"]);
+                        string kartName = reader["KartName"].ToString();
+                        karts.Add(new Karts(Kartid, kartName));
+                    }
+                }
             }
+            return karts;
         }
 
 

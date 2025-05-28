@@ -8,13 +8,13 @@ namespace KartBookingSession.Model
 {
     public class Karts
     {
-        public string Kart_name { get; set; }
-        public string Kart_id { get; set; } 
+        public string kart_name { get; set; }
+        public int kart_id { get; set; } 
 
         public Karts(int Kart_id, string KartName)
         {
-            Kart_id = Kart_id;
-            Kart_name = KartName;
+            kart_id = Kart_id;
+            kart_name = KartName;
         }
 
 
