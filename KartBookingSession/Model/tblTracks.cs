@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace KartBookingSession.Model
 {
-    public class Suburb
+    public class Tracks
     {
         public string track_name { get; set; }
         public int track_id { get; set; }
 
-        public Suburb(int Track_id, string TrackName)
+        public Tracks(int TrackID, string TrackName)
         {
-            track_id = Track_id;
+            track_id = TrackID;
             track_name = TrackName;
         }
 

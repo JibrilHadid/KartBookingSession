@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,17 +38,17 @@ namespace KartBookingSession.Repositories
         public List<Karts> GetAllKarts()
         {
             List<Karts> karts = new List<Karts>();
-            string sqlString = "SELECT * FROM booking.KARTS";
+            string sqlString = "SELECT * FROM booking.Karts";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int kartid = Convert.ToInt32(reader["KartID"]);
+                        int KartID = Convert.ToInt32(reader["KartID"]);
                         string kartName = reader["KartName"].ToString();
                         string kartType = reader["KartType"].ToString();
-                        karts.Add(new Karts(kartid, kartName, kartType));
+                        karts.Add(new Karts(KartID, kartName, kartType));
                     }
                 }
             }
@@ -64,9 +65,9 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int trackid = Convert.ToInt32(reader["TracksID"]);
+                        int TrackID = Convert.ToInt32(reader["TracksID"]);
                         string trackName = reader["TrackName"].ToString();
-                        tracks.Add(new Tracks(trackid, trackName));
+                        tracks.Add(new Tracks(TrackID, trackName));
                     }
                 }
             }
@@ -76,22 +77,40 @@ namespace KartBookingSession.Repositories
         public List<City> GetAllCity()
         {
             List<City> tracks = new List<City>();
-            string sqlString = "SELECT * FROM booking.tracks";
+            string sqlString = "SELECT * FROM booking.city";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int cityid = Convert.ToInt32(reader["CityID"]);
+                        int CityID = Convert.ToInt32(reader["CityID"]);
                         string CityName = reader["CityName"].ToString();
                         string Country = reader["Country"].ToString();
-                        tracks.Add(new City(cityid, CityName, Country));
+                        tracks.Add(new City(CityID, CityName, Country));
                     }
                 }
             }
             return tracks;
+        }
 
+        public List<Suburb> GetAllSuburb()
+        {
+            List<Suburb> suburb = new List<Suburb>();
+            string sqlString = "SELECT * FROM booking.suburb";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int SuburbID = Convert.ToInt32(reader["CityID"]);
+                        string SuburbName = reader["CityName"].ToString();
+                        suburb.Add(new Suburb(SuburbID, SuburbName));
+                    }
+                }
+            }
+            return suburb;
 
         }
 

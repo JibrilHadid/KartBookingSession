@@ -12,9 +12,9 @@ namespace KartBookingSession.Model
         public string city_name { get; set; }
         public string country { get; set; }
 
-        public City(int city_id, string CityName, string Country)
+        public City(int CityID, string CityName, string Country)
         {
-            city_id = city_id;
+            city_id = CityID;
             city_name = CityName;
             country = Country;
         }
