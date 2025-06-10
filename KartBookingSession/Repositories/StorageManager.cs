@@ -44,15 +44,56 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int Kartid = Convert.ToInt32(reader["KartID"]);
+                        int kartid = Convert.ToInt32(reader["KartID"]);
                         string kartName = reader["KartName"].ToString();
-                        karts.Add(new Karts(Kartid, kartName));
+                        string kartType = reader["KartType"].ToString();
+                        karts.Add(new Karts(kartid, kartName, kartType));
                     }
                 }
             }
             return karts;
         }
 
+        public List<Tracks> GetAlltracks()
+        {
+            List<Tracks> tracks = new List<Tracks>();
+            string sqlString = "SELECT * FROM booking.tracks";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int trackid = Convert.ToInt32(reader["TracksID"]);
+                        string trackName = reader["TrackName"].ToString();
+                        tracks.Add(new Tracks(trackid, trackName));
+                    }
+                }
+            }
+            return tracks;
+        }
+
+        public List<City> GetAllCity()
+        {
+            List<City> tracks = new List<City>();
+            string sqlString = "SELECT * FROM booking.tracks";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int cityid = Convert.ToInt32(reader["CityID"]);
+                        string CityName = reader["CityName"].ToString();
+                        string Country = reader["Country"].ToString();
+                        tracks.Add(new City(cityid, CityName, Country));
+                    }
+                }
+            }
+            return tracks;
+
+
+        }
 
     }
 }
