@@ -156,7 +156,7 @@ namespace KartBookingSession.Repositories
 
         public List<CoachLocation> GetAllCoachLocation()
         {
-            List<CoachLocation> coach = new List<CoachLocation>();
+            List<CoachLocation> coachlocation = new List<CoachLocation>();
             string sqlString = "SELECT * FROM booking.CoachLocation";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
@@ -166,11 +166,34 @@ namespace KartBookingSession.Repositories
                     {
                         int CoachID = Convert.ToInt32(reader["CoachID"]);
                         int TrackID = Convert.ToInt32(reader["TrackID"]);
-                        coach.Add(new CoachLocation(CoachID, TrackID));
+                        coachlocation.Add(new CoachLocation(CoachID, TrackID));
                     }
                 }
             }
-            return coach;
+            return coachlocation;
+
+        }
+
+        public List<CoachInfo> GetAllCoachInfo()
+        {
+            List<CoachInfo> coachinfo = new List<CoachInfo>();
+            string sqlString = "SELECT * FROM booking.CoachLocation";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int CoachInfoID = Convert.ToInt32(reader["CoachInfoID"]);
+                        int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        string Email = reader["Email"].ToString();
+                        string PhoneNumber = reader["PhoneNumber"].ToString();
+                        string ExperienceLvl = reader["ExperienceLvl"].ToString();
+                        coachinfo.Add(new CoachInfo(CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl));
+                    }
+                }
+            }
+            return coachinfo;
 
         }
 
