@@ -104,13 +104,73 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int SuburbID = Convert.ToInt32(reader["CityID"]);
-                        string SuburbName = reader["CityName"].ToString();
+                        int SuburbID = Convert.ToInt32(reader["SuburbID"]);
+                        string SuburbName = reader["SuburbName"].ToString();
                         suburb.Add(new Suburb(SuburbID, SuburbName));
                     }
                 }
             }
             return suburb;
+
+        }
+
+        public List<KartManufacturer> GetAllKartManufacturer()
+        {
+            List<KartManufacturer> kartmanufacturer = new List<KartManufacturer>();
+            string sqlString = "SELECT * FROM booking.KartManufacturer";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int ManufacturerID = Convert.ToInt32(reader["ManufacturerID"]);
+                        string ManufacturerName = reader["ManufacturerName"].ToString();
+                        kartmanufacturer.Add(new KartManufacturer(ManufacturerID, ManufacturerName));
+                    }
+                }
+            }
+            return kartmanufacturer;
+
+        }
+
+        public List<Coach> GetAllCoach()
+        {
+            List<Coach> coach = new List<Coach>();
+            string sqlString = "SELECT * FROM booking.Coach";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        string CoachName = reader["CoachName"].ToString();
+                        coach.Add(new Coach(CoachID, CoachName));
+                    }
+                }
+            }
+            return coach;
+
+        }
+
+        public List<CoachLocation> GetAllCoachLocation()
+        {
+            List<CoachLocation> coach = new List<CoachLocation>();
+            string sqlString = "SELECT * FROM booking.CoachLocation";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        int TrackID = Convert.ToInt32(reader["TrackID"]);
+                        coach.Add(new CoachLocation(CoachID, TrackID));
+                    }
+                }
+            }
+            return coach;
 
         }
 
