@@ -48,7 +48,9 @@ namespace KartBookingSession.Repositories
                         int KartID = Convert.ToInt32(reader["KartID"]);
                         string kartName = reader["KartName"].ToString();
                         string kartType = reader["KartType"].ToString();
-                        karts.Add(new Karts(KartID, kartName, kartType));
+                        string ProductionDate = reader["ProductionDate"].ToString();
+                        double KartPrice = Convert.ToDouble(reader["KartPrice"]);
+                        karts.Add(new Karts(KartID, kartName, kartType, ProductionDate, KartPrice));
                     }
                 }
             }

@@ -10,13 +10,17 @@ namespace KartBookingSession.Model
     {
         public string kart_name { get; set; }
         public string kart_type { get; set; }
+        public string production_date { get; set; }
+        public double kart_price { get; set; }
         public int kart_id { get; set; } 
 
-        public Karts(int KartID, string KartName, string KartType)
+        public Karts(int KartID, string KartName, string KartType, string ProductionDate, double KartPrice)
         {
             kart_id = KartID;
             kart_name = KartName;
             kart_type = KartType;
+            production_date = ProductionDate;
+            kart_price = KartPrice;
         }
 
 
