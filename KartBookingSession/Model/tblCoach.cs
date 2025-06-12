@@ -8,13 +8,20 @@ namespace KartBookingSession.Model
 {
     public class Coach
     {
-        public string coach_name { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+        public string gender { get; set; }
+        public double coach_age { get; set; }
         public int coach_id { get; set; }
 
-        public Coach(int CoachID, string CoachName)
+        public Coach(int CoachID, string FirstName, string LastName, string Gender, double CoachAge)
         {
             coach_id = CoachID;
-            coach_name = CoachName;
+            first_name = FirstName;
+            last_name = LastName;
+            gender = Gender;
+            coach_age = CoachAge;
+
         }
 
 
