@@ -14,7 +14,7 @@ namespace KartBookingSession.Model
         public int age { get; set; }
         public int coach_id { get; set; }
 
-        public Coach(int CoachID, string FirstName, string LastName, string Gender, double Age)
+        public Coach(int CoachID, string FirstName, string LastName, string Gender, int Age)
         {
             coach_id = CoachID;
             first_name = FirstName;
