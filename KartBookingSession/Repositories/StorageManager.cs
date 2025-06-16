@@ -147,8 +147,11 @@ namespace KartBookingSession.Repositories
                     while (reader.Read())
                     {
                         int CoachID = Convert.ToInt32(reader["CoachID"]);
-                        string CoachName = reader["CoachName"].ToString();
-                        coach.Add(new Coach(CoachID, CoachName));
+                        string FirstName = reader["FirstName"].ToString();
+                        string LastName = reader["LastName"].ToString();
+                        string Gender = reader["Gender"].ToString();
+                        int Age = Convert.ToInt32(reader["CoachID"]);
+                        coach.Add(new Coach(CoachID, FirstName, LastName, Gender, Age));
                     }
                 }
             }
@@ -201,3 +204,5 @@ namespace KartBookingSession.Repositories
 
     }
 }
+
+
