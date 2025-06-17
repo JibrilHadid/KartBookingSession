@@ -202,6 +202,20 @@ namespace KartBookingSession.Repositories
 
         }
 
+        public string UpdateCity(string CityName, string CityNameChange);
+        {
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.city SET CityName = @CityNameChange WHERE CityName = @CityName", conn))
+            {
+                cmd.Parameters.AddWithValue("@CityNameChange", CityNameChange);
+                cmd.Parameters.AddWithValue("@CityName", CityName);
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return "City name updated successfully.";
+               
+                }
+            }
+        }
     }
 }
 
