@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using KartBookingSession.Model;
 using Microsoft.Data.SqlClient;
 
@@ -34,6 +35,65 @@ namespace KartBookingSession.Repositories
                 Console.WriteLine(ex.Message);
             }
         }
+
+        public void AdvancedQry1()
+        {
+            string sqlString = "SELECT KM.manufacturerName, K.kartPrice, K.productionDate FROM booking.tblKartManufacturer as KM, " +
+                "booking.tblKarts as K Where K.kartID = KM.kartID AND(kartPrice <= 190.00;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                //using 
+            }
+        }
+
+        public void AdvancedQry2()
+        {
+            string sqlString = "SELECT count(C.coachID) as totalCoaches, T.trackName FROM location.tblTracks AS T, location.tblCoachLocation AS CL, booking.tblCoach as " +
+                "C WHERE T.trackID = CL.trackID AND CL.coachID = C.coachID GROUP BY T.trackName ORDER BY totalCoaches desc;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                //using
+            }
+        }
+
+        public void AdvancedQry3()
+        {
+            string sqlString = "SELECT distinct(C.coachID), C.firstName, C.gender, CI.experienceLvl FROM booking.tblCoach as C, booking.tblCoachInfo as CI " +
+                "WHERE C.coachID = CI.coachID AND C.gender = 'Male' AND C.firstName LIKE 'A%' ORDER BY C.firstName, C.gender, CI.experienceLvl;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                //using
+            }
+        }
+
+        public void AdvancedQry4()
+        {
+            string sqlString = "SELECT T.trackType, C.firstName, C.lastName FROM location.tblTracks as T, location.tblCoachLocation as CL, booking.tblCoach as C WHERE T.trackID " +
+                "= CL.trackID AND CL.coachID = C.coachID AND T.trackType = 'outdoor' ORDER BY T.trackType, C.firstName, C.lastName;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                //using
+            }
+        }
+
+        public void AdvancedQry5()
+        {
+            string sqlString = "SELECT C.firstName, C.lastName, CI.email, CI.phoneNumber FROM booking.tblCoach as C, booking.tblCoachInfo as CI WHERE C.coachID = " +
+                "CI.coachID AND C.age > 30 ORDER BY C.firstName, C.lastName, C.age, CI.email, CI.phoneNumber;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                //using
+            }
+        }
+
+
+
+
 
         public List<Karts> GetAllKarts()
         {
@@ -201,7 +261,9 @@ namespace KartBookingSession.Repositories
             return coachinfo;
 
         }
-
+        
+        /*
+        
         public string UpdateCity(string CityName, string CityNameChange);
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE booking.city SET CityName = @CityNameChange WHERE CityName = @CityName", conn))
@@ -213,10 +275,10 @@ namespace KartBookingSession.Repositories
                 {
                     return "City name updated successfully.";
                
-                }
+                } 
             }
         }
     }
 }
-
+*/
 
