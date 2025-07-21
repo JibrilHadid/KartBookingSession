@@ -36,14 +36,29 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public void AdvancedQry1()
+        public void AdvancedQuery1()
         {
+            List<AdvancedQry1> advancedQry1 = new List<AdvancedQry1>();
             string sqlString = "SELECT KM.manufacturerName, K.kartPrice, K.productionDate FROM booking.tblKartManufacturer as KM, " +
                 "booking.tblKarts as K Where K.kartID = KM.kartID AND(kartPrice <= 190.00;";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                //using 
+                SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        int kartID = Convert.ToInt32(reader["kartID"]);
+                        string kartName = reader["kartName"].ToString();
+                        string kartType = reader["kartType"].ToString();
+                        string productionDate = reader["productionDate"].ToString();
+                        double kartPrice = Convert.ToDouble(reader["kartPrice"]);
+                        advancedQry1 = new AdvancedQry1(kartID, kartName, kartType, productionDate, kartPrice);
+                    }
+                
+             
+
+                }
             }
         }
 
@@ -260,10 +275,7 @@ namespace KartBookingSession.Repositories
             }
             return coachinfo;
 
-        }
-        
-        /*
-        
+        }       
         public string UpdateCity(string CityName, string CityNameChange);
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE booking.city SET CityName = @CityNameChange WHERE CityName = @CityName", conn))
@@ -280,5 +292,3 @@ namespace KartBookingSession.Repositories
         }
     }
 }
-*/
-
