@@ -53,7 +53,11 @@ namespace KartBookingSession.Repositories
                         string kartType = reader["kartType"].ToString();
                         string productionDate = reader["productionDate"].ToString();
                         double kartPrice = Convert.ToDouble(reader["kartPrice"]);
-                        advancedQry1 = new AdvancedQry1(kartID, kartName, kartType, productionDate, kartPrice);
+                        Console.WriteLine(kartID);
+                        Console.WriteLine(kartName);
+                        Console.WriteLine(kartType);
+                        Console.WriteLine(productionDate);
+                        Console.WriteLine(kartPrice);
                     }
                 
              
@@ -69,9 +73,26 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                //using
+                SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        int coachID = Convert.ToInt32(reader["kartID"]);
+                        string kartName = reader["kartName"].ToString();
+                        string kartType = reader["kartType"].ToString();
+                        string productionDate = reader["productionDate"].ToString();
+                        double kartPrice = Convert.ToDouble(reader["kartPrice"]);
+                        Console.WriteLine(kartID);
+                        Console.WriteLine(kartName);
+                        Console.WriteLine(kartType);
+                        Console.WriteLine(productionDate);
+                        Console.WriteLine(kartPrice);
+                    }
+
+
+
+                }
             }
-        }
 
         public void AdvancedQry3()
         {
