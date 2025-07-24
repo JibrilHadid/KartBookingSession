@@ -8,6 +8,22 @@ namespace KartBookingSession
         private static StorageManager storageManager;
         private static consoleView view;
         static int role;
+
+        //things to do whilst other items are on hold 
+        //code the prpgram part which is 
+        /*
+            switching between methods 
+        log in function 
+        having the displays and navigation betwen the methods 
+        code the program parts of the update inserts and deletes 
+        storage manager part of the inserts 
+
+        3 roles 
+        coaches are adimds of the database can view all and do all 
+        tracks can view and edit there data 
+        drivets same as tracks  
+        tracks and drivers are going to have paramretized queries for only viewing their data (add a and statement in the sql query saying driver id = the driver id of the loged in person )
+        */
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");

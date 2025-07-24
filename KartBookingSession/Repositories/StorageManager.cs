@@ -59,8 +59,8 @@ namespace KartBookingSession.Repositories
                         Console.WriteLine(productionDate);
                         Console.WriteLine(kartPrice);
                     }
-                
-             
+
+
 
                 }
             }
@@ -77,16 +77,12 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int coachID = Convert.ToInt32(reader["kartID"]);
-                        string kartName = reader["kartName"].ToString();
-                        string kartType = reader["kartType"].ToString();
-                        string productionDate = reader["productionDate"].ToString();
-                        double kartPrice = Convert.ToDouble(reader["kartPrice"]);
-                        Console.WriteLine(kartID);
-                        Console.WriteLine(kartName);
-                        Console.WriteLine(kartType);
-                        Console.WriteLine(productionDate);
-                        Console.WriteLine(kartPrice);
+                        int coachID = Convert.ToInt32(reader["coachID"]);
+                        int trackID = Convert.ToInt32(reader["trackID"]);
+                        string trackName = reader["kartType"].ToString();
+                        Console.WriteLine(coachID);
+                        Console.WriteLine(trackID);
+                        Console.WriteLine(trackName);
                     }
 
 
@@ -296,20 +292,60 @@ namespace KartBookingSession.Repositories
             }
             return coachinfo;
 
-        }       
-        public string UpdateCity(string CityName, string CityNameChange);
+        }
+        //change tablename to the right name repeat set fieldname etc for each field in the table you will have a console write line for each field then you need to JUST IGNORE FOR NOW LACHLAN WILL GET A BETTER VERSION 
+        //update on hold 
+        public string UpdateDept(string fieldChoice, int LocationID, string Change)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.city SET CityName = @CityNameChange WHERE CityName = @CityName", conn))
+            using (SqlCommand cmd = new SqlCommand($"UPDATE TableNAME SET FieldName =@ FieldNameChange Where ID = @inputedID", conn))
             {
-                cmd.Parameters.AddWithValue("@CityNameChange", CityNameChange);
-                cmd.Parameters.AddWithValue("@CityName", CityName);
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                {
-                    return "City name updated successfully.";
-               
-                } 
+                cmd.Parameters.AddWithValue("@fieldChoice", fieldChoice);
+                cmd.Parameters.AddWithValue("@LocationID", LocationID);
+                cmd.Parameters.AddWithValue("@Change", Change);
+                return cmd.ExecuteNonQuery().ToString();
             }
         }
+
+        //change the table to the right name change the values for each field in your porject and add the console view and program part 
+        //console view part you can just code the writelines in the program.cs with the inputs eg enter a new streetnumber etc for each field in that table 
+        //program part is just you get the inputs for the fields and then call this method parameters of the values 
+        public int InsertLocation(string LocationName, int CountryID, int SuburbID, int StreetID, int CityID, int StreetNumber)
+        {
+            bool Active = true;
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Location.tblLocation (locationName, CountryID, SuburbID, StreetID, CityID, StreetNumber, Active) VALUES (@LocationName ,@CountryID,  @SuburbID ,@StreetID ,@CityID ,@StreetNumber ,@Active); SELECT SCOPE_IDENTITY(); ", conn))
+            {
+                cmd.Parameters.AddWithValue("@LocationName ", LocationName);
+                cmd.Parameters.AddWithValue("@CountryID  ", CountryID);
+                cmd.Parameters.AddWithValue("@SuburbID", SuburbID);
+                cmd.Parameters.AddWithValue("@StreetID ", StreetID);
+                cmd.Parameters.AddWithValue("@CityID  ", CityID);
+                cmd.Parameters.AddWithValue("@StreetNumber", StreetNumber);
+                cmd.Parameters.AddWithValue("@Active", Active);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int Insert--(string --, int --, int --)
+        {
+
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO ___ ( --------,--------,-------- ) VALUES (--------,--------,--------); SELECT SCOPE_IDENTITY(); ", conn))
+            {
+                cmd.Parameters.AddWithValue("@_______ ", ____);
+                cmd.Parameters.AddWithValue("@_-----  ", ____);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+public int InsertCity(string CityName, string Country)
+        
+
+    using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblCity ( country,--------,-------- ) VALUES (--------,--------,--------); SELECT SCOPE_IDENTITY(); ", conn))
+    {
+        cmd.Parameters.AddWithValue("@_______ ", CityName);
+        cmd.Parameters.AddWithValue("@_-----  ", Country);
+        return Convert.ToInt32(cmd.ExecuteScalar());
+    }
+}
+        //deletes are on hold 
     }
 }
