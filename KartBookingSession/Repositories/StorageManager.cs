@@ -371,17 +371,6 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertCoachLocation(int CoachID, int TrackID)
-        {
-
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblCoachLocation ( CoachID, TrackID) VALUES (@CoachID, @TrackID); SELECT SCOPE_IDENTITY(); ", conn))
-            {
-                cmd.Parameters.AddWithValue("@CoachID ", CoachID);
-                cmd.Parameters.AddWithValue("@TrackID ", TrackID);
-                return Convert.ToInt32(cmd.ExecuteScalar());
-            }
-        }
-
         public int InsertKartManufacturer(int ManufacturerID, string ManufacturerName)
         {
 
@@ -430,11 +419,29 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int DeleteSportByName(string SportsName)
+        public int DeleteCity(string CityID)
         {
-            using (SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Tbl_Sports WHERE Sports_Name =@SportsName", conn))
+            using (SqlCommand cmd = new SqlCommand($"DELETE FROM location.tblCity WHERE CityID =@CityID", conn))
             {
-                cmd.Parameters.AddWithValue("@SportsName", SportsName);
+                cmd.Parameters.AddWithValue("@CityID", CityID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int DeleteCoach(string CoachID)
+        {
+            using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblCoach WHERE CoachID =@CoachID", conn))
+            {
+                cmd.Parameters.AddWithValue("@CoachID", CoachID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int DeleteCoachInfo(string CoachInfoID)
+        {
+            using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblCoachInfo WHERE CoachInfoID =@CoachInfoID", conn))
+            {
+                cmd.Parameters.AddWithValue("@CoachInfoID", CoachInfoID);
                 return cmd.ExecuteNonQuery();
             }
         }
