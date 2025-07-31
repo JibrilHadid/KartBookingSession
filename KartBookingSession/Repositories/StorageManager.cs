@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -89,6 +90,7 @@ namespace KartBookingSession.Repositories
 
                 }
             }
+        }
 
         public void AdvancedQry3()
         {
@@ -325,7 +327,118 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int Insert--(string --, int --, int --)
+
+
+        public int InsertCity(int CityID, string CityName, string Country)
+        { 
+
+        using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblCity ( Country, CityName, CityID, Active) VALUES (@Country, @CityName, @CityID, @Active); SELECT SCOPE_IDENTITY(); ", conn))
+            {
+                cmd.Parameters.AddWithValue("@CityName ", CityName);
+                cmd.Parameters.AddWithValue("@Country ", Country);
+                cmd.Parameters.AddWithValue("@CityID ", CityID);
+                cmd.Parameters.AddWithValue("@Active ", Active);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int InsertCoach(int CoachID, string FirstName, string LastName, string Gender, int Age)
+        {
+
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblCoach ( CoachID , FirstName, LastName, Gender, Age) VALUES (@CoachID, @FirstName, @LastName, @Gender, @Age); SELECT SCOPE_IDENTITY(); ", conn))
+            {
+                cmd.Parameters.AddWithValue("@CoachID ", CoachID);
+                cmd.Parameters.AddWithValue("@FirstName ", FirstName);
+                cmd.Parameters.AddWithValue("@LastName ", LastName);
+                cmd.Parameters.AddWithValue("@Gender ", Gender);
+                cmd.Parameters.AddWithValue("@Age ", Age); 
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int InsertCoachInfo(int CoachInfoID, int CoachID, string Email, string PhoneNumber, string ExperienceLvl)
+        {
+
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblCoachInfo ( CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl) VALUES (@CoachInfoID, @CoachID, @Email, @PhoneNumber, @ExperienceLvl); SELECT SCOPE_IDENTITY(); ", conn))
+            {
+                cmd.Parameters.AddWithValue("@CoachInfoID ", CoachInfoID);
+                cmd.Parameters.AddWithValue("@CoachID ", CoachID);
+                cmd.Parameters.AddWithValue("@Email ", Email);
+                cmd.Parameters.AddWithValue("@PhoneNumber ", PhoneNumber);
+                cmd.Parameters.AddWithValue("@ExperienceLvl ", ExperienceLvl);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int InsertCoachLocation(int CoachID, int TrackID)
+        {
+
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblCoachLocation ( CoachID, TrackID) VALUES (@CoachID, @TrackID); SELECT SCOPE_IDENTITY(); ", conn))
+            {
+                cmd.Parameters.AddWithValue("@CoachID ", CoachID);
+                cmd.Parameters.AddWithValue("@TrackID ", TrackID);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int InsertKartManufacturer(int ManufacturerID, string ManufacturerName)
+        {
+
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKartManufacturer ( ManufacturerID, ManufacturerName) VALUES (@ManufacturerID, @ManufacturerName); SELECT SCOPE_IDENTITY(); ", conn))
+            {
+                cmd.Parameters.AddWithValue("@ManufacturerID ", ManufacturerID);
+                cmd.Parameters.AddWithValue("@ManufacturerName ", ManufacturerName);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int InsertKarts(int KartID, string KartName, string KartType, string ProductionDate, double KartPrice)
+        {
+
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKarts ( KartID, KartName, KartType, ProductionDate, KartPrice) VALUES (@KartID, @KartName, @KartType, @ProductionDate, @KartPrice); SELECT SCOPE_IDENTITY(); ", conn))
+            {
+                cmd.Parameters.AddWithValue("@KartID ", KartID);
+                cmd.Parameters.AddWithValue("@KartName ", KartName);
+                cmd.Parameters.AddWithValue("@KartType ", KartType);
+                cmd.Parameters.AddWithValue("@ProductionDate ", ProductionDate);
+                cmd.Parameters.AddWithValue("@KartPrice ", KartPrice);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int InsertSuburb(int SuburbID, string SuburbName)
+        {
+
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblSuburb ( SuburbID, SuburbName) VALUES (@SuburbID, @SuburbName); SELECT SCOPE_IDENTITY(); ", conn))
+            {
+                cmd.Parameters.AddWithValue("@SuburbID ", SuburbID);
+                cmd.Parameters.AddWithValue("@SuburbName ", SuburbName);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int InsertTracks(int TrackID, string TrackName, string TrackType)
+        {
+
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblSuburb ( SuburbID, SuburbName) VALUES (@SuburbID, @SuburbName); SELECT SCOPE_IDENTITY(); ", conn))
+            {
+                cmd.Parameters.AddWithValue("@SuburbID ", SuburbID);
+                cmd.Parameters.AddWithValue("@SuburbName ", SuburbName);
+                cmd.Parameters.AddWithValue("@SuburbName ", SuburbName);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+    }
+}
+        //deletes are on hold 
+    
+
+
+
+
+
+/*
+          public int Insert--(string --, int --, int --)
         {
 
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO ___ ( --------,--------,-------- ) VALUES (--------,--------,--------); SELECT SCOPE_IDENTITY(); ", conn))
@@ -335,17 +448,4 @@ namespace KartBookingSession.Repositories
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
-
-public int InsertCity(string CityName, string Country)
-        
-
-    using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblCity ( country,--------,-------- ) VALUES (--------,--------,--------); SELECT SCOPE_IDENTITY(); ", conn))
-    {
-        cmd.Parameters.AddWithValue("@_______ ", CityName);
-        cmd.Parameters.AddWithValue("@_-----  ", Country);
-        return Convert.ToInt32(cmd.ExecuteScalar());
-    }
-}
-        //deletes are on hold 
-    }
-}
+*/

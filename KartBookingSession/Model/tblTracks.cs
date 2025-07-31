@@ -10,11 +10,13 @@ namespace KartBookingSession.Model
     {
         public string track_name { get; set; }
         public int track_id { get; set; }
+        public string track_type { get; set; }
 
-        public Tracks(int TrackID, string TrackName)
+        public Tracks(int TrackID, string TrackName, string TrackType)
         {
             track_id = TrackID;
             track_name = TrackName;
+            track_type = TrackType;
         }
 
 
