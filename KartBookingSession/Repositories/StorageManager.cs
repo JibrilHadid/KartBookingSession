@@ -222,6 +222,7 @@ namespace KartBookingSession.Repositories
                     while (reader.Read())
                     {
                         int ManufacturerID = Convert.ToInt32(reader["ManufacturerID"]);
+                        int KartID = Convert.ToInt32(reader["KartID"]);
                         string ManufacturerName = reader["ManufacturerName"].ToString();
                         kartmanufacturer.Add(new KartManufacturer(ManufacturerID, ManufacturerName));
                     }
@@ -298,14 +299,62 @@ namespace KartBookingSession.Repositories
         }
         //change tablename to the right name repeat set fieldname etc for each field in the table you will have a console write line for each field then you need to JUST IGNORE FOR NOW LACHLAN WILL GET A BETTER VERSION 
         //update on hold 
-        public string UpdateDept(string fieldChoice, int LocationID, string Change)
+
+        public int UpdateCity(int CityID, string CityName, string Country)
         {
-            using (SqlCommand cmd = new SqlCommand($"UPDATE TableNAME SET FieldName =@ FieldNameChange Where ID = @inputedID", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblCity SET CityID = @CityID, CityName = @CityName, Country = @Country", conn))
             {
-                cmd.Parameters.AddWithValue("@fieldChoice", fieldChoice);
-                cmd.Parameters.AddWithValue("@LocationID", LocationID);
-                cmd.Parameters.AddWithValue("@Change", Change);
-                return cmd.ExecuteNonQuery().ToString();
+
+                cmd.Parameters.AddWithValue("@CityID", CityID);
+                cmd.Parameters.AddWithValue("@CityName", CityName);
+                cmd.Parameters.AddWithValue("@Country", Country);
+                return cmd.ExecuteNonQuery();
+
+            }
+        }
+
+        public int UpdateCoach(int CoachID, string FirstName, string LastName, string Gender, int Age)
+        {
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoach SET CoachID = @CoachID, FirstName = @FirstName, LastName = @LastName, Gender = @Gender, Age = @Age", conn))
+            {
+
+                cmd.Parameters.AddWithValue("@CoachID", CoachID);
+                cmd.Parameters.AddWithValue("@FirstName", FirstName);
+                cmd.Parameters.AddWithValue("@LastName", LastName);
+                cmd.Parameters.AddWithValue("@Gender", Gender);
+                cmd.Parameters.AddWithValue("@Age", Age);
+                return cmd.ExecuteNonQuery();
+
+            }
+        }
+
+        public int UpdateCoachInfo(int CoachInfoID, int CoachID, string Email, string PhoneNumber, string ExperienceLvl)
+        {
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoachInfo SET CoachInfoID = @CoachInfoID, CoachID = @CoachID, Email = @Email, PhoneNumber = @PhoneNumber, ExperienceLvl = @ExperienceLvl", conn))
+            {
+
+                cmd.Parameters.AddWithValue("@CoachInfoID", CoachInfoID);
+                cmd.Parameters.AddWithValue("@CoachID", CoachID);
+                cmd.Parameters.AddWithValue("@Email", Email);
+                cmd.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
+                cmd.Parameters.AddWithValue("@ExperienceLvl", ExperienceLvl);
+                return cmd.ExecuteNonQuery();
+
+            }
+        }
+
+        public int UpdateKartManufacturer(int CoachInfoID, int CoachID, string Email, string PhoneNumber, string ExperienceLvl)
+        {
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoachInfo SET CoachInfoID = @CoachInfoID, CoachID = @CoachID, Email = @Email, PhoneNumber = @PhoneNumber, ExperienceLvl = @ExperienceLvl", conn))
+            {
+
+                cmd.Parameters.AddWithValue("@CoachInfoID", CoachInfoID);
+                cmd.Parameters.AddWithValue("@CoachID", CoachID);
+                cmd.Parameters.AddWithValue("@Email", Email);
+                cmd.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
+                cmd.Parameters.AddWithValue("@ExperienceLvl", ExperienceLvl);
+                return cmd.ExecuteNonQuery();
+
             }
         }
 
@@ -371,12 +420,13 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertKartManufacturer(int ManufacturerID, string ManufacturerName)
+        public int InsertKartManufacturer(int ManufacturerID, int KartID, string ManufacturerName)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKartManufacturer ( ManufacturerID, ManufacturerName) VALUES (@ManufacturerID, @ManufacturerName); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKartManufacturer ( ManufacturerID, KartID, ManufacturerName) VALUES (@ManufacturerID, @ManufacturerName, @KartID); SELECT SCOPE_IDENTITY(); ", conn))
             {
                 cmd.Parameters.AddWithValue("@ManufacturerID ", ManufacturerID);
+                cmd.Parameters.AddWithValue("@KartID ", KartID);
                 cmd.Parameters.AddWithValue("@ManufacturerName ", ManufacturerName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
@@ -419,7 +469,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int DeleteCity(string CityID)
+        public int DeleteCity(int CityID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM location.tblCity WHERE CityID =@CityID", conn))
             {
@@ -428,7 +478,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int DeleteCoach(string CoachID)
+        public int DeleteCoach(int CoachID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblCoach WHERE CoachID =@CoachID", conn))
             {
@@ -437,7 +487,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int DeleteCoachInfo(string CoachInfoID)
+        public int DeleteCoachInfo(int CoachInfoID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblCoachInfo WHERE CoachInfoID =@CoachInfoID", conn))
             {
@@ -446,7 +496,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int DeleteKartManufacturer(string ManufacturerID)
+        public int DeleteKartManufacturer(int ManufacturerID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblKartManufacturer WHERE ManufacturerID =@ManufacturerID", conn))
             {
@@ -455,7 +505,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int DeleteKarts(string KartID)
+        public int DeleteKarts(int KartID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblKarts WHERE KartID =@KartID", conn))
             {
@@ -464,7 +514,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int DeleteSuburb(string SuburbID)
+        public int DeleteSuburb(int SuburbID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM location.tblSuburb WHERE SuburbID =@SuburbID", conn))
             {
@@ -473,27 +523,12 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int DeleteTracks(string TrackID)
+        public int DeleteTracks(int TrackID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM location.tblTracks WHERE TrackID =@TrackID", conn))
             {
                 cmd.Parameters.AddWithValue("@TrackID", TrackID);
                 return cmd.ExecuteNonQuery();
-            }
-        }
-
-        public int UpdateCoach(Coaches coaches)
-        {
-            using (SqlCommand cmd = new SqlCommand("UPDATE Tbl_Coaches SET First_Name=@First_Name, Last_Name=@Last_Name,Experience=@Experience,Coach_Type_ID =@Coach_Type_ID Where Coach_ID =@Coach_ID;", conn))
-            {
-
-                cmd.Parameters.AddWithValue("@First_Name", First_Name);
-                cmd.Parameters.AddWithValue("@Last_Name", Last_Name);
-                cmd.Parameters.AddWithValue("@Coach_Type_ID", Coach_Type_ID);
-                cmd.Parameters.AddWithValue("@Experience", Experience);
-                cmd.Parameters.AddWithValue("@Coach_ID", Coach_ID);
-                return cmd.ExecuteNonQuery();
-
             }
         }
 
