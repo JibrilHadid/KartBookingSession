@@ -224,7 +224,7 @@ namespace KartBookingSession.Repositories
                         int ManufacturerID = Convert.ToInt32(reader["ManufacturerID"]);
                         int KartID = Convert.ToInt32(reader["KartID"]);
                         string ManufacturerName = reader["ManufacturerName"].ToString();
-                        kartmanufacturer.Add(new KartManufacturer(ManufacturerID, ManufacturerName));
+                        kartmanufacturer.Add(new KartManufacturer(ManufacturerID, KartID, ManufacturerName));
                     }
                 }
             }
@@ -343,16 +343,54 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int UpdateKartManufacturer(int CoachInfoID, int CoachID, string Email, string PhoneNumber, string ExperienceLvl)
+        public int UpdateKartManufacturer(int ManufacturerID, int KartID, string ManufacturerName)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoachInfo SET CoachInfoID = @CoachInfoID, CoachID = @CoachID, Email = @Email, PhoneNumber = @PhoneNumber, ExperienceLvl = @ExperienceLvl", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKartManufacturer SET ManufacturerID = @ManufacturerID, KartID = @KartID, ManufacturerName = @ManufacturerName", conn))
             {
 
-                cmd.Parameters.AddWithValue("@CoachInfoID", CoachInfoID);
-                cmd.Parameters.AddWithValue("@CoachID", CoachID);
-                cmd.Parameters.AddWithValue("@Email", Email);
-                cmd.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
-                cmd.Parameters.AddWithValue("@ExperienceLvl", ExperienceLvl);
+                cmd.Parameters.AddWithValue("@ManufacturerID", ManufacturerID);
+                cmd.Parameters.AddWithValue("@KartID", KartID);
+                cmd.Parameters.AddWithValue("@ManufacturerName", ManufacturerName);
+                return cmd.ExecuteNonQuery();
+
+            }
+        }
+
+        public int UpdateKarts(int KartID, string KartName, string KartType, string ProductionDate, double KartPrice)
+        {
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKarts SET KartID = @KartID, KartName = @KartName, KartType = @KartType, ProductionDate = @ProductionDate, KartPrice = @KartPrice", conn))
+            {
+
+                cmd.Parameters.AddWithValue("@KartID", KartID);
+                cmd.Parameters.AddWithValue("@KartName", KartName);
+                cmd.Parameters.AddWithValue("@KartType", KartType);
+                cmd.Parameters.AddWithValue("@ProductionDate", ProductionDate);
+                cmd.Parameters.AddWithValue("@KartPrice", KartPrice);
+                return cmd.ExecuteNonQuery();
+
+            }
+        }
+
+        public int UpdateSuburb(int SuburbID, string SuburbName)
+        {
+            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblSuburb SET SuburbID = @SuburbID, SuburbName = @SuburbName", conn))
+            {
+
+                cmd.Parameters.AddWithValue("@SuburbID", SuburbID);
+                cmd.Parameters.AddWithValue("@SuburbName", SuburbName);
+                return cmd.ExecuteNonQuery();
+
+            }
+        }
+
+        public int UpdateTracks(int TrackID, string TrackName, string TrackType)
+        {
+            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblTracks SET TrackID = @TrackID, TrackName = @TrackName, TrackType = @TrackType", conn))
+            {
+
+                cmd.Parameters.AddWithValue("@TrackID", TrackID);
+                cmd.Parameters.AddWithValue("@TrackName", TrackName);
+                cmd.Parameters.AddWithValue("@TrackType", TrackType);
                 return cmd.ExecuteNonQuery();
 
             }
