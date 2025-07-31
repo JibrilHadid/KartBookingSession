@@ -162,8 +162,9 @@ namespace KartBookingSession.Repositories
                     while (reader.Read())
                     {
                         int TrackID = Convert.ToInt32(reader["TracksID"]);
-                        string trackName = reader["TrackName"].ToString();
-                        tracks.Add(new Tracks(TrackID, trackName));
+                        string TrackName = reader["TrackName"].ToString();
+                        string TrackType = reader["TrackType"].ToString();
+                        tracks.Add(new Tracks(TrackID, TrackName, TrackType));
                     }
                 }
             }
@@ -428,6 +429,31 @@ namespace KartBookingSession.Repositories
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+        public int DeleteSportByName(string SportsName)
+        {
+            using (SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Tbl_Sports WHERE Sports_Name =@SportsName", conn))
+            {
+                cmd.Parameters.AddWithValue("@SportsName", SportsName);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int UpdateCoach(Coaches coaches)
+        {
+            using (SqlCommand cmd = new SqlCommand("UPDATE Tbl_Coaches SET First_Name=@First_Name, Last_Name=@Last_Name,Experience=@Experience,Coach_Type_ID =@Coach_Type_ID Where Coach_ID =@Coach_ID;", conn))
+            {
+
+                cmd.Parameters.AddWithValue("@First_Name", First_Name);
+                cmd.Parameters.AddWithValue("@Last_Name", Last_Name);
+                cmd.Parameters.AddWithValue("@Coach_Type_ID", Coach_Type_ID);
+                cmd.Parameters.AddWithValue("@Experience", Experience);
+                cmd.Parameters.AddWithValue("@Coach_ID", Coach_ID);
+                return cmd.ExecuteNonQuery();
+
+            }
+        }
+
     }
 }
         //deletes are on hold 

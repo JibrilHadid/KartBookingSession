@@ -8,6 +8,9 @@ namespace KartBookingSession.Model
 {
     public class Tracks
     {
+        private int trackID;
+        private string? trackName;
+
         public string track_name { get; set; }
         public int track_id { get; set; }
         public string track_type { get; set; }
