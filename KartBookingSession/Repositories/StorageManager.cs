@@ -446,6 +446,42 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        public int DeleteKartManufacturer(string ManufacturerID)
+        {
+            using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblKartManufacturer WHERE ManufacturerID =@ManufacturerID", conn))
+            {
+                cmd.Parameters.AddWithValue("@ManufacturerID", ManufacturerID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int DeleteKarts(string KartID)
+        {
+            using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblKarts WHERE KartID =@KartID", conn))
+            {
+                cmd.Parameters.AddWithValue("@KartID", KartID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int DeleteSuburb(string SuburbID)
+        {
+            using (SqlCommand cmd = new SqlCommand($"DELETE FROM location.tblSuburb WHERE SuburbID =@SuburbID", conn))
+            {
+                cmd.Parameters.AddWithValue("@SuburbID", SuburbID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int DeleteTracks(string TrackID)
+        {
+            using (SqlCommand cmd = new SqlCommand($"DELETE FROM location.tblTracks WHERE TrackID =@TrackID", conn))
+            {
+                cmd.Parameters.AddWithValue("@TrackID", TrackID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public int UpdateCoach(Coaches coaches)
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE Tbl_Coaches SET First_Name=@First_Name, Last_Name=@Last_Name,Experience=@Experience,Coach_Type_ID =@Coach_Type_ID Where Coach_ID =@Coach_ID;", conn))
