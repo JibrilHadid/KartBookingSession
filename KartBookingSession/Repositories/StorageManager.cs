@@ -420,11 +420,11 @@ namespace KartBookingSession.Repositories
         public int InsertTracks(int TrackID, string TrackName, string TrackType)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblSuburb ( SuburbID, SuburbName) VALUES (@SuburbID, @SuburbName); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblTracks ( TrackID, TrackName, TrackType) VALUES (@TrackID, @TrackName, @TrackType); SELECT SCOPE_IDENTITY(); ", conn))
             {
-                cmd.Parameters.AddWithValue("@SuburbID ", SuburbID);
-                cmd.Parameters.AddWithValue("@SuburbName ", SuburbName);
-                cmd.Parameters.AddWithValue("@SuburbName ", SuburbName);
+                cmd.Parameters.AddWithValue("@TrackID ", TrackID);
+                cmd.Parameters.AddWithValue("@TrackName ", TrackName);
+                cmd.Parameters.AddWithValue("@TrackType ", TrackType);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
