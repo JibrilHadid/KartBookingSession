@@ -181,10 +181,10 @@ namespace KartBookingSession
                     case "1":
                         {
                             NotValidMain = false;
-                            Table = "Employee.tblEmployeesDetails";
+                            Table = "booking.tblKarts";
                             do
                             {
-                                view.DisplayEmployeeDetailsFields();
+                                view.DisplayKartsFields();
                                 FieldChoiceInt = view.GetIntInput();
                                 FieldChoice = FieldChoiceInt.ToString();
                                 switch (FieldChoice)
@@ -192,55 +192,31 @@ namespace KartBookingSession
                                     case "1":
                                         {
                                             loop = false;
-                                            Field = "EmployeeID";
+                                            Field = "kartID";
                                         }
                                         break;
                                     case "2":
                                         {
                                             loop = false;
-                                            Field = "FirstName";
+                                            Field = "kartType";
                                         }
                                         break;
                                     case "3":
                                         {
                                             loop = false;
-                                            Field = "LastName";
+                                            Field = "kartName";
                                         }
                                         break;
                                     case "4":
                                         {
                                             loop = false;
-                                            Field = "HireDate";
+                                            Field = "productionDate";
                                         }
                                         break;
                                     case "5":
                                         {
                                             loop = false;
-                                            Field = "JobID";
-                                        }
-                                        break;
-                                    case "6":
-                                        {
-                                            loop = false;
-                                            Field = "RoleID";
-                                        }
-                                        break;
-                                    case "7":
-                                        {
-                                            loop = false;
-                                            Field = "Email";
-                                        }
-                                        break;
-                                    case "8":
-                                        {
-                                            loop = false;
-                                            Field = "PhoneNumber";
-                                        }
-                                        break;
-                                    case "9":
-                                        {
-                                            loop = false;
-                                            Field = "Wage";
+                                            Field = "kartPrice";
                                         }
                                         break;
                                     default:
@@ -250,86 +226,22 @@ namespace KartBookingSession
                                         }
                                         break;
                                 }
-                            } while (loop);
-                            if (Field.Equals("HireDate"))
-                            {
-                                Console.WriteLine("what date do you wish to see ");
-                                Console.WriteLine("Use the format dd-mm-yyyy");
-                                choice = Console.ReadLine();
-                            }
-                            else
-                            {
-                                Console.WriteLine($"what {Field} do you wish to see:");
-                                choice = view.GetInput();
-                            }
-                            List<SearchEmployeeDetails> employee = storageManager.GetSearchQryEmpDet(Table, Field, choice);
-                            view.DisplaySearchEmployeeDetailsPages(employee);
-
+                            } while (loop); 
+                        }
+                        break; 
+                    default:
+                        {
+                            Console.WriteLine("Invalid table option, please try again.");
+                            NotValidMain = true;
                         }
                         break;
-                    case "2":
-                        {
-                            NotValidMain = false;
-                            Table = "Location.tblLocation";
-                            do
-                            {
-                                view.DisplayLocationFields();
-                                FieldChoiceInt = view.GetIntInput();
-                                FieldChoice = FieldChoiceInt.ToString();
-                                switch (FieldChoice)
-                                {
-                                    case "1":
-                                        {
-                                            loop = false;
-                                            Field = "LocationID";
-                                        }
-                                        break;
-                                    case "2":
-                                        {
-                                            loop = false;
-                                            Field = "LocationName";
-                                        }
-                                        break;
-                                    case "3":
-                                        {
-                                            loop = false;
-                                            Field = "CountryID";
-                                        }
-                                        break;
-                                    case "4":
-                                        {
-                                            loop = false;
-                                            Field = "SuburbID";
-                                        }
-                                        break;
-                                    case "5":
-                                        {
-                                            loop = false;
-                                            Field = "StreetID";
-                                        }
-                                        break;
-                                    case "6":
-                                        {
-                                            loop = false;
-                                            Field = "CityID";
-                                        }
-                                        break;
-                                    case "7":
-                                        {
-                                            loop = false;
-                                            Field = "StreetNumber";
-                                        }
-                                        break;
-                                    default:
-                                        {
-                                            Console.WriteLine("Invalid option please try again.");
-                                            loop = true;
-                                        }
-                                        break;
-                                }
-                            } while (loop);
-                            Console.WriteLine($"what {Field} do you wish to see:");
-                            choice = view.GetInput();
-                            List<SearchLocation> locations = storageManager.GetSearchQryLocation(Table, Field, choice);
-                            view.DisplaySearchLocationPages(locations);
-                        }
+                }
+            } while (NotValidMain);
+           
+        }
+    }
+}
+                           
+
+                       
+              
