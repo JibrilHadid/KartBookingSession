@@ -287,8 +287,8 @@ namespace KartBookingSession.Repositories
                     {
                         int CoachInfoID = Convert.ToInt32(reader["CoachInfoID"]);
                         int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
                         string Email = reader["Email"].ToString();
-                        string PhoneNumber = reader["PhoneNumber"].ToString();
                         string ExperienceLvl = reader["ExperienceLvl"].ToString();
                         coachinfo.Add(new CoachInfo(CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl));
                     }
@@ -328,7 +328,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int UpdateCoachInfo(int CoachInfoID, int CoachID, string Email, string PhoneNumber, string ExperienceLvl)
+        public int UpdateCoachInfo(int CoachInfoID, int CoachID, string Email, int PhoneNumber, string ExperienceLvl)
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoachInfo SET CoachInfoID = @CoachInfoID, CoachID = @CoachID, Email = @Email, PhoneNumber = @PhoneNumber, ExperienceLvl = @ExperienceLvl", conn))
             {
@@ -420,12 +420,11 @@ namespace KartBookingSession.Repositories
         public int InsertCity(int CityID, string CityName, string Country)
         { 
 
-        using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblCity ( Country, CityName, CityID, Active) VALUES (@Country, @CityName, @CityID, @Active); SELECT SCOPE_IDENTITY(); ", conn))
+        using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblCity ( Country, CityName, CityID) VALUES (@Country, @CityName, @CityID); SELECT SCOPE_IDENTITY(); ", conn))
             {
                 cmd.Parameters.AddWithValue("@CityName ", CityName);
                 cmd.Parameters.AddWithValue("@Country ", Country);
                 cmd.Parameters.AddWithValue("@CityID ", CityID);
-                cmd.Parameters.AddWithValue("@Active ", Active);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
@@ -444,7 +443,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertCoachInfo(int CoachInfoID, int CoachID, string Email, string PhoneNumber, string ExperienceLvl)
+        public int InsertCoachInfo(int CoachInfoID, int CoachID, string Email, int PhoneNumber, string ExperienceLvl)
         {
 
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblCoachInfo ( CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl) VALUES (@CoachInfoID, @CoachID, @Email, @PhoneNumber, @ExperienceLvl); SELECT SCOPE_IDENTITY(); ", conn))

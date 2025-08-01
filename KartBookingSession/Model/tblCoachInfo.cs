@@ -11,10 +11,10 @@ namespace KartBookingSession.Model
         public int coachinfo_id { get; set; }
         public int coach_id { get; set; }
         public string email { get; set; }
-        public string phone_number { get; set; }
+        public int phone_number { get; set; }
         public string experience_lvl { get; set; }
 
-        public CoachInfo(int CoachInfoID, int CoachID, string Email, string PhoneNumber, string ExperienceLvl)
+        public CoachInfo(int CoachInfoID, int CoachID, string Email, int PhoneNumber, string ExperienceLvl)
         {
             coachinfo_id = CoachInfoID;
             coach_id = CoachID;
