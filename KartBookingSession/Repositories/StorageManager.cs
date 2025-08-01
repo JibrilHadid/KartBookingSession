@@ -410,7 +410,6 @@ namespace KartBookingSession.Repositories
                 cmd.Parameters.AddWithValue("@StreetID ", StreetID);
                 cmd.Parameters.AddWithValue("@CityID  ", CityID);
                 cmd.Parameters.AddWithValue("@StreetNumber", StreetNumber);
-                cmd.Parameters.AddWithValue("@Active", Active);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
