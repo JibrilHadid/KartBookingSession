@@ -49,16 +49,16 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int kartID = Convert.ToInt32(reader["kartID"]);
-                        string kartName = reader["kartName"].ToString();
-                        string kartType = reader["kartType"].ToString();
-                        string productionDate = reader["productionDate"].ToString();
-                        double kartPrice = Convert.ToDouble(reader["kartPrice"]);
-                        Console.WriteLine(kartID);
-                        Console.WriteLine(kartName);
-                        Console.WriteLine(kartType);
-                        Console.WriteLine(productionDate);
-                        Console.WriteLine(kartPrice);
+                        int KartID = Convert.ToInt32(reader["KartID"]);
+                        string KartName = reader["KartName"].ToString();
+                        string KartType = reader["KartType"].ToString();
+                        string ProductionDate = reader["ProductionDate"].ToString();
+                        double KartPrice = Convert.ToDouble(reader["KartPrice"]);
+                        Console.WriteLine(KartID);
+                        Console.WriteLine(KartName);
+                        Console.WriteLine(KartType);
+                        Console.WriteLine(ProductionDate);
+                        Console.WriteLine(KartPrice);
                     }
 
 
@@ -78,12 +78,12 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int coachID = Convert.ToInt32(reader["coachID"]);
-                        int trackID = Convert.ToInt32(reader["trackID"]);
-                        string trackName = reader["kartType"].ToString();
-                        Console.WriteLine(coachID);
-                        Console.WriteLine(trackID);
-                        Console.WriteLine(trackName);
+                        int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        int TrackID = Convert.ToInt32(reader["TrackID"]);
+                        string TrackName = reader["kartType"].ToString();
+                        Console.WriteLine(CoachID);
+                        Console.WriteLine(TrackID);
+                        Console.WriteLine(TrackName);
                     }
 
 
@@ -99,7 +99,22 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                //using
+                SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        string FirstName = reader["FirstName"].ToString();
+                        string Gender = reader["Gender"].ToString();
+                        string ExperienceLvl = reader["productionDate"].ToString();
+                        double kartPrice = Convert.ToDouble(reader["kartPrice"]);
+                        Console.WriteLine(CoachID);
+                        Console.WriteLine(FirstName);
+                        Console.WriteLine(Gender);
+                        Console.WriteLine(ExperienceLvl);
+                    }
+                }
+
             }
         }
 
@@ -110,7 +125,18 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                //using
+                SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        string TrackType = reader["TrackType"].ToString();
+                        string FirstName = reader["FirstName"].ToString();
+                        string LastName = reader["LastName"].ToString();
+                        Console.WriteLine(TrackType);
+                        Console.WriteLine(FirstName);
+                        Console.WriteLine(LastName);
+                    }
+                }
             }
         }
 
@@ -121,7 +147,20 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                //using
+                SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        string FirstName = reader["FirstName"].ToString();
+                        string LastName = reader["LastName"].ToString();
+                        string Email = reader["Email"].ToString();
+                        string PhoneNumber = reader["Email"].ToString();
+                        Console.WriteLine(FirstName);
+                        Console.WriteLine(LastName);
+                        Console.WriteLine(Email);
+                        Console.WriteLine(PhoneNumber);
+                    }
+                }
             }
         }
 
