@@ -52,7 +52,8 @@ namespace KartBookingSession.Repositories
                         int KartID = Convert.ToInt32(reader["KartID"]);
                         string KartName = reader["KartName"].ToString();
                         string KartType = reader["KartType"].ToString();
-                        string ProductionDate = reader["ProductionDate"].ToString();
+                        string dateString = "2025-08-03 12:00:00 PM";
+                        DateTime ProductionDate = DateTime.Parse(dateString);
                         double KartPrice = Convert.ToDouble(reader["KartPrice"]);
                         Console.WriteLine(KartID);
                         Console.WriteLine(KartName);
@@ -106,8 +107,7 @@ namespace KartBookingSession.Repositories
                         int CoachID = Convert.ToInt32(reader["CoachID"]);
                         string FirstName = reader["FirstName"].ToString();
                         string Gender = reader["Gender"].ToString();
-                        string ExperienceLvl = reader["productionDate"].ToString();
-                        double kartPrice = Convert.ToDouble(reader["kartPrice"]);
+                        string ExperienceLvl = reader["ExperienceLvl"].ToString();
                         Console.WriteLine(CoachID);
                         Console.WriteLine(FirstName);
                         Console.WriteLine(Gender);
@@ -154,7 +154,123 @@ namespace KartBookingSession.Repositories
                         string FirstName = reader["FirstName"].ToString();
                         string LastName = reader["LastName"].ToString();
                         string Email = reader["Email"].ToString();
-                        string PhoneNumber = reader["Email"].ToString();
+                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
+                        Console.WriteLine(FirstName);
+                        Console.WriteLine(LastName);
+                        Console.WriteLine(Email);
+                        Console.WriteLine(PhoneNumber);
+                    }
+                }
+            }
+        }
+
+        public void ComplexQry1()
+        {
+            string sqlString = "SELECT Count(KM.manufacturerID) as totalManufacturers, K.productionDate FROM  booking.tblKarts as K, booking.tblKartManufacturer as KM WHERE K.kartID = KM.kartID AND K.productionDate BETWEEN '2020-01-01' AND '2021-12-31' GROUP BY K.productionDate ORDER BY totalManufacturers, K.productionDate;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        int ManufacturerID = Convert.ToInt32(reader["ManufacturerID"]);
+                        string dateString = "2025-08-03 12:00:00 PM";
+                        DateTime ProductionDate = DateTime.Parse(dateString);
+                        string Email = reader["Email"].ToString();
+                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
+                        Console.WriteLine(FirstName);
+                        Console.WriteLine(LastName);
+                        Console.WriteLine(Email);
+                        Console.WriteLine(PhoneNumber);
+                    }
+                }
+            }
+        }
+
+        public void ComplexQry2()
+        {
+            string sqlString = "SELECT count(coachID) as totalCoaches, gender FROM booking.tblCoach WHERE gender = 'Female' GROUP BY gender ORDER BY totalcoaches, gender;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        string FirstName = reader["FirstName"].ToString();
+                        string LastName = reader["LastName"].ToString();
+                        string Email = reader["Email"].ToString();
+                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
+                        Console.WriteLine(FirstName);
+                        Console.WriteLine(LastName);
+                        Console.WriteLine(Email);
+                        Console.WriteLine(PhoneNumber);
+                    }
+                }
+            }
+        }
+
+        public void ComplexQry3()
+        {
+            string sqlString = "SELECT avg(kartPrice) as avgKartPrice FROM booking.tblKarts ORDER BY avgKartPrice;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        string FirstName = reader["FirstName"].ToString();
+                        string LastName = reader["LastName"].ToString();
+                        string Email = reader["Email"].ToString();
+                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
+                        Console.WriteLine(FirstName);
+                        Console.WriteLine(LastName);
+                        Console.WriteLine(Email);
+                        Console.WriteLine(PhoneNumber);
+                    }
+                }
+            }
+        }
+
+        public void ComplexQry4()
+        {
+            string sqlString = "SELECT Count(c.coachID) as totalCoach , CI.experienceLvl FROM booking.tblCoach as C, booking.tblCoachInfo as CI WHERE C.coachID = CI.coachID AND CI.experienceLvl = 'Advanced' GROUP BY CI.experienceLvl ORDER BY totalCoach, CI.experienceLvl;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        string FirstName = reader["FirstName"].ToString();
+                        string LastName = reader["LastName"].ToString();
+                        string Email = reader["Email"].ToString();
+                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
+                        Console.WriteLine(FirstName);
+                        Console.WriteLine(LastName);
+                        Console.WriteLine(Email);
+                        Console.WriteLine(PhoneNumber);
+                    }
+                }
+            }
+        }
+
+        public void ComplexQry5()
+        {
+            string sqlString = "SELECT Count(kartType) as totalKart250cc FROM booking.tblKarts WHERE kartType = '50cc' ORDER BY totalKart250cc;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        string FirstName = reader["FirstName"].ToString();
+                        string LastName = reader["LastName"].ToString();
+                        string Email = reader["Email"].ToString();
+                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
                         Console.WriteLine(FirstName);
                         Console.WriteLine(LastName);
                         Console.WriteLine(Email);
@@ -181,7 +297,8 @@ namespace KartBookingSession.Repositories
                         int KartID = Convert.ToInt32(reader["KartID"]);
                         string kartName = reader["KartName"].ToString();
                         string kartType = reader["KartType"].ToString();
-                        string ProductionDate = reader["ProductionDate"].ToString();
+                        string dateString = "2025-08-03 12:00:00 PM";
+                        DateTime ProductionDate = DateTime.Parse(dateString);
                         double KartPrice = Convert.ToDouble(reader["KartPrice"]);
                         karts.Add(new Karts(KartID, kartName, kartType, ProductionDate, KartPrice));
                     }
@@ -395,7 +512,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int UpdateKarts(int KartID, string KartName, string KartType, string ProductionDate, double KartPrice)
+        public int UpdateKarts(int KartID, string KartName, string KartType, DateTime ProductionDate, double KartPrice)
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKarts SET KartID = @KartID, KartName = @KartName, KartType = @KartType, ProductionDate = @ProductionDate, KartPrice = @KartPrice", conn))
             {
@@ -507,7 +624,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertKarts(int KartID, string KartName, string KartType, string ProductionDate, double KartPrice)
+        public int InsertKarts(int KartID, string KartName, string KartType, DateTime ProductionDate, double KartPrice)
         {
 
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKarts ( KartID, KartName, KartType, ProductionDate, KartPrice) VALUES (@KartID, @KartName, @KartType, @ProductionDate, @KartPrice); SELECT SCOPE_IDENTITY(); ", conn))
