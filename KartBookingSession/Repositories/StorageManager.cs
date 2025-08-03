@@ -1,13 +1,14 @@
-﻿using System;
+﻿using KartBookingSession.Model;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
-using KartBookingSession.Model;
-using Microsoft.Data.SqlClient;
 
 namespace KartBookingSession.Repositories
 {
@@ -37,34 +38,34 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public string getUsername(string username)
+        public string getUsername(string Username)
         {
-            string sqlString = "SELECT User_Name FROM tblUser WHERE User_Name = @User_Name";
+            string sqlString = "SELECT user_name FROM booking.tblDrivers WHERE Username = @Username";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                cmd.Parameters.AddWithValue("@User_Name", username);
+                cmd.Parameters.AddWithValue("@Username", Username);
 
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        username = reader["User_Name"].ToString();
+                        Username = reader["Username"].ToString();
                     }
                 }
             }
-            return (username);
+            return (Username);
         }
 
 
-        public string getPassword(string username)
+        public string getPassword(string Username)
         {
             string Password = "";
-            string sqlString = "SELECT Password FROM tblUser WHERE User_Name = @User_Name";
+            string sqlString = "SELECT Password FROM booking.tblDrivers WHERE Username = @Username";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                cmd.Parameters.AddWithValue("@User_Name", username);
+                cmd.Parameters.AddWithValue("@Username", Username);
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
@@ -77,16 +78,16 @@ namespace KartBookingSession.Repositories
         }
 
 
-        public int getRoleID(string username)
+        public int getRoleID(string Username)
         {
             int roleID = 0;
 
-            string sqlString = "SELECT Role_ID FROM tblUser WHERE User_Name = @User_Name";
+            string sqlString = "SELECT Role_ID FROM booking.tblDrivers WHERE User_Name = @Username";
 
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                cmd.Parameters.AddWithValue("@User_Name", username);
+                cmd.Parameters.AddWithValue("@Username", Username);
 
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -139,7 +140,6 @@ namespace KartBookingSession.Repositories
 
         public void AdvancedQuery1()
         {
-            List<AdvancedQry1> advancedQry1 = new List<AdvancedQry1>();
             string sqlString = "SELECT KM.manufacturerName, K.kartPrice, K.productionDate FROM booking.tblKartManufacturer as KM, " +
                 "booking.tblKarts as K Where K.kartID = KM.kartID AND(kartPrice <= 190.00;";
 
@@ -798,6 +798,15 @@ namespace KartBookingSession.Repositories
             {
                 cmd.Parameters.AddWithValue("@TrackID", TrackID);
                 return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void CloseConnection()
+        {
+            if (conn != null && conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+                Console.WriteLine("Connection closed.");
             }
         }
 
