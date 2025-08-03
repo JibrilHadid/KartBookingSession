@@ -10,6 +10,12 @@ namespace KartBookingSession.View
 {
     public class consoleView
     {
+        private static StorageManager storageManager;
+
+        public consoleView(StorageManager manager)
+        {
+            storageManager = manager;
+        }
         public string MainMenu()
         {
             Console.WriteLine("Hello and welcome to the main menu of the KartBookingSession");
@@ -25,24 +31,24 @@ namespace KartBookingSession.View
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Please enter your login credentials: ");
+                Console.WriteLine("Please enter your login details: ");
 
                 Console.WriteLine("Please enter your Username: ");
-                string InputtedUsername = Console.ReadLine();
+                string AccountUsername = Console.ReadLine();
 
                 Console.WriteLine("Please enter your Password: ");
-                string InputtedPassword = Console.ReadLine();
+                string AccountPassword = Console.ReadLine();
 
-                string Username = storageManager.getUsername(InputtedUsername);
-                string Password = storageManager.getPassword(InputtedUsername);
-                int roleID = storageManager.getRoleID(InputtedUsername);
-                int userID = storageManager.getUserID(InputtedUsername);
+                string Username = storageManager.getUsername(AccountUsername);
+                string Password = storageManager.getPassword(AccountUsername);
+                int roleID = storageManager.getRoleID(AccountUsername);
+                int userID = storageManager.getUserID(AccountUsername);
 
-                if (!string.IsNullOrEmpty(Username) && InputtedUsername.Equals(Username) && InputtedPassword.Equals(Password))
+                if (!string.IsNullOrEmpty(Username) && AccountUsername.Equals(Username) && AccountPassword.Equals(Password))
                 {
                     if (roleID == 1)
                     {
-                        Program.AdminMenu();
+                        Program.AdminOnlyMenu();
                     }
 
                     else if (roleID == 2)

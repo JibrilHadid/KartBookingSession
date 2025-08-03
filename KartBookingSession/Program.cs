@@ -62,168 +62,220 @@ namespace KartBookingSession
 
         public static void AdminOnlyMenu()
         {
-
-            Console.Clear();
-
-            bool NotValidMain = true;
-            string tblchoice;
-            string choice;
-            bool loop = true;
-            bool logInBool = true;
-            string employeeChoice;
-            logInBool = false;
-            Console.WriteLine("welcome admin");
-            do
+            while (true)
             {
-                do
-                {
-                    view.DisplayQryOrUpdate();
-                    string choiceQry = view.GetInput();
-                    switch (choiceQry)
-                    {
-                        case "1":
-                            {
-                                DisplayQrySwitch();
-                                loop = false;
-                                NotValidMain = false;
-                            }
-                            break;
-                        case "2":
-                            {
-                                DisplayUpdatesSwitch();
-                                loop = false;
-                                NotValidMain = false;
-                            }
-                            break;
-                        case "3":
-                            {
-                                searchQrySwitch();
-                                loop = false;
-                                NotValidMain = false;
-                            }
-                            break;
-                        default:
-                            {
-                                Console.WriteLine("Please enter a valid Username and Password");
-                                loop = true;
-                                NotValidMain = true;
-                            }
-                            break;
-                    }
-                } while (NotValidMain);
-                bool MainMenuLoop = true;
-                do
-                {
-                    Console.WriteLine("Do you wish to go back to the main menu enter Y/N");
-                    string choiceloopans = view.GetInput().ToUpper();
-                    switch (choiceloopans)
-                    {
-                        case "Y":
-                            {
-                                MainMenuLoop = false;
-                                loop = true;
-                            }
-                            break;
-                        case "N":
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Good-Bye");
-                                MainMenuLoop = false;
-                                loop = false;
-                            }
-                            break;
-                        default:
-                            Console.WriteLine("Invalid option please try again.");
-                            NotValidMain = false;
-                            break;
-                    }
-                } while (MainMenuLoop);
-            } while (loop);
-        }
+                Console.Clear();
+                string choice = view.DisplayAdminMenu();
 
-        public static void searchQrySwitch()
-        {
-            string Table = "";
-            string Field = "";
-            string choice = "";
-            bool NotValidMain = true;
-            bool loop = true;
-            string TableChoice;
-            string FieldChoice;
-            int TableChoiceInt;
-            int FieldChoiceInt;
-            Console.Clear();
-            do
-            {
-                view.DisplayTables();
-                TableChoiceInt = view.GetIntInput();
-                TableChoice = TableChoiceInt.ToString();
-                switch (TableChoice)
+                switch (choice)
                 {
                     case "1":
+                        view.tblCity();
+                        break;
+                    case "2":
+                        ;
+                        view.tblCoach();
+                        break;
+
+                    case "3":
+                        view.tblCoachInfo();
+                        break;
+
+                    case "4":
+                        view.tblCoachLocation();
+                        break;
+
+                    case "5":
+                        view.tblKartManufacturer();
+                        break;
+
+                    case "6":
+                        view.tblKarts();
+                        break;
+
+                    case "7":
+                        view.tblSuburb();
+                        break;
+
+                    case "8":
+                        view.tblTracks();
+                        break;
+
+                    case "9":
+                        view.tblDrivers();
+                        break;
+
+                    case "10":
+                        while (true)
                         {
-                            NotValidMain = false;
-                            Table = "booking.tblKarts";
-                            do
+                            view.QueryOptions();
+
+                            Console.Write("Please enter one of the following options: ");
+                            string queryChoice = Console.ReadLine();
+
+                            switch (queryChoice)
                             {
-                                view.DisplayKartsFields();
-                                FieldChoiceInt = view.GetIntInput();
-                                FieldChoice = FieldChoiceInt.ToString();
-                                switch (FieldChoice)
-                                {
-                                    case "1":
-                                        {
-                                            loop = false;
-                                            Field = "kartID";
-                                        }
-                                        break;
-                                    case "2":
-                                        {
-                                            loop = false;
-                                            Field = "kartType";
-                                        }
-                                        break;
-                                    case "3":
-                                        {
-                                            loop = false;
-                                            Field = "kartName";
-                                        }
-                                        break;
-                                    case "4":
-                                        {
-                                            loop = false;
-                                            Field = "productionDate";
-                                        }
-                                        break;
-                                    case "5":
-                                        {
-                                            loop = false;
-                                            Field = "kartPrice";
-                                        }
-                                        break;
-                                    default:
-                                        {
-                                            Console.WriteLine("Invalid option please try again.");
-                                            loop = true;
-                                        }
-                                        break;
-                                }
-                            } while (loop); 
-                        }
-                        break; 
-                    default:
-                        {
-                            Console.WriteLine("Invalid table option, please try again.");
-                            NotValidMain = true;
+                                case "1":
+                                    Console.Clear();
+                                    storageManager.simpleQry1();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "2":
+                                    Console.Clear();
+                                    storageManager.simpleQry2();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "3":
+                                    Console.Clear();
+                                    storageManager.simpleQry3();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "4":
+                                    Console.Clear();
+                                    storageManager.SimpleQry4();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "5":
+                                    Console.Clear();
+                                    storageManager.SimpleQry5();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "6":
+                                    Console.Clear();
+                                    storageManager.AdvancedQry1();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "7":
+                                    Console.Clear();
+                                    storageManager.AdvancedQry2();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "8":
+                                    Console.Clear();
+                                    storageManager.AdvancedQry3();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "9":
+                                    Console.Clear();
+                                    storageManager.AdvancedQry4();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "10":
+                                    Console.Clear();
+                                    storageManager.AdvancedQry5();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "11":
+                                    Console.Clear();
+                                    storageManager.ComplexQry1();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "12":
+                                    Console.Clear();
+                                    storageManager.ComplexQry2();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "13":
+                                    Console.Clear();
+                                    storageManager.ComplexQry3();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "14":
+                                    Console.Clear();
+                                    storageManager.ComplexQry4();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "15":
+                                    Console.Clear();
+                                    storageManager.ComplexQry5();
+                                    Console.WriteLine("Press Enter to return to the query menu");
+                                    Console.ReadLine();
+                                    break;
+
+                                case "16":
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Invalid query option. Try again.");
+                                    continue;
+                            }
+                            if (queryChoice == "16")
+                            {
+                                break;
+                            }
                         }
                         break;
-                }
-            } while (NotValidMain);
-           
-        }
-    }
-}
-                           
 
-                       
-              
+                    case "8":
+                        storageManager.CloseConnection();
+                        Environment.Exit(0);
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid option. Please try again.");
+                        break;
+                }
+            }
+        }
+
+        public static void UserMenu()
+        {
+            while (true)
+            {
+                string choice = view.DisplayUserMenu();
+
+                switch (choice)
+                {
+                    case "1":
+                        view.tblRecordLabelU();
+                        break;
+                    case "2":
+                        view.tblArtistU();
+                        break;
+                    case "3":
+                        view.tblVinylU();
+                        break;
+                    case "4":
+                        view.tblGenreU();
+                        break;
+                    case "5":
+                        view.tblReviewsU();
+                        break;
+                    case "6":
+                        view.tblReviewCommentsU();
+                        break;
+                    case "7":
+                        storageManager.CloseConnection();
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+        }

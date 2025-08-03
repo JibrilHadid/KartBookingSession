@@ -101,15 +101,15 @@ namespace KartBookingSession.Repositories
             return (roleID);
         }
 
-        public int getUserID(string username)
+        public int getUserID(string Username)
         {
             int userID = 0;
 
-            string sqlString = "SELECT User_ID FROM tblUser WHERE User_Name = @User_Name";
+            string sqlString = "SELECT User_ID FROM booking.tblDriver WHERE Username = @Username";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                cmd.Parameters.AddWithValue("@User_Name", username);
+                cmd.Parameters.AddWithValue("@Username", Username);
 
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -123,16 +123,16 @@ namespace KartBookingSession.Repositories
             return (userID);
         }
 
-        public int RegisterUser(string username, string password, int roleID, int newAge)
+        public int RegisterUser(string Username, string Password, int RoleID, int Age)
         {
-            string sql = "INSERT INTO tblUser (User_Name, Password, Age, Role_ID) VALUES (@username, @password, @age, @roleID)";
+            string sql = "INSERT INTO tblUser (Username, Password, Age, Role_ID) VALUES (@username, @password, @age, @roleID)";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@age", newAge);
-                cmd.Parameters.AddWithValue("@roleID", roleID);
+                cmd.Parameters.AddWithValue("@username", Username);
+                cmd.Parameters.AddWithValue("@password", Password);
+                cmd.Parameters.AddWithValue("@age", Age);
+                cmd.Parameters.AddWithValue("@roleID", RoleID);
 
                 return cmd.ExecuteNonQuery();
             }
