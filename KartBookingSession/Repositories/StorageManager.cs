@@ -37,6 +37,106 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        public string getUsername(string username)
+        {
+            string sqlString = "SELECT User_Name FROM tblUser WHERE User_Name = @User_Name";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                cmd.Parameters.AddWithValue("@User_Name", username);
+
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        username = reader["User_Name"].ToString();
+                    }
+                }
+            }
+            return (username);
+        }
+
+
+        public string getPassword(string username)
+        {
+            string Password = "";
+            string sqlString = "SELECT Password FROM tblUser WHERE User_Name = @User_Name";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                cmd.Parameters.AddWithValue("@User_Name", username);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        Password = reader["Password"].ToString();
+                    }
+                }
+            }
+            return Password;
+        }
+
+
+        public int getRoleID(string username)
+        {
+            int roleID = 0;
+
+            string sqlString = "SELECT Role_ID FROM tblUser WHERE User_Name = @User_Name";
+
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                cmd.Parameters.AddWithValue("@User_Name", username);
+
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        roleID = Convert.ToInt32(reader["Role_ID"]);
+                    }
+                }
+            }
+            return (roleID);
+        }
+
+        public int getUserID(string username)
+        {
+            int userID = 0;
+
+            string sqlString = "SELECT User_ID FROM tblUser WHERE User_Name = @User_Name";
+
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                cmd.Parameters.AddWithValue("@User_Name", username);
+
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        userID = Convert.ToInt32(reader["User_ID"]);
+                    }
+                }
+            }
+            return (userID);
+        }
+
+        public int RegisterUser(string username, string password, int roleID, int newAge)
+        {
+            string sql = "INSERT INTO tblUser (User_Name, Password, Age, Role_ID) VALUES (@username, @password, @age, @roleID)";
+
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@age", newAge);
+                cmd.Parameters.AddWithValue("@roleID", roleID);
+
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public void AdvancedQuery1()
         {
             List<AdvancedQry1> advancedQry1 = new List<AdvancedQry1>();

@@ -7,7 +7,8 @@ namespace KartBookingSession
     {
         private static StorageManager storageManager;
         private static consoleView view;
-        static int role;
+
+        string choice;
 
         //things to do whilst other items are on hold 
         //code the prpgram part which is 
@@ -33,52 +34,33 @@ namespace KartBookingSession
             storageManager = new StorageManager(connectionString);
             view = new consoleView();
 
-            MainMenu();
-            storageManager.CloseConnection(); 
-        }
 
-        public static void MainMenu()
-        {
-
-            bool NotValidMain = true;
-            string tblchoice;
-            string choice;
-            bool loop = true;
-            bool logInBool = true;
-            string employeeChoice;
-            string MainChoice;
-            do 
+            while (true)
             {
-                view.MainMenu(); 
-                MainChoice = view.GetInput(); 
-                switch (MainChoice)
-                {
 
+                string choice = view.MainMenu();
+
+                switch (choice)
+                {
                     case "1":
                         {
-                            Console.Clear();
-                            LogIn();
-                            loop = false;
+                            view.LoginMenu();
                         }
                         break;
                     case "2":
                         {
-                            Console.Clear();
-                            RegisterUser();
-                            loop = false;
+                            RegisterMenu();
                         }
                         break;
                     default:
-                        {
-                            Console.WriteLine("Please enter a valid option");
-                            logInBool = true;
-                        }
+                        Console.WriteLine("Please input the correct option");
                         break;
                 }
-            } while (loop);
+            }
+          
         }
 
-        public static void SwitchMainAdmin()
+        public static void AdminOnlyMenu()
         {
 
             Console.Clear();

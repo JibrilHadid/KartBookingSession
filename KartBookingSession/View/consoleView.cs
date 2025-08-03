@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using KartBookingSession.Repositories;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,57 @@ namespace KartBookingSession.View
 {
     public class consoleView
     {
-        public void DisplayMenu()
+        public string MainMenu()
         {
-            Console.WriteLine("Hello and welcome to the kart Booking menu");
+            Console.WriteLine("Hello and welcome to the main menu of the KartBookingSession");
             Console.WriteLine("Please enter one of the two options");
             Console.WriteLine("1: Log In");
             Console.WriteLine("2. Register");
+
+            return Console.ReadLine();
         }
 
+        public void LoginMenu()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Please enter your login credentials: ");
+
+                Console.WriteLine("Please enter your Username: ");
+                string InputtedUsername = Console.ReadLine();
+
+                Console.WriteLine("Please enter your Password: ");
+                string InputtedPassword = Console.ReadLine();
+
+                string Username = storageManager.getUsername(InputtedUsername);
+                string Password = storageManager.getPassword(InputtedUsername);
+                int roleID = storageManager.getRoleID(InputtedUsername);
+                int userID = storageManager.getUserID(InputtedUsername);
+
+                if (!string.IsNullOrEmpty(Username) && InputtedUsername.Equals(Username) && InputtedPassword.Equals(Password))
+                {
+                    if (roleID == 1)
+                    {
+                        Program.AdminMenu();
+                    }
+
+                    else if (roleID == 2)
+                    {
+                        Program.UserMenu();
+                    }
+
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Please re enter your details");
+                    Console.WriteLine("Press enter to re-try");
+                    Console.ReadLine();
+                }
+            }
+        }
 
         public void TblDisplayMenu()
         {
@@ -250,6 +294,11 @@ namespace KartBookingSession.View
             Console.WriteLine("");
 
 
+        }
+
+        internal string GetInput()
+        {
+            throw new NotImplementedException();
         }
     }
 }
