@@ -16,6 +16,11 @@ namespace KartBookingSession.View
         {
             storageManager = manager;
         }
+
+        public consoleView()
+        {
+        }
+
         public string MainMenu()
         {
             Console.WriteLine("Hello and welcome to the main menu of the KartBookingSession");

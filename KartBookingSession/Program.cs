@@ -57,7 +57,7 @@ namespace KartBookingSession
                         break;
                 }
             }
-          
+
         }
 
         public static void AdminOnlyMenu()
@@ -279,3 +279,43 @@ namespace KartBookingSession
                 }
             }
         }
+
+        public static void UpdateRecordLabelsName()
+        {
+            int RecordLabelID;
+            while (true)
+            {
+                view.DisplayMessage("Enter the RecordLabel_ID to update: ");
+                RecordLabelID = view.GetIntInput();
+
+                if (storageManager.RecordLabelExists(RecordLabelID))
+                {
+                    break;
+                }
+                else
+                {
+                    view.DisplayMessage("Record Label ID does not exist or was not found, please try again.");
+                }
+            }
+
+            string RecordLabelName;
+            while (true)
+            {
+                view.DisplayMessage("Enter the new Record Label name: ");
+                RecordLabelName = view.GetInput();
+
+                if (!string.IsNullOrWhiteSpace(RecordLabelName) && RecordLabelName.Length <= 100)
+                {
+                    break;
+                }
+                else
+                {
+                    view.DisplayMessage("Record Label Name cannot be empty or more than 100 characters, please try again.");
+                }
+            }
+            ;
+            int rowsAffected = storageManager.UpdateRecordLabelsName(RecordLabelID, RecordLabelName);
+            view.DisplayMessage($"Rows affected {rowsAffected}");
+        }
+    }
+}
