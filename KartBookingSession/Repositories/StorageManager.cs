@@ -177,12 +177,8 @@ namespace KartBookingSession.Repositories
                         int ManufacturerID = Convert.ToInt32(reader["ManufacturerID"]);
                         string dateString = "2025-08-03 12:00:00 PM";
                         DateTime ProductionDate = DateTime.Parse(dateString);
-                        string Email = reader["Email"].ToString();
-                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
-                        Console.WriteLine(FirstName);
-                        Console.WriteLine(LastName);
-                        Console.WriteLine(Email);
-                        Console.WriteLine(PhoneNumber);
+                        Console.WriteLine(ManufacturerID);
+                        Console.WriteLine(ProductionDate);
                     }
                 }
             }
@@ -198,14 +194,10 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        string FirstName = reader["FirstName"].ToString();
-                        string LastName = reader["LastName"].ToString();
-                        string Email = reader["Email"].ToString();
-                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
-                        Console.WriteLine(FirstName);
-                        Console.WriteLine(LastName);
-                        Console.WriteLine(Email);
-                        Console.WriteLine(PhoneNumber);
+                        int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        string Gender = reader["Gender"].ToString();
+                        Console.WriteLine(CoachID);
+                        Console.WriteLine(Gender);
                     }
                 }
             }
@@ -221,14 +213,9 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        string FirstName = reader["FirstName"].ToString();
-                        string LastName = reader["LastName"].ToString();
-                        string Email = reader["Email"].ToString();
-                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
-                        Console.WriteLine(FirstName);
-                        Console.WriteLine(LastName);
-                        Console.WriteLine(Email);
-                        Console.WriteLine(PhoneNumber);
+                        double KartPrice = Convert.ToDouble(reader["KartPrice"]);
+                        Console.WriteLine(KartPrice);
+
                     }
                 }
             }
@@ -244,14 +231,10 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        string FirstName = reader["FirstName"].ToString();
-                        string LastName = reader["LastName"].ToString();
-                        string Email = reader["Email"].ToString();
-                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
-                        Console.WriteLine(FirstName);
-                        Console.WriteLine(LastName);
-                        Console.WriteLine(Email);
-                        Console.WriteLine(PhoneNumber);
+                        int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        string ExperienceLvl = reader["ExperienceLvl"].ToString();
+                        Console.WriteLine(CoachID);
+                        Console.WriteLine(ExperienceLvl);
                     }
                 }
             }
@@ -267,14 +250,8 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        string FirstName = reader["FirstName"].ToString();
-                        string LastName = reader["LastName"].ToString();
-                        string Email = reader["Email"].ToString();
-                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
-                        Console.WriteLine(FirstName);
-                        Console.WriteLine(LastName);
-                        Console.WriteLine(Email);
-                        Console.WriteLine(PhoneNumber);
+                        string KartType = reader["KartType"].ToString();
+                        Console.WriteLine(KartType);
                     }
                 }
             }
