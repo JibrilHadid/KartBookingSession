@@ -171,13 +171,12 @@ namespace KartBookingSession.View
             Console.WriteLine("1. tblCity");
             Console.WriteLine("2. tblCoach");
             Console.WriteLine("3. tblCoachInfo");
-            Console.WriteLine("4. tblCoachLocation");
-            Console.WriteLine("5. tblKartManufacturer");
-            Console.WriteLine("6. tblKarts");
-            Console.WriteLine("7. tblSuburb");
-            Console.WriteLine("8. tblTracks");
-            Console.WriteLine("9. Queries");
-            Console.WriteLine("10. Exit");
+            Console.WriteLine("4. tblKartManufacturer");
+            Console.WriteLine("5. tblKarts");
+            Console.WriteLine("6. tblSuburb");
+            Console.WriteLine("7. tblTracks");
+            Console.WriteLine("8. Queries");
+            Console.WriteLine("9. Exit");
 
             return Console.ReadLine();
         }
@@ -193,13 +192,12 @@ namespace KartBookingSession.View
             Console.WriteLine("1. City");
             Console.WriteLine("2. Coach");
             Console.WriteLine("3. CoachInfo");
-            Console.WriteLine("4. CoachLocation");
-            Console.WriteLine("5. KartManufacturer");
-            Console.WriteLine("6. Karts");
-            Console.WriteLine("7. Suburb");
-            Console.WriteLine("8. Tracks");
-            Console.WriteLine("9. Queries");
-            Console.WriteLine("10. Exit");
+            Console.WriteLine("4. KartManufacturer");
+            Console.WriteLine("5. Karts");
+            Console.WriteLine("6. Suburb");
+            Console.WriteLine("7. Tracks");
+            Console.WriteLine("8. Queries");
+            Console.WriteLine("9. Exit");
 
             return Console.ReadLine();
         }

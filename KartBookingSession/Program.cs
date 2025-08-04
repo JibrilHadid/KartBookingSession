@@ -232,31 +232,7 @@ namespace KartBookingSession
                                         break;
                                     } while (loop) ;
                                     break;
-
                                 case "13":
-                                    {
-                                        Console.Clear();
-                                        storageManager.GetAllCoachLocation();
-                                        loop = false;
-                                        List<CoachLocation> coachlocation = storageManager.GetAllCoachLocation();
-                                        view.DisplayCoachLocation(coachlocation);
-                                        break;
-                                    }
-                                case "14":
-                                    {
-                                        UpdateCoachLocation();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "15":
-                                    {
-                                        InsertCoachLocation();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "16":
                                     {
                                         DeleteCoachLocation();
                                         loop = false;
@@ -264,7 +240,7 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "17":
+                                case "14":
                                     {
                                         Console.Clear();
                                         storageManager.GetAllKartManufacturer();
@@ -273,21 +249,21 @@ namespace KartBookingSession
                                         view.DisplayKartManufacturer(kartmanufacturer);
                                         break;
                                     }
-                                case "18":
+                                case "15":
                                     {
                                         UpdateKartManufacturer();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "19":
+                                case "16":
                                     {
                                         InsertKartManufacturer();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "20":
+                                case "17":
                                     {
                                         DeleteKartManufacturer();
                                         loop = false;
@@ -295,7 +271,7 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "21":
+                                case "18":
                                     {
                                         Console.Clear();
                                         storageManager.GetAllKarts();
@@ -304,21 +280,21 @@ namespace KartBookingSession
                                         view.DisplayKarts(karts);
                                         break;
                                     }
-                                case "22":
+                                case "19":
                                     {
                                         UpdateKarts();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "23":
+                                case "20":
                                     {
                                         InsertKarts();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "24":
+                                case "21":
                                     {
                                         DeleteKarts();
                                         loop = false;
@@ -326,7 +302,7 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "25":
+                                case "22":
                                     {
                                         Console.Clear();
                                         storageManager.GetAllSuburb();
@@ -335,21 +311,21 @@ namespace KartBookingSession
                                         view.DisplaySuburb(suburb);
                                         break;
                                     }
-                                case "26":
+                                case "23":
                                     {
                                         UpdateSuburb();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "27":
+                                case "24":
                                     {
                                         InsertSuburb();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "28":
+                                case "25":
                                     {
                                         DeleteSuburb();
                                         loop = false;
@@ -357,7 +333,7 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "29":
+                                case "26":
                                     {
                                         Console.Clear();
                                         storageManager.GetAlltracks();
@@ -366,21 +342,21 @@ namespace KartBookingSession
                                         view.DisplayTracks(tracks);
                                         break;
                                     }
-                                case "30":
+                                case "27":
                                     {
                                         UpdateTracks();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "31":
+                                case "28":
                                     {
                                         InsertTracks();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "32":
+                                case "29":
                                     {
                                         DeleteTracks();
                                         loop = false;
@@ -538,47 +514,138 @@ namespace KartBookingSession
                 }
             }
         }
-
-        public static void UpdateRecordLabelsName()
-        {
-            int RecordLabelID;
-            while (true)
-            {
-                view.DisplayMessage("Enter the RecordLabel_ID to update: ");
-                RecordLabelID = view.GetIntInput();
-
-                if (storageManager.RecordLabelExists(RecordLabelID))
-                {
-                    break;
-                }
-                else
-                {
-                    view.DisplayMessage("Record Label ID does not exist or was not found, please try again.");
-                }
-            }
-
-            string RecordLabelName;
-            while (true)
-            {
-                view.DisplayMessage("Enter the new Record Label name: ");
-                RecordLabelName = view.GetInput();
-
-                if (!string.IsNullOrWhiteSpace(RecordLabelName) && RecordLabelName.Length <= 100)
-                {
-                    break;
-                }
-                else
-                {
-                    view.DisplayMessage("Record Label Name cannot be empty or more than 100 characters, please try again.");
-                }
-            }
-            ;
-            int rowsAffected = storageManager.UpdateRecordLabelsName(RecordLabelID, RecordLabelName);
-            view.DisplayMessage($"Rows affected {rowsAffected}");
-
             public static void UpdateCity()
         {
+            Console.WriteLine("enter the id that you wish to update");
+            int CityID = view.GetIntInput();
+
+            Console.WriteLine("Which city name would you like to update ");
+            string CityName = view.GetInput();
+
+            Console.WriteLine("Which country would you like to update ");
+            string Country = view.GetInput();
+
+            int rowsaffected = storageManager.UpdateCity(CityID, CityName, Country);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void UpdateCoach()
+        {
+            Console.WriteLine("enter the id that you wish to update");
+            int CoachID = view.GetIntInput();
+
+            Console.WriteLine("enter the firstname you would like to update");
+            string FirstName = view.GetInput();
+
+            Console.WriteLine("enter the lastname you would like to update");
+            string LastName = view.GetInput();
+
+            Console.WriteLine("enter the which gender you would like to enter ");
+            string Gender = view.GetInput();
+
+            Console.WriteLine("enter which age you would like to update");
+            int Age = view.GetIntInput();
+
+            int rowsaffected = storageManager.UpdateCoach(CoachID, FirstName, LastName, Gender, Age);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void UpdateCoachInfo()
+        {
+            Console.WriteLine("enter the id that you wish to update");
+            int CoachInfoID = view.GetIntInput();
+
             Console.WriteLine("enter the id that you wish to update ");
+            int CoachID = view.GetIntInput();
+
+            Console.WriteLine("enter the email you would like to update");
+            string Email = view.GetInput();
+
+            Console.WriteLine("enter the phonenumber you would like to update");
+            int PhoneNumber = view.GetIntInput();
+
+            Console.WriteLine("enter the which experience level you would like to update");
+            string ExperienceLvl = view.GetInput();
+
+            int rowsaffected = storageManager.UpdateCoachInfo(CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void UpdateKartManufacturer()
+        {
+            Console.WriteLine("enter the id that you wish to update ");
+            int ManufacturerID = view.GetIntInput();
+
+            Console.WriteLine("enter the id that you wish to update ");
+            int KartID = view.GetIntInput();
+
+            Console.WriteLine("enter the manufacturer name you would like to update ");
+            string ManufacturerName = view.GetInput();
+
+            int rowsaffected = storageManager.UpdateKartManufacturer(ManufacturerID, KartID, ManufacturerName);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void UpdateKarts()
+        {
+            Console.WriteLine("enter the id that you wish to update ");
+            int KartID = view.GetIntInput();
+
+            Console.WriteLine("enter the kart name you would like to update");
+            string KartName = view.GetInput();
+
+            Console.WriteLine("enter the kart type you would like to update ");
+            string KartType = view.GetInput();
+
+            Console.WriteLine("enter the productiondate you would like to update ");
+            DateTime ProductionDate = Convert.ToDateTime(view.GetIntInput());
+
+            Console.WriteLine("enter the kart price you would like to update");
+            double KartPrice = Convert.ToDouble(view.GetIntInput());
+
+            int rowsaffected = storageManager.UpdateKarts(KartID, KartName, KartType, ProductionDate, KartPrice);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void UpdateSuburb()
+        {
+            Console.WriteLine("enter the id that you wish to update ");
+            int SuburbID = view.GetIntInput();
+
+            Console.WriteLine("enter the suburb name you would like to update ");
+            string SuburbName = view.GetInput();
+
+            int rowsaffected = storageManager.UpdateSuburb(SuburbID, SuburbName);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void UpdateTracks()
+        {
+            Console.WriteLine("enter the id that you wish to update ");
+            int TrackID = view.GetIntInput();
+
+            Console.WriteLine("enter the track name you would like to update");
+            string TrackName = view.GetInput();
+
+            Console.WriteLine("enter the track type you would like to update");
+            string TrackType = view.GetInput();
+
+            int rowsaffected = storageManager.UpdateTracks(TrackID, TrackName, TrackType);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+
+
+
+
+
+
+
+
+
+        public static void InsertCity()
+        {
+            Console.WriteLine("enter the the new id you wuld like to add ");
             int CityID = view.GetIntInput();
 
             Console.WriteLine("enter the new city name ");
@@ -587,13 +654,119 @@ namespace KartBookingSession
             Console.WriteLine("enter the new country name ");
             string Country = view.GetInput();
 
-            int rowsaffected = storageManager.UpdateCity(CityID,CityName,Country);
+            int rowsaffected = storageManager.InsertCity(CityID, CityName, Country);
             Console.WriteLine($"Rows affected: {rowsaffected}");
-
-            /*
-             * in your log in you get 4 things username password role and id
-             * for the drivers update id is hard coded the id selected in the login
-             */
         }
+
+        public static void InsertCoach()
+        {
+            Console.WriteLine("enter the the new id you wuld like to add ");
+            int CoachID = view.GetIntInput();
+
+            Console.WriteLine("enter the new first name ");
+            string FirstName = view.GetInput();
+
+            Console.WriteLine("enter the new last name ");
+            string LastName = view.GetInput();
+
+            Console.WriteLine("enter the new gender ");
+            string Gender = view.GetInput();
+
+            Console.WriteLine("enter the new age ");
+            int Age = view.GetIntInput();
+
+            int rowsaffected = storageManager.InsertCoach(CoachID, FirstName, LastName, Gender, Age);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void InsertCoachInfo()
+        {
+            Console.WriteLine("enter the the new id you wuld like to add ");
+            int CoachInfoID = view.GetIntInput();
+
+            Console.WriteLine("enter the the new id you wuld like to add ");
+            int CoachID = view.GetIntInput();
+
+            Console.WriteLine("enter the new email ");
+            string Email = view.GetInput();
+
+            Console.WriteLine("enter the new phonenumber ");
+            int PhoneNumber = view.GetIntInput();
+
+            Console.WriteLine("enter the new experienceLvl ");
+            string ExperienceLvl = view.GetInput();
+
+            int rowsaffected = storageManager.InsertCoachInfo(CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void InsertKartManufacturer()
+        {
+            Console.WriteLine("enter the the new id you wuld like to add ");
+            int ManufacturerID = view.GetIntInput();
+
+            Console.WriteLine("enter the the new id you wuld like to add ");
+            int KartID = view.GetIntInput();
+
+            Console.WriteLine("enter the new Manufacturer name ");
+            string ManufacturerName = view.GetInput();
+
+            int rowsaffected = storageManager.InsertKartManufacturer(ManufacturerID, KartID, ManufacturerName);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void InsertKarts()
+        {
+            Console.WriteLine("enter the the new id you wuld like to add ");
+            int KartID = view.GetIntInput();
+
+            Console.WriteLine("enter the new kart type ");
+            string KartName = view.GetInput();
+
+            Console.WriteLine("enter the new kart type ");
+            string KartType = view.GetInput();
+
+            Console.WriteLine("enter the new Production date ");
+            DateTime ProductionDate = Convert.ToDateTime(view.GetIntInput());
+
+            Console.WriteLine("enter the new Kart Price ");
+            double KartPrice = Convert.ToDouble(view.GetIntInput());
+
+            int rowsaffected = storageManager.InsertKarts(KartID, KartName, KartType, ProductionDate, KartPrice);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void InsertSuburb()
+        {
+            Console.WriteLine("enter the the new id you wuld like to add ");
+            int SuburbID = view.GetIntInput();
+
+            Console.WriteLine("enter the new suburb name ");
+            string SuburbName = view.GetInput();
+
+            int rowsaffected = storageManager.InsertSuburb(SuburbID, SuburbName);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void InsertTracks()
+        {
+            Console.WriteLine("enter the the new id you wuld like to add ");
+            int TrackID = view.GetIntInput();
+
+            Console.WriteLine("enter the new track name ");
+            string TrackName = view.GetInput();
+
+            Console.WriteLine("enter the new track type ");
+            string TrackType = view.GetInput();
+
+            int rowsaffected = storageManager.InsertTracks(TrackID, TrackName, TrackType);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        /*
+         * in your log in you get 4 things username password role and id
+         * for the drivers update id is hard coded the id selected in the login
+         */
+    }
     }
     }
