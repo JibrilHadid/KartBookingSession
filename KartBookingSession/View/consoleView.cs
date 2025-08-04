@@ -278,15 +278,260 @@ namespace KartBookingSession.View
                         break;
 
                     case "2":
-                        Program.UpdateCity();
+                        Program.UpdateCoach();
                         break;
 
                     case "3":
-                        Program.InsertCity();
+                        Program.InsertCoach();
                         break;
 
                     case "4":
-                        Program.DeleteCity();
+                        Program.DeleteCoach();
+                        break;
+
+                    case "5":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        public void tblCoachInfoForCoach()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblCoachInfoForCoach");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblCoachInfoForCoach");
+                Console.WriteLine("2: Update a field in tblCoachInfoForCoach");
+                Console.WriteLine("3: Insert a field in tblCoachInfoForCoach");
+                Console.WriteLine("4: Delete a field in tblCoachInfoForCoach");
+                Console.WriteLine("5: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<CoachInfo> coachinfo = storageManager.GetAllCoachInfo();
+                        DisplayCoachInfo(coachinfo);
+                        break;
+
+                    case "2":
+                        Program.UpdateCoachInfo();
+                        break;
+
+                    case "3":
+                        Program.InsertCoachInfo();
+                        break;
+
+                    case "4":
+                        Program.DeleteCoachInfo();
+                        break;
+
+                    case "5":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        public void tblKartManufacturerForCoach()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblKartManufacturerForCoach");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblKartManufacturerForCoach");
+                Console.WriteLine("2: Update a field in tblKartManufacturerForCoach");
+                Console.WriteLine("3: Insert a field in tblKartManufacturerForCoach");
+                Console.WriteLine("4: Delete a field in tblKartManufacturerForCoach");
+                Console.WriteLine("5: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<KartManufacturer> kartmanufacturer = storageManager.GetAllKartManufacturer();
+                        DisplayKartManufacturer(kartmanufacturer);
+                        break;
+
+                    case "2":
+                        Program.UpdateKartManufacturer();
+                        break;
+
+                    case "3":
+                        Program.InsertKartManufacturer();
+                        break;
+
+                    case "4":
+                        Program.DeleteKartManufacturer();
+                        break;
+
+                    case "5":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        public void tblKartsForCoach()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblKartsForCoach");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblKartsForCoach");
+                Console.WriteLine("2: Update a field in tblKartsForCoach");
+                Console.WriteLine("3: Insert a field in tblKartsForCoach");
+                Console.WriteLine("4: Delete a field in tblKartsForCoach");
+                Console.WriteLine("5: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<Karts> karts = storageManager.GetAllKarts();
+                        DisplayKarts(karts);
+                        break;
+
+                    case "2":
+                        Program.UpdateKarts();
+                        break;
+
+                    case "3":
+                        Program.InsertKarts();
+                        break;
+
+                    case "4":
+                        Program.DeleteKarts();
+                        break;
+
+                    case "5":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        public void tblSuburbForCoach()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblSuburbForCoach");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblSuburbForCoach");
+                Console.WriteLine("2: Update a field in tblSuburbForCoach");
+                Console.WriteLine("3: Insert a field in tblSuburbForCoach");
+                Console.WriteLine("4: Delete a field in tblSuburbForCoach");
+                Console.WriteLine("5: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<Suburb> suburb = storageManager.GetAllSuburb();
+                        DisplaySuburb(suburb);
+                        break;
+
+                    case "2":
+                        Program.UpdateSuburb();
+                        break;
+
+                    case "3":
+                        Program.InsertSuburb();
+                        break;
+
+                    case "4":
+                        Program.DeleteSuburb();
+                        break;
+
+                    case "5":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        public void tblTracksForCoach()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblTracksForCoach");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblTracksForCoach");
+                Console.WriteLine("2: Update a field in tblTracksForCoach");
+                Console.WriteLine("3: Insert a field in tblTracksForCoach");
+                Console.WriteLine("4: Delete a field in tblTracksForCoach");
+                Console.WriteLine("5: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<Tracks> tracks = storageManager.GetAlltracks();
+                        DisplayTracks(tracks);
+                        break;
+
+                    case "2":
+                        Program.UpdateTracks();
+                        break;
+
+                    case "3":
+                        Program.InsertTracks();
+                        break;
+
+                    case "4":
+                        Program.DeleteTracks();
                         break;
 
                     case "5":
