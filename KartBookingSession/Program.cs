@@ -72,71 +72,12 @@ namespace KartBookingSession
                 {
                     case "1":
                         bool loop = true;
-                       
+
                         do
                         {
                             view.MainMenu(); // change it to the name of the view method that has the writelines for this table 
                             input = view.GetIntInput();
                             switch (input)
-                            {
-                                case "1":
-                                    storageManager.GetAllCity();
-                                    loop = false;
-                                    List<City> cities = storageManager.GetAllCity();
-                                    view.DisplayCity(cities);
-                                    //view data for the tab;le 
-                                    break;
-                                case "2":
-                                    UpdateCity();
-                                    loop = false;
-                                    break;
-                                default:
-                                    break;
-                            }
-                        } while (loop);
-                        break;
-                    case "2":
-                        ;
-                        view.tblCoach();
-                        break;
-
-                    case "3":
-                        view.tblCoachInfo();
-                        break;
-
-                    case "4":
-                        view.tblCoachLocation();
-                        break;
-
-                    case "5":
-                        view.tblKartManufacturer();
-                        break;
-
-                    case "6":
-                        view.tblKarts();
-                        break;
-
-                    case "7":
-                        view.tblSuburb();
-                        break;
-
-                    case "8":
-                        view.tblTracks();
-                        break;
-
-                    case "9":
-                        view.tblDrivers();
-                        break;
-
-                    case "10":
-                        while (true)
-                        {
-                            view.QueryOptions();
-
-                            Console.Write("Please enter one of the following options: ");
-                            string queryChoice = Console.ReadLine();
-
-                            switch (queryChoice)
                             {
                                 case "1":
                                     {
@@ -228,13 +169,6 @@ namespace KartBookingSession
                                 case "12":
                                     {
                                         DeleteCoachInfo();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "13":
-                                    {
-                                        DeleteCoachLocation();
                                         loop = false;
                                         break;
                                     } while (loop) ;
@@ -364,26 +298,8 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "12":
-                                    Console.Clear();
-                                    storageManager.simpleQry3();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
 
-                                case "13":
-                                    Console.Clear();
-                                    storageManager.SimpleQry4();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
 
-                                case "14":
-                                    Console.Clear();
-                                    storageManager.SimpleQry5();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
 
                                 case "15":
                                     Console.Clear();
@@ -466,6 +382,7 @@ namespace KartBookingSession
                             {
                                 break;
                             }
+
                         }
                         break;
 
@@ -490,24 +407,27 @@ namespace KartBookingSession
                 switch (choice)
                 {
                     case "1":
-                        view.tblRecordLabelU();
+                        view.tblCityForDriver();
                         break;
                     case "2":
-                        view.tblArtistU();
+                        view.tblCoachForDriver();
                         break;
                     case "3":
-                        view.tblVinylU();
+                        view.tblCoachInfoForDriver();
                         break;
                     case "4":
-                        view.tblGenreU();
+                        view.tblKartManufacturerForDriver();
                         break;
                     case "5":
-                        view.tblReviewsU();
+                        view.tblKartsForDriver();
                         break;
                     case "6":
-                        view.tblReviewCommentsU();
+                        view.tblSuburbForDriver();
                         break;
                     case "7":
+                        view.tblTracksForDriver();
+                        break;
+                    case "8":
                         storageManager.CloseConnection();
                         Environment.Exit(0);
                         break;

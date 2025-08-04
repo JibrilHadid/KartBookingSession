@@ -812,7 +812,6 @@ namespace KartBookingSession.Repositories
 
     }
 }
-        //deletes are on hold 
     
 
 
