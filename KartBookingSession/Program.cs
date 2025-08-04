@@ -11,6 +11,8 @@ namespace KartBookingSession
 
         string choice;
 
+        static bool Notvalid = false;
+
         //things to do whilst other items are on hold 
         //code the prpgram part which is 
         /*
@@ -397,6 +399,71 @@ namespace KartBookingSession
                 }
             }
         }
+
+        private static void UpdateDeleteInsertTables()
+        {
+            do
+            {
+                view.DisplayUpdateLocation();
+                string FieldChoice = view.GetInput();
+                bool loop = true;
+                switch (FieldChoice)
+                {
+                    case "1":
+                        {
+                            UpdateCity();
+                            loop = false;
+                            break;
+                        }
+                        break;
+                    case "3":
+                        {
+                            InsertCity();
+                            loop = false;
+                            break;
+                        }
+                        break;
+                    case "4":
+                        {
+                            DeleteCity();
+                            loop = false;
+                            break;
+                        }
+                        break;
+                    case "6":
+                        {
+                            UpdateCoach();
+                            loop = false;
+                            break;
+                        }
+                        break;
+                    case "7":
+                        {
+                            InsertCoach();
+                            loop = false;
+                            break;
+                        }
+                        break;
+                    case "8":
+                        {
+                            DeleteCoach();
+                            loop = false;
+                            break;
+                        }
+                        break;
+
+                    default:
+                        {
+                            Console.WriteLine("Invalid option please try again.");
+                            Notvalid = true;
+                        }
+                        break;
+                } while (loop) ;
+            } while (Notvalid);
+
+        } 
+        
+
 
         public static void UserMenu()
         {
