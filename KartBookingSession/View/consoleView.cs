@@ -1,4 +1,5 @@
-﻿using KartBookingSession.Repositories;
+﻿using KartBookingSession.Model;
+using KartBookingSession.Repositories;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,7 @@ namespace KartBookingSession.View
                         Program.AdminOnlyMenu();
                     }
 
-                    else if (roleID == 2)
+                    else if (roleID == 2|| roleID == 3)
                     {
                         Program.UserMenu();
                     }
@@ -132,19 +133,10 @@ namespace KartBookingSession.View
 
         }
 
-  
-        public void DisplayUpdate()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
 
         public void DisplayUpdate()
         {
+            Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
@@ -158,12 +150,21 @@ namespace KartBookingSession.View
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
+        }
+
+
+        public void DisplayUpdate()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
             Console.WriteLine("");
         }
 
 
 
- 
+
         public void tbl()
         {
             Console.Clear();
@@ -307,88 +308,98 @@ namespace KartBookingSession.View
 
         }
 
-        internal string GetInput()
+        internal string GetInputIDK()
         {
             throw new NotImplementedException();
         }
+
+        public void DisplayCity(List<City> cityTEMP)
+        {
+            foreach (City city in cityTEMP)
+            {
+                Console.WriteLine($"City ID: {city.city_id}| City Name: {city.city_name}| Country: {city.country}");
+            }
+        }
+
+        public string GetInput()
+        {
+            string input;
+            bool loop = true;
+            do
+            {
+                input = Console.ReadLine().ToUpper();
+                if (input.IsNullOrEmpty())
+                {
+                    loop = true;
+                    Console.WriteLine("please enter a valid option");
+                }
+                else
+                {
+                    loop = false;
+                }
+            } while (loop);
+
+
+            return input;
+        }
+
+
+        //gets the input of an string variable without making it uppercase so it can be used for inputs such as insert and updates 
+        public string GetInputNotUpper()
+        {
+            string input;
+            bool loop = true;
+            do
+            {
+                input = Console.ReadLine();
+                if (input.IsNullOrEmpty())
+                {
+                    loop = true;
+                    Console.WriteLine("please enter a valid option");
+                }
+                else
+                {
+                    loop = false;
+                }
+            } while (loop);
+
+
+            return input;
+        }
+
+        //gets the input of an int variable 
+        public int GetIntInput()
+        {
+            string input;
+            int IntInput = 0;
+            bool loop = true;
+            do
+            {
+                input = Console.ReadLine();
+                bool number = IsAllDigits(input);
+                if (input.IsNullOrEmpty() | number == false)
+                {
+                    Console.WriteLine("please input a valid option");
+                    loop = true;
+                }
+                else
+                {
+                    IntInput = Convert.ToInt32(input);
+                    loop = false;
+                }
+            } while (loop);
+            return IntInput;
+        }
+
+        //checks if a string contains numbers
+        public bool IsAllDigits(string s)
+        {
+            foreach (char c in s)
+            {
+                if (!char.IsDigit(c))
+                    return false;
+            }
+            return true;
+        }
     }
-}
-public string GetInput()
-{
-    string input;
-    bool loop = true;
-    do
-    {
-        input = Console.ReadLine().ToUpper();
-        if (input.IsNullOrEmpty())
-        {
-            loop = true;
-            Console.WriteLine("please enter a valid option");
-        }
-        else
-        {
-            loop = false;
-        }
-    } while (loop);
-
-
-    return input;
-}
-
-//gets the input of an string variable without making it uppercase so it can be used for inputs such as insert and updates 
-public string GetInputNotUpper()
-{
-    string input;
-    bool loop = true;
-    do
-    {
-        input = Console.ReadLine();
-        if (input.IsNullOrEmpty())
-        {
-            loop = true;
-            Console.WriteLine("please enter a valid option");
-        }
-        else
-        {
-            loop = false;
-        }
-    } while (loop);
-
-
-    return input;
-}
-
-//gets the input of an int variable 
-public int GetIntInput()
-{
-    string input;
-    int IntInput = 0;
-    bool loop = true;
-    do
-    {
-        input = Console.ReadLine();
-        bool number = IsAllDigits(input);
-        if (input.IsNullOrEmpty() | number == false)
-        {
-            Console.WriteLine("please input a valid option");
-            loop = true;
-        }
-        else
-        {
-            IntInput = Convert.ToInt32(input);
-            loop = false;
-        }
-    } while (loop);
-    return IntInput;
-}
-
-//checks if a string contains numbers
-public bool IsAllDigits(string s)
-{
-    foreach (char c in s)
-    {
-        if (!char.IsDigit(c))
-            return false;
-    }
-    return true;
 }

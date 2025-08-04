@@ -1,4 +1,5 @@
-﻿using KartBookingSession.Repositories;
+﻿using KartBookingSession.Model;
+using KartBookingSession.Repositories;
 using KartBookingSession.View;
 
 namespace KartBookingSession
@@ -70,7 +71,29 @@ namespace KartBookingSession
                 switch (choice)
                 {
                     case "1":
-                        view.tblCity();
+                        bool loop = true;
+                       
+                        do
+                        {
+                            view.asdfghjkl // change it to the name of the view method that has the writelines for this table 
+                            input = view.GetIntInput();
+                            switch (input)
+                            {
+                                case "1":
+                                    storageManager.GetAllCity();
+                                    loop = false;
+                                    List<City> cities = storageManager.GetAllCity();
+                                    view.DisplayCity(cities);
+                                    //view data for the tab;le 
+                                    break;
+                                case "2":
+                                    UpdateCity();
+                                    loop = false;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        } while (loop);
                         break;
                     case "2":
                         ;
@@ -316,6 +339,25 @@ namespace KartBookingSession
             ;
             int rowsAffected = storageManager.UpdateRecordLabelsName(RecordLabelID, RecordLabelName);
             view.DisplayMessage($"Rows affected {rowsAffected}");
+
+            public static void UpdateCity()
+        {
+            Console.WriteLine("enter the id that you wish to update ");
+            int CityID = view.GetIntInput();
+
+            Console.WriteLine("enter the new city name ");
+            string CityName = view.GetInput();
+
+            Console.WriteLine("enter the new country name ");
+            string Country = view.GetInput();
+
+            int rowsaffected = storageManager.UpdateCity(CityID,CityName,Country);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+
+            /*
+             * in your log in you get 4 things username password role and id
+             * for the drivers update id is hard coded the id selected in the login
+             */
         }
     }
-}
+    }
