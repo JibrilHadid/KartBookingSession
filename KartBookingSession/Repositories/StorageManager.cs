@@ -138,7 +138,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public void AdvancedQuery1()
+        public void AdvancedQry1()
         {
             string sqlString = "SELECT KM.manufacturerName, K.kartPrice, K.productionDate FROM booking.tblKartManufacturer as KM, " +
                 "booking.tblKarts as K Where K.kartID = KM.kartID AND(kartPrice <= 190.00;";

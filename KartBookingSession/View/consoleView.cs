@@ -154,7 +154,7 @@ namespace KartBookingSession.View
                 }
                 else
                 {
-                    Console.WriteLine("Registration failed. Please press Enter to try again...");
+                    Console.WriteLine("Registration failed. Please press Enter to try again");
                     Console.ReadLine();
                 }
             }
@@ -165,17 +165,19 @@ namespace KartBookingSession.View
             Console.Clear();
             Console.WriteLine("Welcome to the Kart Booking session, Coach");
             Console.WriteLine("Menu: ");
-            Console.WriteLine("Choose an option from 1-7");
+            Console.WriteLine("Choose an option from 1-9");
 
 
-            Console.WriteLine("1. tblRecordLabel");
-            Console.WriteLine("2. tblArtist");
-            Console.WriteLine("3. tblVinyl");
-            Console.WriteLine("4. tblGenre");
-            Console.WriteLine("5. tblReviews");
-            Console.WriteLine("6. tblReviewComments");
-            Console.WriteLine("7. Queries");
-            Console.WriteLine("8. Exit");
+            Console.WriteLine("1. tblCity");
+            Console.WriteLine("2. tblCoach");
+            Console.WriteLine("3. tblCoachInfo");
+            Console.WriteLine("4. tblCoachLocation");
+            Console.WriteLine("5. tblKartManufacturer");
+            Console.WriteLine("6. tblKarts");
+            Console.WriteLine("7. tblSuburb");
+            Console.WriteLine("8. tblTracks");
+            Console.WriteLine("9. Queries");
+            Console.WriteLine("10. Exit");
 
             return Console.ReadLine();
         }
@@ -184,254 +186,110 @@ namespace KartBookingSession.View
         public string DisplayUserMenu()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to MusicDB (user)");
+            Console.WriteLine("Welcome to Kart Booking Session, driver");
             Console.WriteLine("Menu: ");
-            Console.WriteLine("Choose an option from 1-7");
+            Console.WriteLine("Choose an option from 1-9");
 
-            Console.WriteLine("1. RecordLabel");
-            Console.WriteLine("2. Artist");
-            Console.WriteLine("3. Vinyl");
-            Console.WriteLine("4. Genre");
-            Console.WriteLine("5. Reviews");
-            Console.WriteLine("6. Review Comments");
-            Console.WriteLine("7. Exit");
+            Console.WriteLine("1. City");
+            Console.WriteLine("2. Coach");
+            Console.WriteLine("3. CoachInfo");
+            Console.WriteLine("4. CoachLocation");
+            Console.WriteLine("5. KartManufacturer");
+            Console.WriteLine("6. Karts");
+            Console.WriteLine("7. Suburb");
+            Console.WriteLine("8. Tracks");
+            Console.WriteLine("9. Queries");
+            Console.WriteLine("10. Exit");
 
             return Console.ReadLine();
         }
 
-        public void TblDisplayMenu()
+        //Displays tblRecordLabel options for Admin
+        public void tblCityForCoach()
         {
-            Console.WriteLine("Choose an option from 1-9");
-            Console.WriteLine("1: City ");
-            Console.WriteLine("2: Coaches ");
-            Console.WriteLine("3: CoachInfo ");
-            Console.WriteLine("4: CoachLocation ");
-            Console.WriteLine("5: KartManufacturers ");
-            Console.WriteLine("6: Karts ");
-            Console.WriteLine("7: Suburbs ");
-            Console.WriteLine("8: Tracks");
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblCityForCoach");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblCityForCoach");
+                Console.WriteLine("2: Update a field in tblCityForCoach");
+                Console.WriteLine("3: Insert a field in tblCityForCoach");
+                Console.WriteLine("4: Delete a field in tblCityForCoach");
+                Console.WriteLine("5: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<City> cities = storageManager.GetAllCity();
+                        DisplayCity(cities);
+                        break;
+
+                    case "2":
+                        Program.UpdateCity();
+                        break;
+
+                    case "3":
+                        Program.InsertCity();
+                        break;
+
+                    case "4":
+                        Program.DeleteCity();
+                        break;
+
+                    case "5":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
         }
 
-        public void DisplayQryOrUpdate()
+        //Displays tblRecordLabel options for User
+        public void tblCityForCoach()
         {
-            Console.Clear();
-            Console.WriteLine("Please choose an option from 1-3");
-            Console.WriteLine("1: Querys");
-            Console.WriteLine("2: Edit The Data");
-            Console.WriteLine("3: Search the Database for a specific field");
-        }
-        public void QrysMenu()
-        {
-            Console.WriteLine("Which query would you like to view");
-            Console.WriteLine("Please choose an option from 1-19");
-            Console.WriteLine("1: See karts that have a price equal to or more than $190.00 and was made before 2021-01-01");
-            Console.WriteLine("2:  See the number of coaches on each track");
-            Console.WriteLine("3:  See coaches thats first name starts with ‘A’ then also are males");
-            Console.WriteLine("4:  See the coaches that only are at outdoor tracks");
-            Console.WriteLine("5:  See coaches older than 30");
-            Console.WriteLine("6:  See all karts that were produced between 2020-01-01 and 2021-12-31 and gets it from booking");
-            Console.WriteLine("7:  See total coaches that are females");
-            Console.WriteLine("8:  displays the average kart price");
-            Console.WriteLine("9:  displays the total amount of coaches that teaches at a advanced level");
-            Console.WriteLine("10: displays the total amount of karts that have 250cc");
-            Console.WriteLine("11: See all data in the City Table");
-            Console.WriteLine("12: See all data in the Coach Table");
-            Console.WriteLine("14: See all data in the CoachInfo Table");
-            Console.WriteLine("15: See all data in the CoachLocation Table");
-            Console.WriteLine("16: See of all data in the KartManufacturer Table");
-            Console.WriteLine("17: See of all data in the Karts Table");
-            Console.WriteLine("18: See of all data in the Suburb Table");
-            Console.WriteLine("19: See of all data in the Tracks Table");
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblRecordlabel");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all existing Record Labels");
+                Console.WriteLine("2: Return to main menu");
 
-        }
+                string choice = Console.ReadLine();
 
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<RecordLabel> recordLabels = storageManager.GetAllRecordLabel();
+                        DisplayRecordLabels(recordLabels);
+                        break;
 
+                    case "2":
+                        return;
+                        break;
 
-
-        public void DisplayUpdate()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+            }
         }
 
-
-        public void DisplayUpdate()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-        public void DisplayUpdate()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-        public void DisplayUpdate()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-
-
-        public void tbl()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-        public void tbl()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-        public void tbl()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-        public void tblDepartments()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-        public void tbl()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-        public void tbl()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-        public void tblStreet()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-        public void tbl()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-
-        public void tbl()
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-        public void DisplayTables()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-        public void Display()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-        }
-
-        public void DisplayLocation()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-
-
-        }
+      
 
         internal string GetInputIDK()
         {

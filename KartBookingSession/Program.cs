@@ -75,7 +75,7 @@ namespace KartBookingSession
                        
                         do
                         {
-                            view.asdfghjkl // change it to the name of the view method that has the writelines for this table 
+                            view.MainMenu(); // change it to the name of the view method that has the writelines for this table 
                             input = view.GetIntInput();
                             switch (input)
                             {
@@ -139,17 +139,40 @@ namespace KartBookingSession
                             switch (queryChoice)
                             {
                                 case "1":
-                                    Console.Clear();
-                                    storageManager.simpleQry1();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
+                                    {
+                                        Console.Clear();
+                                        storageManager.GetAllCity();
+                                        loop = false;
+                                        List<City> cities = storageManager.GetAllCity();
+                                        view.DisplayCity(cities);
+                                        //view data for the table 
+                                        break;
+                                    }
+                                case "2":
+                                    {
+                                        UpdateCity();
+                                        loop = false;
+                                        break;
+                                    } while (loop) ;
                                     break;
+                                case "3":
+                                    {
+                                        InsertCity();
+                                        loop = false;
+                                        break;
+                                    } while (loop) ;
+                                    break;
+                            }
+
+
+
 
                                 case "2":
                                     Console.Clear();
-                                    storageManager.simpleQry2();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
+                                    storageManager.GetAlltracks();
+                                    loop = false;
+                                    List<Tracks> tracks = storageManager.GetAlltracks();
+                                    view.DisplayCity(tracks);
                                     break;
 
                                 case "3":
@@ -257,7 +280,7 @@ namespace KartBookingSession
                         }
                         break;
 
-                    case "8":
+                    case "17":
                         storageManager.CloseConnection();
                         Environment.Exit(0);
                         break;
