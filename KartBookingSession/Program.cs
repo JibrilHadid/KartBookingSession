@@ -763,10 +763,78 @@ namespace KartBookingSession
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
 
+
+
+
+
+
+        public static void DeleteCity()
+        {
+            Console.WriteLine("enter the id that you wish to delete");
+            int CityID = view.GetIntInput();
+
+            int rowsaffected = storageManager.DeleteCity(CityID);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void DeleteCoach()
+        {
+            Console.WriteLine("enter the id that you wish to delete");
+            int CoachID = view.GetIntInput();
+
+            int rowsaffected = storageManager.DeleteCoach(CoachID);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void DeleteCoachInfo()
+        {
+            Console.WriteLine("enter the id that you wish to delete");
+            int CoachInfoID = view.GetIntInput();
+
+            int rowsaffected = storageManager.DeleteCoachInfo(CoachInfoID);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void DeleteKartManufacturer()
+        {
+            Console.WriteLine("enter the id that you wish to delete ");
+            int ManufacturerID = view.GetIntInput();
+
+            int rowsaffected = storageManager.DeleteKartManufacturer(ManufacturerID);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void DeleteKarts()
+        {
+            Console.WriteLine("enter the id that you wish to delete ");
+            int KartID = view.GetIntInput();
+
+            int rowsaffected = storageManager.DeleteKarts(KartID);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void DeleteSuburb()
+        {
+            Console.WriteLine("enter the id that you wish to delete ");
+            int SuburbID = view.GetIntInput();
+
+            int rowsaffected = storageManager.DeleteSuburb(SuburbID);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
+        public static void DeleteTracks()
+        {
+            Console.WriteLine("enter the id that you wish to delete ");
+            int TrackID = view.GetIntInput();
+
+            int rowsaffected = storageManager.DeleteTracks(TrackID);
+            Console.WriteLine($"Rows affected: {rowsaffected}");
+        }
+
         /*
          * in your log in you get 4 things username password role and id
          * for the drivers update id is hard coded the id selected in the login
          */
     }
     }
-    }
+    
