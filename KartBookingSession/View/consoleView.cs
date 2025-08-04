@@ -204,7 +204,7 @@ namespace KartBookingSession.View
             return Console.ReadLine();
         }
 
-        //Displays tblRecordLabel options for Admin
+        //Displays tblCity options for Admin
         public void tblCityForCoach()
         {
             while (true)
@@ -225,8 +225,58 @@ namespace KartBookingSession.View
                 {
                     case "1":
                         Console.Clear();
-                        List<City> cities = storageManager.GetAllCity();
-                        DisplayCity(cities);
+                        List<City> city = storageManager.GetAllCity();
+                        DisplayCity(city);
+                        break;
+
+                    case "2":
+                        Program.UpdateCity();
+                        break;
+
+                    case "3":
+                        Program.InsertCity();
+                        break;
+
+                    case "4":
+                        Program.DeleteCity();
+                        break;
+
+                    case "5":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        //Displays tblCity options for Admin
+        public void tblCoachForCoach()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblCoachForCoach");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblCoachForCoach");
+                Console.WriteLine("2: Update a field in tblCoachForCoach");
+                Console.WriteLine("3: Insert a field in tblCoachForCoach");
+                Console.WriteLine("4: Delete a field in tblCoachForCoach");
+                Console.WriteLine("5: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<Coach> coach = storageManager.GetAllCoach();
+                        DisplayCoach(coach);
                         break;
 
                     case "2":
@@ -255,7 +305,7 @@ namespace KartBookingSession.View
         }
 
         //Displays tblRecordLabel options for User
-        public void tblCityForCoach()
+        public void tblCityForDriver()
         {
             while (true)
             {
@@ -272,8 +322,8 @@ namespace KartBookingSession.View
                 {
                     case "1":
                         Console.Clear();
-                        List<RecordLabel> recordLabels = storageManager.GetAllRecordLabel();
-                        DisplayRecordLabels(recordLabels);
+                        List<City> city = storageManager.GetAllCity();
+                        DisplayCity(city);
                         break;
 
                     case "2":

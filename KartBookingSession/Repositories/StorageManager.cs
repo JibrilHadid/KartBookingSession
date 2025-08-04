@@ -406,7 +406,7 @@ namespace KartBookingSession.Repositories
 
         public List<City> GetAllCity()
         {
-            List<City> tracks = new List<City>();
+            List<City> city = new List<City>();
             string sqlString = "SELECT * FROM booking.city";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
@@ -417,11 +417,11 @@ namespace KartBookingSession.Repositories
                         int CityID = Convert.ToInt32(reader["CityID"]);
                         string CityName = reader["CityName"].ToString();
                         string Country = reader["Country"].ToString();
-                        tracks.Add(new City(CityID, CityName, Country));
+                        city.Add(new City(CityID, CityName, Country));
                     }
                 }
             }
-            return tracks;
+            return city;
         }
 
         public List<Suburb> GetAllSuburb()
