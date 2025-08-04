@@ -547,16 +547,22 @@ namespace KartBookingSession.View
             }
         }
 
-        //Displays tblRecordLabel options for User
+
+
+
+
+
+
+        //Displays tblCity options for driver/user
         public void tblCityForDriver()
         {
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Welcome to tblRecordlabel");
+                Console.WriteLine("Welcome to tblCityForDriver");
                 Console.WriteLine("Please choose one of the following options");
                 Console.WriteLine("Menu: ");
-                Console.WriteLine("1: View all existing Record Labels");
+                Console.WriteLine("1: View all fields in tblCityForDriver");
                 Console.WriteLine("2: Return to main menu");
 
                 string choice = Console.ReadLine();
@@ -571,7 +577,6 @@ namespace KartBookingSession.View
 
                     case "2":
                         return;
-                        break;
 
                     default:
                         Console.WriteLine("Invalid option Please try again");
@@ -579,10 +584,216 @@ namespace KartBookingSession.View
                 }
                 Console.WriteLine("Press Enter to return to the menu");
                 Console.ReadLine();
+                Console.Clear();
             }
         }
 
-      
+        //Displays tblCoach options for driver/user
+        public void tblCoachForDriver()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblCoachForDriver");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblCoachForDriver");
+                Console.WriteLine("2: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<Coach> coach = storageManager.GetAllCoach();
+                        DisplayCoach(coach);
+                        break;
+
+                    case "2":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        public void tblCoachInfoForDriver()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblCoachInfoForDriver");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblCoachInfoForDriver");
+                Console.WriteLine("2: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<CoachInfo> coachinfo = storageManager.GetAllCoachInfo();
+                        DisplayCoachInfo(coachinfo);
+                        break;
+
+                    case "2":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        public void tblKartManufacturerForDriver()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblKartManufacturerForDriver");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblKartManufacturerForDriver");
+                Console.WriteLine("2: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<KartManufacturer> kartmanufacturer = storageManager.GetAllKartManufacturer();
+                        DisplayKartManufacturer(kartmanufacturer);
+                        break;
+
+                    case "2":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        public void tblKartsForDriver()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblKartsForDriver");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblKartsForDriver");
+                Console.WriteLine("2: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<Karts> karts = storageManager.GetAllKarts();
+                        DisplayKarts(karts);
+                        break;
+
+                    case "2":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        public void tblSuburbForDriver()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblSuburbForDriver");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblSuburbForDriver");
+                Console.WriteLine("2: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<Suburb> suburb = storageManager.GetAllSuburb();
+                        DisplaySuburb(suburb);
+                        break;
+
+                    case "2":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+        public void tblTracksForDriver()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to tblTracksForDriver");
+                Console.WriteLine("Please choose one of the following options");
+                Console.WriteLine("Menu: ");
+                Console.WriteLine("1: View all fields in tblTracksForDriver");
+                Console.WriteLine("2: Return to main menu");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Clear();
+                        List<Tracks> tracks = storageManager.GetAlltracks();
+                        DisplayTracks(tracks);
+                        break;
+
+                    case "2":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option Please try again");
+                        break;
+                }
+                Console.WriteLine("Press Enter to return to the menu");
+                Console.ReadLine();
+                Console.Clear();
+            }
+        }
+
+
 
         internal string GetInputIDK()
         {
