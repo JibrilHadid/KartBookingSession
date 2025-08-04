@@ -202,7 +202,7 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "8":
+                                case "9":
                                     {
                                         Console.Clear();
                                         storageManager.GetAllCoachInfo();
@@ -211,21 +211,21 @@ namespace KartBookingSession
                                         view.DisplayCoachInfo(coachinfo);
                                         break;
                                     }
-                                case "9":
+                                case "10":
                                     {
                                         UpdateCoachInfo();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "10":
+                                case "11":
                                     {
                                         InsertCoachInfo();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "11":
+                                case "12":
                                     {
                                         DeleteCoachInfo();
                                         loop = false;
@@ -233,7 +233,7 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "8":
+                                case "13":
                                     {
                                         Console.Clear();
                                         storageManager.GetAllCoachLocation();
@@ -242,21 +242,21 @@ namespace KartBookingSession
                                         view.DisplayCoachLocation(coachlocation);
                                         break;
                                     }
-                                case "9":
+                                case "14":
                                     {
                                         UpdateCoachLocation();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "10":
+                                case "15":
                                     {
                                         InsertCoachLocation();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "11":
+                                case "16":
                                     {
                                         DeleteCoachLocation();
                                         loop = false;
@@ -264,7 +264,7 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "8":
+                                case "17":
                                     {
                                         Console.Clear();
                                         storageManager.GetAllKartManufacturer();
@@ -273,21 +273,21 @@ namespace KartBookingSession
                                         view.DisplayKartManufacturer(kartmanufacturer);
                                         break;
                                     }
-                                case "9":
+                                case "18":
                                     {
                                         UpdateKartManufacturer();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "10":
+                                case "19":
                                     {
                                         InsertKartManufacturer();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "11":
+                                case "20":
                                     {
                                         DeleteKartManufacturer();
                                         loop = false;
@@ -295,7 +295,7 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "8":
+                                case "21":
                                     {
                                         Console.Clear();
                                         storageManager.GetAllKarts();
@@ -304,21 +304,21 @@ namespace KartBookingSession
                                         view.DisplayKarts(karts);
                                         break;
                                     }
-                                case "9":
+                                case "22":
                                     {
                                         UpdateKarts();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "10":
+                                case "23":
                                     {
                                         InsertKarts();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "11":
+                                case "24":
                                     {
                                         DeleteKarts();
                                         loop = false;
@@ -326,7 +326,7 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "8":
+                                case "25":
                                     {
                                         Console.Clear();
                                         storageManager.GetAllSuburb();
@@ -335,21 +335,21 @@ namespace KartBookingSession
                                         view.DisplaySuburb(suburb);
                                         break;
                                     }
-                                case "9":
+                                case "26":
                                     {
                                         UpdateSuburb();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "10":
+                                case "27":
                                     {
                                         InsertSuburb();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "11":
+                                case "28":
                                     {
                                         DeleteSuburb();
                                         loop = false;
@@ -357,7 +357,7 @@ namespace KartBookingSession
                                     } while (loop) ;
                                     break;
 
-                                case "8":
+                                case "29":
                                     {
                                         Console.Clear();
                                         storageManager.GetAlltracks();
@@ -366,21 +366,21 @@ namespace KartBookingSession
                                         view.DisplayTracks(tracks);
                                         break;
                                     }
-                                case "9":
+                                case "30":
                                     {
                                         UpdateTracks();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "10":
+                                case "31":
                                     {
                                         InsertTracks();
                                         loop = false;
                                         break;
                                     } while (loop) ;
                                     break;
-                                case "11":
+                                case "32":
                                     {
                                         DeleteTracks();
                                         loop = false;
