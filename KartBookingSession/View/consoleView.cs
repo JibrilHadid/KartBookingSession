@@ -57,7 +57,7 @@ namespace KartBookingSession.View
                         Program.AdminOnlyMenu();
                     }
 
-                    else if (roleID == 2|| roleID == 3)
+                    else if (roleID == 2)
                     {
                         Program.UserMenu();
                     }
@@ -72,6 +72,131 @@ namespace KartBookingSession.View
                     Console.ReadLine();
                 }
             }
+        }
+
+        public string RegisterMenu()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to the User Registration");
+
+                Console.WriteLine("(Max 50 characters)");
+                Console.Write("Please enter a username: ");
+                string newUsername = Console.ReadLine();
+
+                Console.WriteLine("(Max 50 characters)");
+                Console.Write("Please enter a password: ");
+                string newPassword = Console.ReadLine();
+
+                Console.WriteLine("(minimum age 20, max age 80)");
+                Console.Write("Please enter your age: ");
+                string ageInput = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newPassword))
+                {
+                    Console.WriteLine("Username or Password cannot be empty.");
+                    Console.WriteLine("Press Enter to try again");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                if (newUsername.Length > 100 || newPassword.Length > 100)
+                {
+                    Console.WriteLine("Username/Password must be under 100 characters.");
+                    Console.WriteLine("Press Enter to try again");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                if (!int.TryParse(ageInput, out int newAge) || newAge < 13 || newAge > 100)
+                {
+                    Console.WriteLine("Invalid age. Please enter a number between 13 and 100.");
+                    Console.WriteLine("Press Enter to try again");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                if (newUsername.Length > 100 || newPassword.Length > 100)
+                {
+                    Console.WriteLine("Username/Password must be under 100 characters.");
+                    Console.WriteLine("Press Enter to try again");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                int rowsInserted = storageManager.RegisterUser(newUsername, newPassword, RoleID: 2, newAge);
+
+                if (rowsInserted > 0)
+                {
+                    Console.WriteLine("Registration successful!");
+
+                    while (true)
+                    {
+                        Console.Write("Press Y to go to login or N to exit: ");
+                        string choice = Console.ReadLine().ToUpper();
+
+                        if (choice == "Y")
+                        {
+                            MainMenu();
+                            return newUsername;
+                        }
+                        else if (choice == "N")
+                        {
+                            storageManager.CloseConnection();
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Please enter Y or N.");
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Registration failed. Please press Enter to try again...");
+                    Console.ReadLine();
+                }
+            }
+        }
+
+        public string DisplayAdminMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome to the Kart Booking session, Coach");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("Choose an option from 1-7");
+
+
+            Console.WriteLine("1. tblRecordLabel");
+            Console.WriteLine("2. tblArtist");
+            Console.WriteLine("3. tblVinyl");
+            Console.WriteLine("4. tblGenre");
+            Console.WriteLine("5. tblReviews");
+            Console.WriteLine("6. tblReviewComments");
+            Console.WriteLine("7. Queries");
+            Console.WriteLine("8. Exit");
+
+            return Console.ReadLine();
+        }
+
+        //Displays User menu
+        public string DisplayUserMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome to MusicDB (user)");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("Choose an option from 1-7");
+
+            Console.WriteLine("1. RecordLabel");
+            Console.WriteLine("2. Artist");
+            Console.WriteLine("3. Vinyl");
+            Console.WriteLine("4. Genre");
+            Console.WriteLine("5. Reviews");
+            Console.WriteLine("6. Review Comments");
+            Console.WriteLine("7. Exit");
+
+            return Console.ReadLine();
         }
 
         public void TblDisplayMenu()
