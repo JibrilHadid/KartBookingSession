@@ -354,6 +354,62 @@ namespace KartBookingSession.View
             }
         }
 
+        public void DisplayCoach(List<Coach> coachTEMP)
+        {
+            foreach (Coach coach in coachTEMP)
+            {
+                Console.WriteLine($"Coach ID: {coach.coach_id}| FirstName: {coach.first_name}| LastName: {coach.last_name}| Gender: {coach.gender}| Age: {coach.age}");
+            }
+        }
+
+        public void DisplayCoachInfo(List<CoachInfo> coachinfoTEMP)
+        {
+            foreach (CoachInfo coachinfo in coachinfoTEMP)
+            {
+                Console.WriteLine($"CoachInfo ID: {coachinfo.coachinfo_id}| Coach ID: {coachinfo.coach_id}| Email: {coachinfo.email}| PhoneNumber: {coachinfo.phone_number}| ExperienceLvl: {coachinfo.experience_lvl}");
+            }
+        }
+
+        public void DisplayCoachLocation(List<CoachLocation> coachlocationTEMP)
+        {
+            foreach (CoachLocation coachlocation in coachlocationTEMP)
+            {
+                Console.WriteLine($"Coach ID: {coachlocation.coach_id}| Track ID: {coachlocation.track_id}");
+            }
+        }
+
+        public void DisplayKartManufacturer(List<KartManufacturer> kartmanufacturerTEMP)
+        {
+            foreach (KartManufacturer kartmanufacturer in kartmanufacturerTEMP)
+            {
+                Console.WriteLine($"Manufacturer ID: {kartmanufacturer.manufacturer_id}| Kart ID: {kartmanufacturer.kart_id}| ManufacturerName: {kartmanufacturer.manufacturer_name}");
+            }
+        }
+
+        public void DisplayKarts(List<Karts> kartsTEMP)
+        {
+            foreach (Karts karts in kartsTEMP)
+            {
+                Console.WriteLine($"Kart ID: {karts.kart_id}| KartName: {karts.kart_name}| KartType: {karts.kart_type}| ProductionDate: {karts.production_date}| KartPrice: {karts.kart_price}| ");
+            }
+        }
+
+        public void DisplaySuburb(List<Suburb> suburbTEMP)
+        {
+            foreach (Suburb suburb in suburbTEMP)
+            {
+                Console.WriteLine($"Suburb ID: {suburb.suburb_id}| SuburbName: {suburb.suburb_name}");
+            }
+        }
+
+        public void DisplayTracks(List<Tracks> tracksTEMP)
+        {
+            foreach (Tracks tracks in tracksTEMP)
+            {
+                Console.WriteLine($"Track ID: {tracks.track_id}| TrackName: {tracks.track_name}| TrackType: {tracks.track_type}");
+            }
+        }
+
         public string GetInput()
         {
             string input;
