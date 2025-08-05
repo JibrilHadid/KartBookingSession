@@ -105,7 +105,7 @@ namespace KartBookingSession.Repositories
         {
             int userID = 0;
 
-            string sqlString = "SELECT User_ID FROM booking.tblDriver WHERE Username = @Username";
+            string sqlString = "SELECT User_ID FROM booking.tblDrivers WHERE Username = @Username";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {

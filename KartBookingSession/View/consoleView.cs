@@ -37,7 +37,7 @@ namespace KartBookingSession.View
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Please enter your login details: ");
+                Console.WriteLine("(Please enter your login details) ");
 
                 Console.WriteLine("Please enter your Username: ");
                 string AccountUsername = Console.ReadLine();
