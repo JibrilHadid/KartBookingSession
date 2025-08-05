@@ -45,6 +45,9 @@ namespace KartBookingSession.View
                 Console.WriteLine("Please enter your Password: ");
                 string AccountPassword = Console.ReadLine();
 
+                string mdfPath = Path.Combine(AppContext.BaseDirectory, "kartbookibssesiobV2.mdf");
+                string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={mdfPath};Integrated Security=True;Connect Timeout=30;";
+                storageManager = new StorageManager(connectionString);
                 string Username = storageManager.getUsername(AccountUsername);
                 string Password = storageManager.getPassword(AccountUsername);
                 int roleID = storageManager.getRoleID(AccountUsername);
@@ -74,6 +77,8 @@ namespace KartBookingSession.View
             }
         }
 
+
+
         public string RegisterMenu()
         {
             while (true)
@@ -101,7 +106,7 @@ namespace KartBookingSession.View
                     continue;
                 }
 
-                if (newUsername.Length > 100 || newPassword.Length > 100)
+                if (newUsername.Length > 50 || newPassword.Length > 50)
                 {
                     Console.WriteLine("Username/Password must be under 100 characters.");
                     Console.WriteLine("Press Enter to try again");
@@ -109,22 +114,25 @@ namespace KartBookingSession.View
                     continue;
                 }
 
-                if (!int.TryParse(ageInput, out int newAge) || newAge < 13 || newAge > 100)
+                if (!int.TryParse(ageInput, out int newAge) || newAge < 20 || newAge > 80)
                 {
-                    Console.WriteLine("Invalid age. Please enter a number between 13 and 100.");
+                    Console.WriteLine("Invalid age. Please enter a number between 20 and 80.");
                     Console.WriteLine("Press Enter to try again");
                     Console.ReadLine();
                     continue;
                 }
 
-                if (newUsername.Length > 100 || newPassword.Length > 100)
+                if (newUsername.Length > 50 || newPassword.Length > 50)
                 {
-                    Console.WriteLine("Username/Password must be under 100 characters.");
+                    Console.WriteLine("Username/Password must be under 50 characters.");
                     Console.WriteLine("Press Enter to try again");
                     Console.ReadLine();
                     continue;
                 }
 
+                string mdfPath = Path.Combine(AppContext.BaseDirectory, "kartbookibssesiobV2.mdf");
+                string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={mdfPath};Integrated Security=True;Connect Timeout=30;";
+                storageManager = new StorageManager(connectionString);
                 int rowsInserted = storageManager.RegisterUser(newUsername, newPassword, RoleID: 2, newAge);
 
                 if (rowsInserted > 0)

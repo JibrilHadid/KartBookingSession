@@ -123,9 +123,10 @@ namespace KartBookingSession.Repositories
             return (userID);
         }
 
+
         public int RegisterUser(string Username, string Password, int RoleID, int Age)
         {
-            string sql = "INSERT INTO tblUser (Username, Password, Age, Role_ID) VALUES (@username, @password, @age, @roleID)";
+            string sql = "INSERT INTO tblDrivers (Username, Password, Age, Role_ID) VALUES (@username, @password, @age, @roleID)";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
@@ -133,6 +134,7 @@ namespace KartBookingSession.Repositories
                 cmd.Parameters.AddWithValue("@password", Password);
                 cmd.Parameters.AddWithValue("@age", Age);
                 cmd.Parameters.AddWithValue("@roleID", RoleID);
+
 
                 return cmd.ExecuteNonQuery();
             }
@@ -382,6 +384,26 @@ namespace KartBookingSession.Repositories
                 }
             }
             return karts;
+        }
+
+        public List<Drivers> GetAllDrivers()
+        {
+            List<Drivers> drivers = new List<Drivers>();
+            string sqlString = "SELECT * FROM booking.tblDrivers";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int RoleID = Convert.ToInt32(reader["RoleID"]);
+                        string Username = reader["Username"].ToString();
+                        string Password = reader["Password"].ToString();
+                        drivers.Add(new Drivers(RoleID, Username, Password));
+                    }
+                }
+            }
+            return drivers;
         }
 
         public List<Tracks> GetAlltracks()
