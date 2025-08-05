@@ -68,7 +68,7 @@ namespace KartBookingSession.View
                 {
                     Console.WriteLine(" ");
                     Console.WriteLine("Please re enter your details");
-                    Console.WriteLine("Press enter to re-try");
+                    Console.WriteLine("Press enter to retry");
                     Console.ReadLine();
                 }
             }
@@ -271,27 +271,28 @@ namespace KartBookingSession.View
 
                 switch (choice)
                 {
+                    // Displays all fields in tblCoach
                     case "1":
                         Console.Clear();
                         List<Coach> coach = storageManager.GetAllCoach();
                         DisplayCoach(coach);
                         break;
-
+                    // Updates a field in tblCoach
                     case "2":
                         Program.UpdateCoach();
                         break;
-
+                    // Inserts a field in tblCoach
                     case "3":
                         Program.InsertCoach();
                         break;
-
+                    // Deletes a field in tblCoach
                     case "4":
                         Program.DeleteCoach();
                         break;
-
+                    // Returns to main menu
                     case "5":
                         return;
-
+                    // Default case for invalid input
                     default:
                         Console.WriteLine("Invalid option Please try again");
                         break;

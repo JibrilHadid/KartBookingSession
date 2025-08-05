@@ -63,405 +63,7 @@ namespace KartBookingSession
 
         }
 
-        public static void AdminOnlyMenu()
-        {
-            while (true)
-            {
-                Console.Clear();
-                string choice = view.DisplayAdminMenu();
 
-                switch (choice)
-                {
-                    case "1":
-                        bool loop = true;
-
-                        do
-                        {
-                            view.MainMenu(); // change it to the name of the view method that has the writelines for this table 
-                            input = view.GetIntInput();
-                            switch (input)
-                            {
-                                case "1":
-                                    {
-                                        Console.Clear();
-                                        storageManager.GetAllCity();
-                                        loop = false;
-                                        List<City> cities = storageManager.GetAllCity();
-                                        view.DisplayCity(cities);
-                                        //view data for the table 
-                                        break;
-                                    }
-                                case "2":
-                                    {
-                                        UpdateCity();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "3":
-                                    {
-                                        InsertCity();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "4":
-                                    {
-                                        DeleteCity();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-
-
-                                case "5":
-                                    {
-                                        Console.Clear();
-                                        storageManager.GetAllCoach();
-                                        loop = false;
-                                        List<Coach> coach = storageManager.GetAllCoach();
-                                        view.DisplayCoach(coach);
-                                        break;
-                                    }
-                                case "6":
-                                    {
-                                        UpdateCoach();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "7":
-                                    {
-                                        InsertCoach();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "8":
-                                    {
-                                        DeleteCoach();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-
-                                case "9":
-                                    {
-                                        Console.Clear();
-                                        storageManager.GetAllCoachInfo();
-                                        loop = false;
-                                        List<CoachInfo> coachinfo = storageManager.GetAllCoachInfo();
-                                        view.DisplayCoachInfo(coachinfo);
-                                        break;
-                                    }
-                                case "10":
-                                    {
-                                        UpdateCoachInfo();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "11":
-                                    {
-                                        InsertCoachInfo();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "12":
-                                    {
-                                        DeleteCoachInfo();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-
-                                case "14":
-                                    {
-                                        Console.Clear();
-                                        storageManager.GetAllKartManufacturer();
-                                        loop = false;
-                                        List<KartManufacturer> kartmanufacturer = storageManager.GetAllKartManufacturer();
-                                        view.DisplayKartManufacturer(kartmanufacturer);
-                                        break;
-                                    }
-                                case "15":
-                                    {
-                                        UpdateKartManufacturer();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "16":
-                                    {
-                                        InsertKartManufacturer();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "17":
-                                    {
-                                        DeleteKartManufacturer();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-
-                                case "18":
-                                    {
-                                        Console.Clear();
-                                        storageManager.GetAllKarts();
-                                        loop = false;
-                                        List<Karts> karts = storageManager.GetAllKarts();
-                                        view.DisplayKarts(karts);
-                                        break;
-                                    }
-                                case "19":
-                                    {
-                                        UpdateKarts();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "20":
-                                    {
-                                        InsertKarts();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "21":
-                                    {
-                                        DeleteKarts();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-
-                                case "22":
-                                    {
-                                        Console.Clear();
-                                        storageManager.GetAllSuburb();
-                                        loop = false;
-                                        List<Suburb> suburb = storageManager.GetAllSuburb();
-                                        view.DisplaySuburb(suburb);
-                                        break;
-                                    }
-                                case "23":
-                                    {
-                                        UpdateSuburb();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "24":
-                                    {
-                                        InsertSuburb();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "25":
-                                    {
-                                        DeleteSuburb();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-
-                                case "26":
-                                    {
-                                        Console.Clear();
-                                        storageManager.GetAlltracks();
-                                        loop = false;
-                                        List<Tracks> tracks = storageManager.GetAlltracks();
-                                        view.DisplayTracks(tracks);
-                                        break;
-                                    }
-                                case "27":
-                                    {
-                                        UpdateTracks();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "28":
-                                    {
-                                        InsertTracks();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-                                case "29":
-                                    {
-                                        DeleteTracks();
-                                        loop = false;
-                                        break;
-                                    } while (loop) ;
-                                    break;
-
-
-
-
-                                case "15":
-                                    Console.Clear();
-                                    storageManager.AdvancedQry1();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "16":
-                                    Console.Clear();
-                                    storageManager.AdvancedQry2();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "17":
-                                    Console.Clear();
-                                    storageManager.AdvancedQry3();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "18":
-                                    Console.Clear();
-                                    storageManager.AdvancedQry4();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "13":
-                                    Console.Clear();
-                                    storageManager.AdvancedQry5();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "14":
-                                    Console.Clear();
-                                    storageManager.ComplexQry1();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "15":
-                                    Console.Clear();
-                                    storageManager.ComplexQry2();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "16":
-                                    Console.Clear();
-                                    storageManager.ComplexQry3();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "17":
-                                    Console.Clear();
-                                    storageManager.ComplexQry4();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "18":
-                                    Console.Clear();
-                                    storageManager.ComplexQry5();
-                                    Console.WriteLine("Press Enter to return to the query menu");
-                                    Console.ReadLine();
-                                    break;
-
-                                case "19":
-                                    break;
-
-                                default:
-                                    Console.WriteLine("Invalid query option. Try again.");
-                                    continue;
-                            }
-                            if (queryChoice == "16")
-                            {
-                                break;
-                            }
-
-                        }
-                        break;
-
-                    case "17":
-                        storageManager.CloseConnection();
-                        Environment.Exit(0);
-                        break;
-
-                    default:
-                        Console.WriteLine("Invalid option. Please try again.");
-                        break;
-                }
-            }
-        }
-
-        private static void UpdateDeleteInsertTables()
-        {
-            do
-            {
-                view.DisplayUpdateLocation();
-                string FieldChoice = view.GetInput();
-                bool loop = true;
-                switch (FieldChoice)
-                {
-                    case "1":
-                        {
-                            UpdateCity();
-                            loop = false;
-                            break;
-                        }
-                        break;
-                    case "3":
-                        {
-                            InsertCity();
-                            loop = false;
-                            break;
-                        }
-                        break;
-                    case "4":
-                        {
-                            DeleteCity();
-                            loop = false;
-                            break;
-                        }
-                        break;
-                    case "6":
-                        {
-                            UpdateCoach();
-                            loop = false;
-                            break;
-                        }
-                        break;
-                    case "7":
-                        {
-                            InsertCoach();
-                            loop = false;
-                            break;
-                        }
-                        break;
-                    case "8":
-                        {
-                            DeleteCoach();
-                            loop = false;
-                            break;
-                        }
-                        break;
-
-                    default:
-                        {
-                            Console.WriteLine("Invalid option please try again.");
-                            Notvalid = true;
-                        }
-                        break;
-                } while (loop) ;
-            } while (Notvalid);
-
-        } 
         
 
 
@@ -501,7 +103,44 @@ namespace KartBookingSession
                 }
             }
         }
-            public static void UpdateCity()
+
+        public static void AdminOnlyMenu()
+        {
+            while (true)
+            {
+                string choice = view.DisplayAdminMenu();
+
+                switch (choice)
+                {
+                    case "1":
+                        view.tblCityForCoach();
+                        break;
+                    case "2":
+                        view.tblCoachForCoach();
+                        break;
+                    case "3":
+                        view.tblCoachInfoForCoach();
+                        break;
+                    case "4":
+                        view.tblKartManufacturerForCoach();
+                        break;
+                    case "5":
+                        view.tblKartsForCoach();
+                        break;
+                    case "6":
+                        view.tblSuburbForCoach();
+                        break;
+                    case "7":
+                        view.tblTracksForCoach();
+                        break;
+                    case "8":
+                        storageManager.CloseConnection();
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+        }
+        public static void UpdateCity()
         {
             Console.WriteLine("enter the id that you wish to update");
             int CityID = view.GetIntInput();
