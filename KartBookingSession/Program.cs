@@ -30,9 +30,8 @@ namespace KartBookingSession
         */
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=KartBookingSession;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-
+            string mdfPath = Path.Combine(AppContext.BaseDirectory, "kartbookibssesiobV2.mdf");
+            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={mdfPath};Integrated Security=True;Connect Timeout=30;";
 
             storageManager = new StorageManager(connectionString);
             view = new consoleView();
