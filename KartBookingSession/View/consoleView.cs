@@ -794,6 +794,28 @@ namespace KartBookingSession.View
             }
         }
 
+        public string DisplayQurys()
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome to the Kart Booking session");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("Choose an option from 1-9");
+            Console.WriteLine();
+            Console.WriteLine("1. Karts priced ≥ 190 made before 2021-01-01");
+            Console.WriteLine("2. Number of coaches on each track");
+            Console.WriteLine("3. Male coaches with first name starting with 'A'");
+            Console.WriteLine("4. Coaches at outdoor tracks only");
+            Console.WriteLine("5. Coaches older than 30 with full contact details");
+            Console.WriteLine("6. Karts produced between 2020-01-01 and 2021-12-31");
+            Console.WriteLine("7. Total female coaches using CoachID and Gender");
+            Console.WriteLine("8. Average kart price, ordered by avgKartPrice");
+            Console.WriteLine("9. Total coaches teaching at advanced level");
+            Console.WriteLine("10. Total karts with 250cc displayed as totalKart250cc");
+            Console.WriteLine("11. exit");
+
+            return Console.ReadLine();
+        }
+
 
 
         internal string GetInputIDK()

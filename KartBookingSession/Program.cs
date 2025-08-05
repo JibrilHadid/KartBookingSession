@@ -63,12 +63,14 @@ namespace KartBookingSession
         }
 
 
-        
+
 
 
         public static void UserMenu()
         {
-            while (true)
+            bool loop = true;
+            bool loopQuerys = true;
+            do
             {
                 string choice = view.DisplayUserMenu();
 
@@ -96,16 +98,82 @@ namespace KartBookingSession
                         view.tblTracksForDriver();
                         break;
                     case "8":
+                        loop = false;
+                        string input = "";
+                        do
+                        {
+                            input = view.DisplayQurys();
+                            switch (input)
+                            {
+                                case "1":
+                                    loopQuerys = false;
+                                    storageManager.AdvancedQry1();
+                                    break;
+                                case "2":
+                                    loopQuerys = false;
+                                    storageManager.AdvancedQry2();
+                                    break;
+                                case "3":
+                                    loopQuerys = false;
+                                    storageManager.AdvancedQry3();
+                                    break;
+                                case "4":
+                                    loopQuerys = false;
+                                    storageManager.AdvancedQry4();
+                                    break;
+                                case "5":
+                                    loopQuerys = false;
+                                    storageManager.AdvancedQry5();
+                                    break;
+                                case "6":
+                                    loopQuerys = false;
+                                    storageManager.ComplexQry1();
+                                    break;
+                                case "7":
+                                    loopQuerys = false;
+                                    storageManager.ComplexQry2();
+                                    break;
+                                case "8":
+                                    loopQuerys = false;
+                                    storageManager.ComplexQry3();
+                                    break;
+                                case "9":
+                                    loopQuerys = false;
+                                    storageManager.ComplexQry4();
+                                    break;
+                                case "10":
+                                    loopQuerys = false;
+                                    storageManager.ComplexQry5();
+                                    break;
+                                case "11":
+                                    storageManager.CloseConnection();
+                                    Environment.Exit(0);
+                                    loop = false;
+                                    break;
+                                default:
+                                    Console.WriteLine("Please input the correct option");
+                                    break;
+                            }
+                        } while (loopQuerys);
+                        break;
+                    case "9":
                         storageManager.CloseConnection();
                         Environment.Exit(0);
+                        loop = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please input the correct option");
                         break;
                 }
-            }
+            } while (loop);
         }
 
         public static void AdminOnlyMenu()
         {
-            while (true)
+            bool loop = true;
+            bool loopQuerys = true;
+
+            do
             {
                 string choice = view.DisplayAdminMenu();
 
@@ -113,32 +181,104 @@ namespace KartBookingSession
                 {
                     case "1":
                         view.tblCityForCoach();
+                        loop = false;
                         break;
                     case "2":
                         view.tblCoachForCoach();
+                        loop = false;
                         break;
                     case "3":
                         view.tblCoachInfoForCoach();
+                        loop = false;
                         break;
                     case "4":
                         view.tblKartManufacturerForCoach();
+                        loop = false;
                         break;
                     case "5":
                         view.tblKartsForCoach();
+                        loop = false;
                         break;
                     case "6":
                         view.tblSuburbForCoach();
+                        loop = false;
                         break;
                     case "7":
                         view.tblTracksForCoach();
+                        loop = false;
                         break;
                     case "8":
+                        loop = false;
+                        string input = "";
+                        do
+                        {
+                            input = view.DisplayQurys();
+                            switch (input)
+                            {
+                                case "1":
+                                    loopQuerys = false;
+                                    storageManager.AdvancedQry1();
+                                    break;
+                                case "2":
+                                    loopQuerys = false;
+                                    storageManager.AdvancedQry2();
+                                    break;
+                                case "3":
+                                    loopQuerys = false;
+                                    storageManager.AdvancedQry3();
+                                    break;
+                                case "4":
+                                    loopQuerys = false;
+                                    storageManager.AdvancedQry4();
+                                    break;
+                                case "5":
+                                    loopQuerys = false;
+                                    storageManager.AdvancedQry5();
+                                    break;
+                                case "6":
+                                    loopQuerys = false;
+                                    storageManager.ComplexQry1();
+                                    break;
+                                case "7":
+                                    loopQuerys = false;
+                                    storageManager.ComplexQry2();
+                                    break;
+                                case "8":
+                                    loopQuerys = false;
+                                    storageManager.ComplexQry3();
+                                    break;
+                                case "9":
+                                    loopQuerys = false;
+                                    storageManager.ComplexQry4();
+                                    break;
+                                case "10":
+                                    loopQuerys = false;
+                                    storageManager.ComplexQry5();
+                                    break;
+                                case "11":
+                                    storageManager.CloseConnection();
+                                    Environment.Exit(0);
+                                    loop = false;
+                                    break;
+                                default:
+                                    Console.WriteLine("Please input the correct option");
+                                    break;
+                            }
+                        } while (loopQuerys);
+                        break;
+                    case "9":
                         storageManager.CloseConnection();
                         Environment.Exit(0);
+                        loop = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please input the correct option");
                         break;
                 }
-            }
+            } while (loop);
         }
+
+
         public static void UpdateCity()
         {
             Console.WriteLine("enter the id that you wish to update");
