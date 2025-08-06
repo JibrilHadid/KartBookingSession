@@ -351,8 +351,8 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        string KartType = reader["KartType"].ToString();
-                        Console.WriteLine(KartType);
+                        string KartType = reader["totalKart250cc"].ToString();
+                        Console.WriteLine($" Amount of karts: {KartType}");
                     }
                 }
             }

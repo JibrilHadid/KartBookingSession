@@ -356,10 +356,10 @@ namespace KartBookingSession
             Console.WriteLine("enter the id that you wish to update");
             int CoachID = view.GetIntInput();
 
-            Console.WriteLine("enter the new uptaded name for firstname ");
+            Console.WriteLine("enter the new updated name for firstname ");
             string FirstName = view.GetInput();
 
-            Console.WriteLine("enter the the new updated name for lastname ");
+            Console.WriteLine("enter the new updated name for lastname ");
             string LastName = view.GetInput();
 
             Console.WriteLine("enter the new gender ");
@@ -527,7 +527,7 @@ namespace KartBookingSession
             Console.WriteLine("add the new id you would like to add ");
             int ManufacturerID = view.GetIntInput();
 
-            Console.WriteLine("add the the new id you wuld like to add ");
+            Console.WriteLine("add the the new id you would like to add ");
             int KartID = view.GetIntInput();
 
             Console.WriteLine("add the new Manufacturer name ");
@@ -542,7 +542,7 @@ namespace KartBookingSession
             Console.WriteLine("add the new id you would like to add ");
             int KartID = view.GetIntInput();
 
-            Console.WriteLine("add the new kart type ");
+            Console.WriteLine("add the new kart name ");
             string KartName = view.GetInput();
 
             Console.WriteLine("add the new kart type ");
