@@ -1,6 +1,7 @@
 ﻿using KartBookingSession.Model;
 using KartBookingSession.Repositories;
 using KartBookingSession.View;
+using System.Data;
 
 namespace KartBookingSession
 {
@@ -34,10 +35,13 @@ namespace KartBookingSession
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={mdfPath};Integrated Security=True;Connect Timeout=30;";
             //string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"kart booking sessions v2\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
-            view = new consoleView();
+            view = new consoleView(connectionString);
 
 
-            while (true)
+
+
+            bool loop = true;
+            do
             {
 
                 string choice = view.MainMenu();
@@ -47,19 +51,22 @@ namespace KartBookingSession
                     case "1":
                         {
                             view.LoginMenu();
+                            loop = false;
                         }
                         break;
                     case "2":
                         {
                             view.RegisterMenu();
+                            loop = false;
                         }
                         break;
                     default:
                         Console.WriteLine("Please input the correct option");
                         break;
                 }
-            }
-
+            } while (loop);
+            view.CloseConnection();
+            storageManager.CloseConnection();
         }
 
 
@@ -166,6 +173,31 @@ namespace KartBookingSession
                         break;
                 }
             } while (loop);
+            bool MainMenuLoop = true;
+            do
+            {
+                Console.WriteLine("Do you wish to go back to the main menu enter Y/N");
+                string choiceloopans = view.GetInput().ToUpper();
+                switch (choiceloopans)
+                {
+                    case "Y":
+                        {
+                            UserMenu();
+                        }
+                        break;
+                    case "N":
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Good-Bye");
+                            MainMenuLoop = false;
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option please try again.");
+                        MainMenuLoop = true;
+                        break;
+                }
+            } while (MainMenuLoop);
         }
 
         public static void AdminOnlyMenu()
@@ -276,6 +308,31 @@ namespace KartBookingSession
                         break;
                 }
             } while (loop);
+            bool MainMenuLoop = true;
+            do
+            {
+                Console.WriteLine("Do you wish to go back to the main menu enter Y/N");
+                string choiceloopans = view.GetInput().ToUpper();
+                switch (choiceloopans)
+                {
+                    case "Y":
+                        {
+                            AdminOnlyMenu();
+                        }
+                        break;
+                    case "N":
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Good-Bye");
+                            MainMenuLoop = false;
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option please try again.");
+                        MainMenuLoop = true;
+                        break;
+                }
+            } while (MainMenuLoop);
         }
 
 
@@ -596,10 +653,8 @@ namespace KartBookingSession
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
 
-        /*
-         * in your log in you get 4 things username password role and id
-         * for the drivers update id is hard coded the id selected in the login
-         */
+
+       
     }
-    }
+}
     

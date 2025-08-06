@@ -275,7 +275,7 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int ManufacturerID = Convert.ToInt32(reader["ManufacturerID"]);
+                        int ManufacturerID = Convert.ToInt32(reader["totalManufacturers"]);
                         string dateString = "2025-08-03 12:00:00 PM";
                         DateTime ProductionDate = DateTime.Parse(dateString);
                         Console.WriteLine(ManufacturerID);
@@ -295,7 +295,7 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        int CoachID = Convert.ToInt32(reader["totalCoaches"]);
                         string Gender = reader["Gender"].ToString();
                         Console.WriteLine(CoachID);
                         Console.WriteLine(Gender);

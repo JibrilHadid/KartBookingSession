@@ -1,8 +1,10 @@
 ﻿using KartBookingSession.Model;
 using KartBookingSession.Repositories;
+using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +15,27 @@ namespace KartBookingSession.View
     {
         private static StorageManager storageManager;
 
-        public consoleView(StorageManager manager)
+        private SqlConnection conn;
+        public consoleView(string connectionString)
         {
-            storageManager = manager;
-        }
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                Console.WriteLine("Coneection successful");
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("Connection NOT successful\n");
+                Console.WriteLine(e.Message);
+                throw;
+            }
 
-        public consoleView()
-        {
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public string MainMenu()
@@ -563,8 +579,6 @@ namespace KartBookingSession.View
         //Displays tblCity options for driver/user
         public void tblCityForDriver()
         {
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"kart booking sessions v2\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-            while (true)
             {
                 Console.Clear();
                 Console.WriteLine("Welcome to tblCityForDriver");
@@ -594,7 +608,6 @@ namespace KartBookingSession.View
                 Console.ReadLine();
                 Console.Clear();
             }
-            storageManager.CloseConnection();
         }
 
         //Displays tblCoach options for driver/user
@@ -826,7 +839,7 @@ namespace KartBookingSession.View
         }
 
 
-
+        //This method was added by the alt enter shortcut when i had a problem with my old formatting, i havent deleted it bcs i am to scared it might mess up my code even though it wont im jst taking extra precautions
         internal string GetInputIDK()
         {
             throw new NotImplementedException();
@@ -975,6 +988,15 @@ namespace KartBookingSession.View
                     return false;
             }
             return true;
+        }
+
+        public void CloseConnection()
+        {
+            if (conn != null && conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+                Console.WriteLine("Connection closed.");
+            }
         }
     }
 }
