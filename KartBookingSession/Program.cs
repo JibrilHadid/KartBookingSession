@@ -341,10 +341,10 @@ namespace KartBookingSession
             Console.WriteLine("enter the id that you wish to update");
             int CityID = view.GetIntInput();
 
-            Console.WriteLine("Which city name would you like to update ");
+            Console.WriteLine("enter the new name of the city ");
             string CityName = view.GetInput();
 
-            Console.WriteLine("Which country would you like to update ");
+            Console.WriteLine("enter the new name of the country ");
             string Country = view.GetInput();
 
             int rowsaffected = storageManager.UpdateCity(CityID, CityName, Country);
@@ -356,16 +356,16 @@ namespace KartBookingSession
             Console.WriteLine("enter the id that you wish to update");
             int CoachID = view.GetIntInput();
 
-            Console.WriteLine("enter the firstname you would like to update");
+            Console.WriteLine("enter the new uptaded name for firstname ");
             string FirstName = view.GetInput();
 
-            Console.WriteLine("enter the lastname you would like to update");
+            Console.WriteLine("enter the the new updated name for lastname ");
             string LastName = view.GetInput();
 
-            Console.WriteLine("enter the which gender you would like to enter ");
+            Console.WriteLine("enter the new gender ");
             string Gender = view.GetInput();
 
-            Console.WriteLine("enter which age you would like to update");
+            Console.WriteLine("enter the new age");
             int Age = view.GetIntInput();
 
             int rowsaffected = storageManager.UpdateCoach(CoachID, FirstName, LastName, Gender, Age);
@@ -380,13 +380,13 @@ namespace KartBookingSession
             Console.WriteLine("enter the id that you wish to update ");
             int CoachID = view.GetIntInput();
 
-            Console.WriteLine("enter the email you would like to update");
+            Console.WriteLine("enter the new email");
             string Email = view.GetInput();
 
-            Console.WriteLine("enter the phonenumber you would like to update");
+            Console.WriteLine("enter the new phonenumber");
             int PhoneNumber = view.GetIntInput();
 
-            Console.WriteLine("enter the which experience level you would like to update");
+            Console.WriteLine("enter the new experiencelvl");
             string ExperienceLvl = view.GetInput();
 
             int rowsaffected = storageManager.UpdateCoachInfo(CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl);
@@ -401,7 +401,7 @@ namespace KartBookingSession
             Console.WriteLine("enter the id that you wish to update ");
             int KartID = view.GetIntInput();
 
-            Console.WriteLine("enter the manufacturer name you would like to update ");
+            Console.WriteLine("enter the new name of the manufacturer ");
             string ManufacturerName = view.GetInput();
 
             int rowsaffected = storageManager.UpdateKartManufacturer(ManufacturerID, KartID, ManufacturerName);
@@ -413,16 +413,16 @@ namespace KartBookingSession
             Console.WriteLine("enter the id that you wish to update ");
             int KartID = view.GetIntInput();
 
-            Console.WriteLine("enter the kart name you would like to update");
+            Console.WriteLine("enter the new name for the kart");
             string KartName = view.GetInput();
 
-            Console.WriteLine("enter the kart type you would like to update ");
+            Console.WriteLine("enter the new kart type for the kart");
             string KartType = view.GetInput();
 
-            Console.WriteLine("enter the productiondate you would like to update ");
+            Console.WriteLine("enter the new date for the productiondate ");
             DateTime ProductionDate = Convert.ToDateTime(view.GetIntInput());
 
-            Console.WriteLine("enter the kart price you would like to update");
+            Console.WriteLine("enter the new price for the kart");
             double KartPrice = Convert.ToDouble(view.GetIntInput());
 
             int rowsaffected = storageManager.UpdateKarts(KartID, KartName, KartType, ProductionDate, KartPrice);
@@ -434,7 +434,7 @@ namespace KartBookingSession
             Console.WriteLine("enter the id that you wish to update ");
             int SuburbID = view.GetIntInput();
 
-            Console.WriteLine("enter the suburb name you would like to update ");
+            Console.WriteLine("enter the new name of the suburb ");
             string SuburbName = view.GetInput();
 
             int rowsaffected = storageManager.UpdateSuburb(SuburbID, SuburbName);
@@ -446,10 +446,10 @@ namespace KartBookingSession
             Console.WriteLine("enter the id that you wish to update ");
             int TrackID = view.GetIntInput();
 
-            Console.WriteLine("enter the track name you would like to update");
+            Console.WriteLine("enter the new name of the track");
             string TrackName = view.GetInput();
 
-            Console.WriteLine("enter the track type you would like to update");
+            Console.WriteLine("enter the new track type for the track");
             string TrackType = view.GetInput();
 
             int rowsaffected = storageManager.UpdateTracks(TrackID, TrackName, TrackType);
@@ -482,19 +482,19 @@ namespace KartBookingSession
 
         public static void InsertCoach()
         {
-            Console.WriteLine("enter the the new id you wuld like to add ");
+            Console.WriteLine("add the the new id you wuld like to add ");
             int CoachID = view.GetIntInput();
 
-            Console.WriteLine("enter the new first name ");
+            Console.WriteLine("add the new first name ");
             string FirstName = view.GetInput();
 
-            Console.WriteLine("enter the new last name ");
+            Console.WriteLine("add the new last name ");
             string LastName = view.GetInput();
 
-            Console.WriteLine("enter the new gender ");
+            Console.WriteLine("add the new gender ");
             string Gender = view.GetInput();
 
-            Console.WriteLine("enter the new age ");
+            Console.WriteLine("add the new age ");
             int Age = view.GetIntInput();
 
             int rowsaffected = storageManager.InsertCoach(CoachID, FirstName, LastName, Gender, Age);
@@ -503,19 +503,19 @@ namespace KartBookingSession
 
         public static void InsertCoachInfo()
         {
-            Console.WriteLine("enter the the new id you wuld like to add ");
+            Console.WriteLine("add the the new id you wuld like to add ");
             int CoachInfoID = view.GetIntInput();
 
-            Console.WriteLine("enter the the new id you wuld like to add ");
+            Console.WriteLine("add the the new id you wuld like to add ");
             int CoachID = view.GetIntInput();
 
-            Console.WriteLine("enter the new email ");
+            Console.WriteLine("add the new email ");
             string Email = view.GetInput();
 
-            Console.WriteLine("enter the new phonenumber ");
+            Console.WriteLine("add the new phonenumber ");
             int PhoneNumber = view.GetIntInput();
 
-            Console.WriteLine("enter the new experienceLvl ");
+            Console.WriteLine("add the new experienceLvl ");
             string ExperienceLvl = view.GetInput();
 
             int rowsaffected = storageManager.InsertCoachInfo(CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl);
@@ -524,13 +524,13 @@ namespace KartBookingSession
 
         public static void InsertKartManufacturer()
         {
-            Console.WriteLine("enter the the new id you wuld like to add ");
+            Console.WriteLine("add the the new id you wuld like to add ");
             int ManufacturerID = view.GetIntInput();
 
-            Console.WriteLine("enter the the new id you wuld like to add ");
+            Console.WriteLine("add the the new id you wuld like to add ");
             int KartID = view.GetIntInput();
 
-            Console.WriteLine("enter the new Manufacturer name ");
+            Console.WriteLine("add the new Manufacturer name ");
             string ManufacturerName = view.GetInput();
 
             int rowsaffected = storageManager.InsertKartManufacturer(ManufacturerID, KartID, ManufacturerName);
@@ -539,19 +539,19 @@ namespace KartBookingSession
 
         public static void InsertKarts()
         {
-            Console.WriteLine("enter the the new id you wuld like to add ");
+            Console.WriteLine("add the the new id you wuld like to add ");
             int KartID = view.GetIntInput();
 
-            Console.WriteLine("enter the new kart type ");
+            Console.WriteLine("add the new kart type ");
             string KartName = view.GetInput();
 
-            Console.WriteLine("enter the new kart type ");
+            Console.WriteLine("add the new kart type ");
             string KartType = view.GetInput();
 
-            Console.WriteLine("enter the new Production date ");
+            Console.WriteLine("add the new Production date ");
             DateTime ProductionDate = Convert.ToDateTime(view.GetIntInput());
 
-            Console.WriteLine("enter the new Kart Price ");
+            Console.WriteLine("add the new Kart Price ");
             double KartPrice = Convert.ToDouble(view.GetIntInput());
 
             int rowsaffected = storageManager.InsertKarts(KartID, KartName, KartType, ProductionDate, KartPrice);
@@ -560,10 +560,10 @@ namespace KartBookingSession
 
         public static void InsertSuburb()
         {
-            Console.WriteLine("enter the the new id you wuld like to add ");
+            Console.WriteLine("add the the new id you wuld like to add ");
             int SuburbID = view.GetIntInput();
 
-            Console.WriteLine("enter the new suburb name ");
+            Console.WriteLine("add the new suburb name ");
             string SuburbName = view.GetInput();
 
             int rowsaffected = storageManager.InsertSuburb(SuburbID, SuburbName);
@@ -572,13 +572,13 @@ namespace KartBookingSession
 
         public static void InsertTracks()
         {
-            Console.WriteLine("enter the the new id you wuld like to add ");
+            Console.WriteLine("add the the new id you wuld like to add ");
             int TrackID = view.GetIntInput();
 
-            Console.WriteLine("enter the new track name ");
+            Console.WriteLine("add the new track name ");
             string TrackName = view.GetInput();
 
-            Console.WriteLine("enter the new track type ");
+            Console.WriteLine("add the new track type ");
             string TrackType = view.GetInput();
 
             int rowsaffected = storageManager.InsertTracks(TrackID, TrackName, TrackType);
