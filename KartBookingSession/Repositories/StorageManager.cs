@@ -178,10 +178,10 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        int coachID = Convert.ToInt32(reader["coachID"]);
                         int TrackID = Convert.ToInt32(reader["TrackID"]);
                         string TrackName = reader["kartType"].ToString();
-                        Console.WriteLine(CoachID);
+                        Console.WriteLine(coachID);
                         Console.WriteLine(TrackID);
                         Console.WriteLine(TrackName);
                     }
@@ -207,7 +207,7 @@ namespace KartBookingSession.Repositories
                         string FirstName = reader["FirstName"].ToString();
                         string Gender = reader["Gender"].ToString();
                         string ExperienceLvl = reader["ExperienceLvl"].ToString();
-                        Console.WriteLine(CoachID);
+                        Console.WriteLine($"Coach ID: {CoachID}");
                         Console.WriteLine(FirstName);
                         Console.WriteLine(Gender);
                         Console.WriteLine(ExperienceLvl);
@@ -234,6 +234,8 @@ namespace KartBookingSession.Repositories
                         Console.WriteLine(TrackType);
                         Console.WriteLine(FirstName);
                         Console.WriteLine(LastName);
+
+
                     }
                 }
             }
@@ -253,7 +255,7 @@ namespace KartBookingSession.Repositories
                         string FirstName = reader["FirstName"].ToString();
                         string LastName = reader["LastName"].ToString();
                         string Email = reader["Email"].ToString();
-                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
+                        BigInteger PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]);
                         Console.WriteLine(FirstName);
                         Console.WriteLine(LastName);
                         Console.WriteLine(Email);
