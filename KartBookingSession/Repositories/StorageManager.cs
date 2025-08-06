@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -40,7 +41,7 @@ namespace KartBookingSession.Repositories
 
         public string getUsername(string Username)
         {
-            string sqlString = "SELECT user_name FROM booking.tblDrivers WHERE Username = @Username";
+            string sqlString = "SELECT username FROM booking.tblDrivers WHERE Username = @Username";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
@@ -82,7 +83,7 @@ namespace KartBookingSession.Repositories
         {
             int roleID = 0;
 
-            string sqlString = "SELECT Role_ID FROM booking.tblDrivers WHERE User_Name = @Username";
+            string sqlString = "SELECT RoleID FROM booking.tblDrivers WHERE Username = @Username";
 
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
@@ -94,7 +95,7 @@ namespace KartBookingSession.Repositories
                 {
                     if (reader.Read())
                     {
-                        roleID = Convert.ToInt32(reader["Role_ID"]);
+                        roleID = Convert.ToInt32(reader["RoleID"]);
                     }
                 }
             }
@@ -105,7 +106,7 @@ namespace KartBookingSession.Repositories
         {
             int userID = 0;
 
-            string sqlString = "SELECT User_ID FROM booking.tblDrivers WHERE Username = @Username";
+            string sqlString = "SELECT RoleID FROM booking.tblDrivers WHERE Username = @Username";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
@@ -116,7 +117,7 @@ namespace KartBookingSession.Repositories
                 {
                     if (reader.Read())
                     {
-                        userID = Convert.ToInt32(reader["User_ID"]);
+                        userID = Convert.ToInt32(reader["RoleID"]);
                     }
                 }
             }
@@ -126,7 +127,7 @@ namespace KartBookingSession.Repositories
 
         public int RegisterUser(string Username, string Password, int RoleID, int Age)
         {
-            string sql = "INSERT INTO tblDrivers (Username, Password, Age, Role_ID) VALUES (@username, @password, @age, @roleID)";
+            string sql = "INSERT INTO booking.tblDrivers (Username, Password, RoleID) VALUES (@username, @password, @roleID);";
 
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
@@ -142,8 +143,8 @@ namespace KartBookingSession.Repositories
 
         public void AdvancedQry1()
         {
-            string sqlString = "SELECT KM.manufacturerName, K.kartPrice, K.productionDate FROM booking.tblKartManufacturer as KM, " +
-                "booking.tblKarts as K Where K.kartID = KM.kartID AND(kartPrice <= 190.00;";
+            string sqlString = "SELECT K.kartID, KM.manufacturerName, K.kartPrice, K.productionDate FROM booking.tblKartManufacturer as KM, " +
+                "booking.tblKarts as K Where K.kartID = KM.kartID AND(kartPrice) <= 190.00;";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
@@ -151,15 +152,11 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int KartID = Convert.ToInt32(reader["KartID"]);
-                        string KartName = reader["KartName"].ToString();
-                        string KartType = reader["KartType"].ToString();
+                        int kartID = Convert.ToInt32(reader["kartID"]);
                         string dateString = "2025-08-03 12:00:00 PM";
                         DateTime ProductionDate = DateTime.Parse(dateString);
                         double KartPrice = Convert.ToDouble(reader["KartPrice"]);
-                        Console.WriteLine(KartID);
-                        Console.WriteLine(KartName);
-                        Console.WriteLine(KartType);
+                        Console.WriteLine($"Kart ID: {kartID}");
                         Console.WriteLine(ProductionDate);
                         Console.WriteLine(KartPrice);
                     }
@@ -366,7 +363,7 @@ namespace KartBookingSession.Repositories
         public List<Karts> GetAllKarts()
         {
             List<Karts> karts = new List<Karts>();
-            string sqlString = "SELECT * FROM booking.Karts";
+            string sqlString = "SELECT * FROM booking.tblKarts";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -409,14 +406,14 @@ namespace KartBookingSession.Repositories
         public List<Tracks> GetAlltracks()
         {
             List<Tracks> tracks = new List<Tracks>();
-            string sqlString = "SELECT * FROM booking.tracks";
+            string sqlString = "SELECT * FROM location.tbltracks";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int TrackID = Convert.ToInt32(reader["TracksID"]);
+                        int TrackID = Convert.ToInt32(reader["TrackID"]);
                         string TrackName = reader["TrackName"].ToString();
                         string TrackType = reader["TrackType"].ToString();
                         tracks.Add(new Tracks(TrackID, TrackName, TrackType));
@@ -429,7 +426,7 @@ namespace KartBookingSession.Repositories
         public List<City> GetAllCity()
         {
             List<City> city = new List<City>();
-            string sqlString = "SELECT * FROM booking.city";
+            string sqlString = "SELECT * FROM location.tblCity";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -449,7 +446,7 @@ namespace KartBookingSession.Repositories
         public List<Suburb> GetAllSuburb()
         {
             List<Suburb> suburb = new List<Suburb>();
-            string sqlString = "SELECT * FROM booking.suburb";
+            string sqlString = "SELECT * FROM location.tblsuburb";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -469,7 +466,7 @@ namespace KartBookingSession.Repositories
         public List<KartManufacturer> GetAllKartManufacturer()
         {
             List<KartManufacturer> kartmanufacturer = new List<KartManufacturer>();
-            string sqlString = "SELECT * FROM booking.KartManufacturer";
+            string sqlString = "SELECT * FROM booking.tblKartManufacturer";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -490,7 +487,7 @@ namespace KartBookingSession.Repositories
         public List<Coach> GetAllCoach()
         {
             List<Coach> coach = new List<Coach>();
-            string sqlString = "SELECT * FROM booking.Coach";
+            string sqlString = "SELECT * FROM booking.tblCoach";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -533,7 +530,7 @@ namespace KartBookingSession.Repositories
         public List<CoachInfo> GetAllCoachInfo()
         {
             List<CoachInfo> coachinfo = new List<CoachInfo>();
-            string sqlString = "SELECT * FROM booking.CoachLocation";
+            string sqlString = "SELECT * FROM booking.tblCoachInfo";
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -542,7 +539,7 @@ namespace KartBookingSession.Repositories
                     {
                         int CoachInfoID = Convert.ToInt32(reader["CoachInfoID"]);
                         int CoachID = Convert.ToInt32(reader["CoachID"]);
-                        int PhoneNumber = Convert.ToInt32(reader["PhoneNumber"]);
+                        BigInteger PhoneNumber = Convert.ToInt64(reader["PhoneNumber"]);
                         string Email = reader["Email"].ToString();
                         string ExperienceLvl = reader["ExperienceLvl"].ToString();
                         coachinfo.Add(new CoachInfo(CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl));

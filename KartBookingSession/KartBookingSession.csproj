@@ -8,15 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="kartbookibssesiobV2.ldf" />
-    <None Remove="kartbookibssesiobV2.mdf" />
+    <None Remove="Databasev2.mdf" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="kartbookibssesiobV2.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="kartbookibssesiobV2.mdf">
+    <Content Include="Databasev2.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

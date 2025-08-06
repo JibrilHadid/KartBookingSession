@@ -45,8 +45,7 @@ namespace KartBookingSession.View
                 Console.WriteLine("Please enter your Password: ");
                 string AccountPassword = Console.ReadLine();
 
-                string mdfPath = Path.Combine(AppContext.BaseDirectory, "kartbookibssesiobV2.mdf");
-                string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={mdfPath};Integrated Security=True;Connect Timeout=30;";
+                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"kart booking sessions v2\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
                 storageManager = new StorageManager(connectionString);
                 string Username = storageManager.getUsername(AccountUsername);
                 string Password = storageManager.getPassword(AccountUsername);
@@ -130,8 +129,7 @@ namespace KartBookingSession.View
                     continue;
                 }
 
-                string mdfPath = Path.Combine(AppContext.BaseDirectory, "kartbookibssesiobV2.mdf");
-                string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={mdfPath};Integrated Security=True;Connect Timeout=30;";
+                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"kart booking sessions v2\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
                 storageManager = new StorageManager(connectionString);
                 int rowsInserted = storageManager.RegisterUser(newUsername, newPassword, RoleID: 2, newAge);
 
@@ -565,6 +563,7 @@ namespace KartBookingSession.View
         //Displays tblCity options for driver/user
         public void tblCityForDriver()
         {
+            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"kart booking sessions v2\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             while (true)
             {
                 Console.Clear();
@@ -595,6 +594,7 @@ namespace KartBookingSession.View
                 Console.ReadLine();
                 Console.Clear();
             }
+            storageManager.CloseConnection();
         }
 
         //Displays tblCoach options for driver/user
@@ -630,6 +630,7 @@ namespace KartBookingSession.View
                 Console.ReadLine();
                 Console.Clear();
             }
+
         }
 
         public void tblCoachInfoForDriver()
