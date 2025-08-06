@@ -467,7 +467,7 @@ namespace KartBookingSession
 
         public static void InsertCity()
         {
-            Console.WriteLine("enter the the new id you wuld like to add ");
+            Console.WriteLine("enter the new id you would like to add ");
             int CityID = view.GetIntInput();
 
             Console.WriteLine("enter the new city name ");
@@ -482,7 +482,7 @@ namespace KartBookingSession
 
         public static void InsertCoach()
         {
-            Console.WriteLine("add the the new id you wuld like to add ");
+            Console.WriteLine("add the new id you would like to add ");
             int CoachID = view.GetIntInput();
 
             Console.WriteLine("add the new first name ");
@@ -503,10 +503,10 @@ namespace KartBookingSession
 
         public static void InsertCoachInfo()
         {
-            Console.WriteLine("add the the new id you wuld like to add ");
+            Console.WriteLine("add the new id you would like to add ");
             int CoachInfoID = view.GetIntInput();
 
-            Console.WriteLine("add the the new id you wuld like to add ");
+            Console.WriteLine("add the new id you would like to add ");
             int CoachID = view.GetIntInput();
 
             Console.WriteLine("add the new email ");
@@ -524,7 +524,7 @@ namespace KartBookingSession
 
         public static void InsertKartManufacturer()
         {
-            Console.WriteLine("add the the new id you wuld like to add ");
+            Console.WriteLine("add the new id you would like to add ");
             int ManufacturerID = view.GetIntInput();
 
             Console.WriteLine("add the the new id you wuld like to add ");
@@ -539,7 +539,7 @@ namespace KartBookingSession
 
         public static void InsertKarts()
         {
-            Console.WriteLine("add the the new id you wuld like to add ");
+            Console.WriteLine("add the new id you would like to add ");
             int KartID = view.GetIntInput();
 
             Console.WriteLine("add the new kart type ");
@@ -560,7 +560,7 @@ namespace KartBookingSession
 
         public static void InsertSuburb()
         {
-            Console.WriteLine("add the the new id you wuld like to add ");
+            Console.WriteLine("add the new id you would like to add ");
             int SuburbID = view.GetIntInput();
 
             Console.WriteLine("add the new suburb name ");
@@ -572,7 +572,7 @@ namespace KartBookingSession
 
         public static void InsertTracks()
         {
-            Console.WriteLine("add the the new id you wuld like to add ");
+            Console.WriteLine("add the new id you would like to add ");
             int TrackID = view.GetIntInput();
 
             Console.WriteLine("add the new track name ");
