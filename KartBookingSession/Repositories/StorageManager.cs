@@ -158,7 +158,8 @@ namespace KartBookingSession.Repositories
                         double KartPrice = Convert.ToDouble(reader["KartPrice"]);
                         Console.WriteLine($"Kart ID: {kartID}");
                         Console.WriteLine(ProductionDate);
-                        Console.WriteLine(KartPrice);
+                        Console.WriteLine($"${ KartPrice}");
+                        Console.WriteLine("---------------------");
                     }
 
 
@@ -184,6 +185,7 @@ namespace KartBookingSession.Repositories
                         Console.WriteLine(coachID);
                         Console.WriteLine(TrackID);
                         Console.WriteLine(TrackName);
+                        Console.WriteLine("---------------------");
                     }
 
 
@@ -211,6 +213,7 @@ namespace KartBookingSession.Repositories
                         Console.WriteLine(FirstName);
                         Console.WriteLine(Gender);
                         Console.WriteLine(ExperienceLvl);
+                        Console.WriteLine("---------------------");
                     }
                 }
 
@@ -232,8 +235,9 @@ namespace KartBookingSession.Repositories
                         string FirstName = reader["FirstName"].ToString();
                         string LastName = reader["LastName"].ToString();
                         Console.WriteLine(TrackType);
-                        Console.WriteLine(FirstName);
-                        Console.WriteLine(LastName);
+                        Console.WriteLine($"Firstname:{FirstName}");
+                        Console.WriteLine($"LastName:{LastName}");
+                        Console.WriteLine("---------------------");
 
 
                     }
@@ -260,6 +264,7 @@ namespace KartBookingSession.Repositories
                         Console.WriteLine(LastName);
                         Console.WriteLine(Email);
                         Console.WriteLine(PhoneNumber);
+                        Console.WriteLine("---------------------");
                     }
                 }
             }
@@ -280,6 +285,7 @@ namespace KartBookingSession.Repositories
                         DateTime ProductionDate = DateTime.Parse(dateString);
                         Console.WriteLine(ManufacturerID);
                         Console.WriteLine(ProductionDate);
+                        Console.WriteLine("---------------------");
                     }
                 }
             }
@@ -299,6 +305,7 @@ namespace KartBookingSession.Repositories
                         string Gender = reader["Gender"].ToString();
                         Console.WriteLine(CoachID);
                         Console.WriteLine(Gender);
+                        Console.WriteLine("---------------------");
                     }
                 }
             }
@@ -316,6 +323,7 @@ namespace KartBookingSession.Repositories
                     {
                         double KartPrice = Convert.ToDouble(reader["KartPrice"]);
                         Console.WriteLine(KartPrice);
+                        Console.WriteLine("---------------------");
 
                     }
                 }
@@ -332,10 +340,12 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int CoachID = Convert.ToInt32(reader["CoachID"]);
+                        int CoachID = Convert.ToInt32(reader["totalCoach"]);
                         string ExperienceLvl = reader["ExperienceLvl"].ToString();
+                        Console.WriteLine("---------------------");
                         Console.WriteLine(CoachID);
                         Console.WriteLine(ExperienceLvl);
+                        Console.WriteLine("---------------------");
                     }
                 }
             }
@@ -353,6 +363,7 @@ namespace KartBookingSession.Repositories
                     {
                         string KartType = reader["totalKart250cc"].ToString();
                         Console.WriteLine($" Amount of karts: {KartType}");
+                        Console.WriteLine("---------------------");
                     }
                 }
             }
@@ -556,7 +567,7 @@ namespace KartBookingSession.Repositories
 
         public int UpdateCity(int CityID, string CityName, string Country)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblCity SET CityID = @CityID, CityName = @CityName, Country = @Country", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblCity SET CityName = @CityName, Country = @Country", conn))
             {
 
                 cmd.Parameters.AddWithValue("@CityID", CityID);
@@ -569,7 +580,7 @@ namespace KartBookingSession.Repositories
 
         public int UpdateCoach(int CoachID, string FirstName, string LastName, string Gender, int Age)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoach SET CoachID = @CoachID, FirstName = @FirstName, LastName = @LastName, Gender = @Gender, Age = @Age", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoach SET FirstName = @FirstName, LastName = @LastName, Gender = @Gender, Age = @Age", conn))
             {
 
                 cmd.Parameters.AddWithValue("@CoachID", CoachID);
