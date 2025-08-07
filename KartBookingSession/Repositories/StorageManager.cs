@@ -590,10 +590,8 @@ namespace KartBookingSession.Repositories
         // runs the sql update kartmanufacturer query
         public int UpdateKartManufacturer(int ManufacturerID, int KartID, string ManufacturerName)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKartManufacturer SET ManufacturerID = @ManufacturerID, KartID = @KartID, ManufacturerName = @ManufacturerName", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKartManufacturer SET KartID = @KartID, ManufacturerName = @ManufacturerName", conn))
             {
-
-                cmd.Parameters.AddWithValue("@ManufacturerID", ManufacturerID);
                 cmd.Parameters.AddWithValue("@KartID", KartID);
                 cmd.Parameters.AddWithValue("@ManufacturerName", ManufacturerName);
                 return cmd.ExecuteNonQuery();

@@ -381,10 +381,10 @@ namespace KartBookingSession
         // this method is used to update the kart manufacturer tbl
         public static void UpdateKartManufacturer()
         {
-            Console.WriteLine("enter the id that you wish to update ");
+            Console.WriteLine("enter the manufacturerid that you wish to update ");
             int ManufacturerID = view.GetIntInput();
 
-            Console.WriteLine("enter the id that you wish to update ");
+            Console.WriteLine("enter the kartid that you wish to update (same id as manufacturerid");
             int KartID = view.GetIntInput();
 
             Console.WriteLine("enter the new name of the manufacturer ");
@@ -510,10 +510,10 @@ namespace KartBookingSession
         // this method is used to insert a new kart manufacturer into the kartmanufacturer tbl
         public static void InsertKartManufacturer()
         {
-            Console.WriteLine("add the new id you would like to add ");
+            Console.WriteLine("add the new manufacturerid you would like to add ");
             int ManufacturerID = view.GetIntInput();
 
-            Console.WriteLine("add the the new id you would like to add ");
+            Console.WriteLine("add the the new kartid you would like to add (same id as manufacturerid");
             int KartID = view.GetIntInput();
 
             Console.WriteLine("add the new Manufacturer name ");
