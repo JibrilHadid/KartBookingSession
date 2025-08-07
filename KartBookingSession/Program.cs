@@ -360,10 +360,10 @@ namespace KartBookingSession
         // this method is used to update the coach tbl
         public static void UpdateCoachInfo()
         {
-            Console.WriteLine("enter the id that you wish to update");
+            Console.WriteLine("enter the coachinfoid that you wish to update");
             int CoachInfoID = view.GetIntInput();
 
-            Console.WriteLine("enter the id that you wish to update ");
+            Console.WriteLine("enter the coachid that you wish to update(same id as coachinfoid) ");
             int CoachID = view.GetIntInput();
 
             Console.WriteLine("enter the new email");
@@ -489,10 +489,10 @@ namespace KartBookingSession
         // this method is used to insert a new coachinfo into the coachinfo tbl
         public static void InsertCoachInfo()
         {
-            Console.WriteLine("add the new id you would like to add ");
+            Console.WriteLine("add the new coachinfoid you would like to add ");
             int CoachInfoID = view.GetIntInput();
 
-            Console.WriteLine("add the new id you would like to add ");
+            Console.WriteLine("add the new coachid you would like to add(same id as the coachinfoid) ");
             int CoachID = view.GetIntInput();
 
             Console.WriteLine("add the new email ");
@@ -596,7 +596,7 @@ namespace KartBookingSession
         // this method is used to delete a coachinfo from the coachinfo tbl
         public static void DeleteCoachInfo()
         {
-            Console.WriteLine("enter the id that you wish to delete");
+            Console.WriteLine("enter the coachinfoid that you wish to delete");
             int CoachInfoID = view.GetIntInput();
 
             int rowsaffected = storageManager.DeleteCoachInfo(CoachInfoID);

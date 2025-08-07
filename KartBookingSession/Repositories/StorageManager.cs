@@ -686,9 +686,8 @@ namespace KartBookingSession.Repositories
         public int InsertCoachInfo(int CoachInfoID, int CoachID, string Email, int PhoneNumber, string ExperienceLvl)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblCoachInfo ( CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl) VALUES (@CoachInfoID, @CoachID, @Email, @PhoneNumber, @ExperienceLvl); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblCoachInfo ( CoachID, Email, PhoneNumber, ExperienceLvl) VALUES (@CoachID, @Email, @PhoneNumber, @ExperienceLvl); SELECT SCOPE_IDENTITY(); ", conn))
             {
-                cmd.Parameters.AddWithValue("@CoachInfoID ", CoachInfoID);
                 cmd.Parameters.AddWithValue("@CoachID ", CoachID);
                 cmd.Parameters.AddWithValue("@Email ", Email);
                 cmd.Parameters.AddWithValue("@PhoneNumber ", PhoneNumber);
