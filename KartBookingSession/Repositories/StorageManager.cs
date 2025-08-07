@@ -577,9 +577,8 @@ namespace KartBookingSession.Repositories
         // runs the sql update coachinfo query
         public int UpdateCoachInfo(int CoachInfoID, int CoachID, string Email, int PhoneNumber, string ExperienceLvl)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoachInfo SET CoachID = @CoachID, Email = @Email, PhoneNumber = @PhoneNumber, ExperienceLvl = @ExperienceLvl", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoachInfo SET Email = @Email, PhoneNumber = @PhoneNumber, ExperienceLvl = @ExperienceLvl", conn))
             {
-                cmd.Parameters.AddWithValue("@CoachID", CoachID);
                 cmd.Parameters.AddWithValue("@Email", Email);
                 cmd.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
                 cmd.Parameters.AddWithValue("@ExperienceLvl", ExperienceLvl);
@@ -616,10 +615,8 @@ namespace KartBookingSession.Repositories
         // runs the sql update suburb query
         public int UpdateSuburb(int SuburbID, string SuburbName)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblSuburb SET SuburbID = @SuburbID, SuburbName = @SuburbName", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblSuburb SET SuburbName = @SuburbName", conn))
             {
-
-                cmd.Parameters.AddWithValue("@SuburbID", SuburbID);
                 cmd.Parameters.AddWithValue("@SuburbName", SuburbName);
                 return cmd.ExecuteNonQuery();
 
@@ -628,10 +625,9 @@ namespace KartBookingSession.Repositories
         // runs the sql update tracks query
         public int UpdateTracks(int TrackID, string TrackName, string TrackType)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblTracks SET TrackID = @TrackID, TrackName = @TrackName, TrackType = @TrackType", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblTracks SET TrackName = @TrackName, TrackType = @TrackType", conn))
             {
 
-                cmd.Parameters.AddWithValue("@TrackID", TrackID);
                 cmd.Parameters.AddWithValue("@TrackName", TrackName);
                 cmd.Parameters.AddWithValue("@TrackType", TrackType);
                 return cmd.ExecuteNonQuery();
@@ -697,9 +693,8 @@ namespace KartBookingSession.Repositories
         public int InsertKartManufacturer(int ManufacturerID, int KartID, string ManufacturerName)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKartManufacturer ( ManufacturerID, KartID, ManufacturerName) VALUES (@ManufacturerID, @ManufacturerName, @KartID); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKartManufacturer (KartID, ManufacturerName) VALUES (@ManufacturerName, @KartID); SELECT SCOPE_IDENTITY(); ", conn))
             {
-                cmd.Parameters.AddWithValue("@ManufacturerID ", ManufacturerID);
                 cmd.Parameters.AddWithValue("@KartID ", KartID);
                 cmd.Parameters.AddWithValue("@ManufacturerName ", ManufacturerName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
@@ -723,9 +718,8 @@ namespace KartBookingSession.Repositories
         public int InsertSuburb(int SuburbID, string SuburbName)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblSuburb ( SuburbID, SuburbName) VALUES (@SuburbID, @SuburbName); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblSuburb ( SuburbName) VALUES (@SuburbName); SELECT SCOPE_IDENTITY(); ", conn))
             {
-                cmd.Parameters.AddWithValue("@SuburbID ", SuburbID);
                 cmd.Parameters.AddWithValue("@SuburbName ", SuburbName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
