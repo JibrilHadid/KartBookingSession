@@ -14,21 +14,7 @@ namespace KartBookingSession
 
         static bool Notvalid = false;
 
-        //things to do whilst other items are on hold 
-        //code the prpgram part which is 
-        /*
-            switching between methods 
-        log in function 
-        having the displays and navigation betwen the methods 
-        code the program parts of the update inserts and deletes 
-        storage manager part of the inserts 
-
-        3 roles 
-        coaches are adimds of the database can view all and do all 
-        tracks can view and edit there data 
-        drivets same as tracks  
-        tracks and drivers are going to have paramretized queries for only viewing their data (add a and statement in the sql query saying driver id = the driver id of the loged in person )
-        */
+        // the main method and also displaying login/register menu
         static void Main(string[] args)
         {
             string mdfPath = Path.Combine(AppContext.BaseDirectory, "Databasev2.mdf");
@@ -72,7 +58,7 @@ namespace KartBookingSession
 
 
 
-
+        // this method is used to display the user menu and also the admin menu
         public static void UserMenu()
         {
             bool loop = true;
@@ -199,7 +185,7 @@ namespace KartBookingSession
                 }
             } while (MainMenuLoop);
         }
-
+        // this method is used to display the admin menu and also the advanced queries menu
         public static void AdminOnlyMenu()
         {
             bool loop = true;
@@ -335,7 +321,7 @@ namespace KartBookingSession
             } while (MainMenuLoop);
         }
 
-
+        // this method is used to update the city tbl
         public static void UpdateCity()
         {
             Console.WriteLine("enter the id that you wish to update");
@@ -350,7 +336,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.UpdateCity(CityID, CityName, Country);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to update the coach tbl
         public static void UpdateCoach()
         {
             Console.WriteLine("enter the id that you wish to update");
@@ -371,7 +357,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.UpdateCoach(CoachID, FirstName, LastName, Gender, Age);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to update the coach tbl
         public static void UpdateCoachInfo()
         {
             Console.WriteLine("enter the id that you wish to update");
@@ -392,7 +378,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.UpdateCoachInfo(CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to update the kart manufacturer tbl
         public static void UpdateKartManufacturer()
         {
             Console.WriteLine("enter the id that you wish to update ");
@@ -428,7 +414,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.UpdateKarts(KartID, KartName, KartType, ProductionDate, KartPrice);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        //this method is used to update the suburb tbl
         public static void UpdateSuburb()
         {
             Console.WriteLine("enter the id that you wish to update ");
@@ -440,7 +426,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.UpdateSuburb(SuburbID, SuburbName);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to update the tracks tbl
         public static void UpdateTracks()
         {
             Console.WriteLine("enter the id that you wish to update ");
@@ -464,7 +450,7 @@ namespace KartBookingSession
 
 
 
-
+        // this method is used to insert a new city into the city tbl
         public static void InsertCity()
         {
             Console.WriteLine("enter the new id you would like to add ");
@@ -479,7 +465,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.InsertCity(CityID, CityName, Country);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to insert a new coach into the coach tbl
         public static void InsertCoach()
         {
             Console.WriteLine("add the new id you would like to add ");
@@ -500,7 +486,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.InsertCoach(CoachID, FirstName, LastName, Gender, Age);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to insert a new coachinfo into the coachinfo tbl
         public static void InsertCoachInfo()
         {
             Console.WriteLine("add the new id you would like to add ");
@@ -521,7 +507,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.InsertCoachInfo(CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to insert a new kart manufacturer into the kartmanufacturer tbl
         public static void InsertKartManufacturer()
         {
             Console.WriteLine("add the new id you would like to add ");
@@ -536,7 +522,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.InsertKartManufacturer(ManufacturerID, KartID, ManufacturerName);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to insert a new kart into the karts tbl
         public static void InsertKarts()
         {
             Console.WriteLine("add the new id you would like to add ");
@@ -557,7 +543,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.InsertKarts(KartID, KartName, KartType, ProductionDate, KartPrice);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to insert a new suburb into the suburb tbl
         public static void InsertSuburb()
         {
             Console.WriteLine("add the new id you would like to add ");
@@ -569,7 +555,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.InsertSuburb(SuburbID, SuburbName);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to insert a new track into the tracks tbl
         public static void InsertTracks()
         {
             Console.WriteLine("add the new id you would like to add ");
@@ -589,7 +575,7 @@ namespace KartBookingSession
 
 
 
-
+        // this method is used to delete a city from the city tbl
         public static void DeleteCity()
         {
             Console.WriteLine("enter the id that you wish to delete");
@@ -598,7 +584,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.DeleteCity(CityID);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to delete a coach from the coach tbl
         public static void DeleteCoach()
         {
             Console.WriteLine("enter the id that you wish to delete");
@@ -607,7 +593,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.DeleteCoach(CoachID);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to delete a coachinfo from the coachinfo tbl
         public static void DeleteCoachInfo()
         {
             Console.WriteLine("enter the id that you wish to delete");
@@ -616,7 +602,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.DeleteCoachInfo(CoachInfoID);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to delete a kart manufacturer from the kartmanufacturer tbl
         public static void DeleteKartManufacturer()
         {
             Console.WriteLine("enter the id that you wish to delete ");
@@ -625,7 +611,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.DeleteKartManufacturer(ManufacturerID);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to delete a kart from the karts tbl
         public static void DeleteKarts()
         {
             Console.WriteLine("enter the id that you wish to delete ");
@@ -634,7 +620,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.DeleteKarts(KartID);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to delete a suburb from the suburb tbl
         public static void DeleteSuburb()
         {
             Console.WriteLine("enter the id that you wish to delete ");
@@ -643,7 +629,7 @@ namespace KartBookingSession
             int rowsaffected = storageManager.DeleteSuburb(SuburbID);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
-
+        // this method is used to delete a track from the tracks tbl
         public static void DeleteTracks()
         {
             Console.WriteLine("enter the id that you wish to delete ");

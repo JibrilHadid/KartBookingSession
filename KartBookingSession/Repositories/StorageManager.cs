@@ -38,7 +38,7 @@ namespace KartBookingSession.Repositories
                 Console.WriteLine(ex.Message);
             }
         }
-
+        // gets username from the database
         public string getUsername(string Username)
         {
             string sqlString = "SELECT username FROM booking.tblDrivers WHERE Username = @Username";
@@ -59,7 +59,7 @@ namespace KartBookingSession.Repositories
             return (Username);
         }
 
-
+        // gets password from the database
         public string getPassword(string Username)
         {
             string Password = "";
@@ -78,7 +78,7 @@ namespace KartBookingSession.Repositories
             return Password;
         }
 
-
+        // gets roleID from the database
         public int getRoleID(string Username)
         {
             int roleID = 0;
@@ -101,7 +101,7 @@ namespace KartBookingSession.Repositories
             }
             return (roleID);
         }
-
+        // gets userID from the database
         public int getUserID(string Username)
         {
             int userID = 0;
@@ -124,7 +124,7 @@ namespace KartBookingSession.Repositories
             return (userID);
         }
 
-
+        // Registers a new user in the database
         public int RegisterUser(string Username, string Password, int RoleID, int Age)
         {
             string sql = "INSERT INTO booking.tblDrivers (Username, Password, RoleID) VALUES (@username, @password, @roleID);";
@@ -140,7 +140,7 @@ namespace KartBookingSession.Repositories
                 return cmd.ExecuteNonQuery();
             }
         }
-
+        // runs advanced queries
         public void AdvancedQry1()
         {
             string sqlString = "SELECT K.kartID, KM.manufacturerName, K.kartPrice, K.productionDate FROM booking.tblKartManufacturer as KM, " +
@@ -167,7 +167,7 @@ namespace KartBookingSession.Repositories
                 }
             }
         }
-
+       
         public void AdvancedQry2()
         {
             string sqlString = "SELECT count(C.coachID) as totalCoaches, T.trackName FROM location.tblTracks AS T, location.tblCoachLocation AS CL, booking.tblCoach as " +
@@ -179,7 +179,7 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        int coachID = Convert.ToInt32(reader["coachID"]);
+                        int coachID = Convert.ToInt32(reader["totalCoaches"]);
                         int TrackID = Convert.ToInt32(reader["TrackID"]);
                         string TrackName = reader["kartType"].ToString();
                         Console.WriteLine(coachID);
@@ -269,7 +269,7 @@ namespace KartBookingSession.Repositories
                 }
             }
         }
-
+        //runs complex queries
         public void ComplexQry1()
         {
             string sqlString = "SELECT Count(KM.manufacturerID) as totalManufacturers, K.productionDate FROM  booking.tblKarts as K, booking.tblKartManufacturer as KM WHERE K.kartID = KM.kartID AND K.productionDate BETWEEN '2020-01-01' AND '2021-12-31' GROUP BY K.productionDate ORDER BY totalManufacturers, K.productionDate;";
@@ -372,7 +372,7 @@ namespace KartBookingSession.Repositories
 
 
 
-
+        // Retrieves all data from tblkarts
         public List<Karts> GetAllKarts()
         {
             List<Karts> karts = new List<Karts>();
@@ -395,7 +395,7 @@ namespace KartBookingSession.Repositories
             }
             return karts;
         }
-
+        // Retrieves all data from tblDrivers
         public List<Drivers> GetAllDrivers()
         {
             List<Drivers> drivers = new List<Drivers>();
@@ -415,7 +415,7 @@ namespace KartBookingSession.Repositories
             }
             return drivers;
         }
-
+        // Retrieves all data from tblTracks
         public List<Tracks> GetAlltracks()
         {
             List<Tracks> tracks = new List<Tracks>();
@@ -435,7 +435,7 @@ namespace KartBookingSession.Repositories
             }
             return tracks;
         }
-
+        // Retrieves all data from tblCity
         public List<City> GetAllCity()
         {
             List<City> city = new List<City>();
@@ -455,7 +455,7 @@ namespace KartBookingSession.Repositories
             }
             return city;
         }
-
+        // Retrieves all data from tblSuburb
         public List<Suburb> GetAllSuburb()
         {
             List<Suburb> suburb = new List<Suburb>();
@@ -475,7 +475,7 @@ namespace KartBookingSession.Repositories
             return suburb;
 
         }
-
+        // Retrieves all data from tblKartManufacturer
         public List<KartManufacturer> GetAllKartManufacturer()
         {
             List<KartManufacturer> kartmanufacturer = new List<KartManufacturer>();
@@ -496,7 +496,7 @@ namespace KartBookingSession.Repositories
             return kartmanufacturer;
 
         }
-
+        // Retrieves all data from tblCoach
         public List<Coach> GetAllCoach()
         {
             List<Coach> coach = new List<Coach>();
@@ -520,26 +520,9 @@ namespace KartBookingSession.Repositories
 
         }
 
-        public List<CoachLocation> GetAllCoachLocation()
-        {
-            List<CoachLocation> coachlocation = new List<CoachLocation>();
-            string sqlString = "SELECT * FROM booking.CoachLocation";
-            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int CoachID = Convert.ToInt32(reader["CoachID"]);
-                        int TrackID = Convert.ToInt32(reader["TrackID"]);
-                        coachlocation.Add(new CoachLocation(CoachID, TrackID));
-                    }
-                }
-            }
-            return coachlocation;
 
-        }
-
+        
+        // Retrieves all data from tblCoachInfo
         public List<CoachInfo> GetAllCoachInfo()
         {
             List<CoachInfo> coachinfo = new List<CoachInfo>();
@@ -562,9 +545,8 @@ namespace KartBookingSession.Repositories
             return coachinfo;
 
         }
-        //change tablename to the right name repeat set fieldname etc for each field in the table you will have a console write line for each field then you need to JUST IGNORE FOR NOW LACHLAN WILL GET A BETTER VERSION 
-        //update on hold 
-
+ 
+        // runs the sql update city query
         public int UpdateCity(int CityID, string CityName, string Country)
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE location.tblCity SET CityName = @CityName, Country = @Country", conn))
@@ -577,7 +559,7 @@ namespace KartBookingSession.Repositories
 
             }
         }
-
+        // runs the sql update coach query
         public int UpdateCoach(int CoachID, string FirstName, string LastName, string Gender, int Age)
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoach SET FirstName = @FirstName, LastName = @LastName, Gender = @Gender, Age = @Age", conn))
@@ -592,13 +574,11 @@ namespace KartBookingSession.Repositories
 
             }
         }
-
+        // runs the sql update coachinfo query
         public int UpdateCoachInfo(int CoachInfoID, int CoachID, string Email, int PhoneNumber, string ExperienceLvl)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoachInfo SET CoachInfoID = @CoachInfoID, CoachID = @CoachID, Email = @Email, PhoneNumber = @PhoneNumber, ExperienceLvl = @ExperienceLvl", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoachInfo SET CoachID = @CoachID, Email = @Email, PhoneNumber = @PhoneNumber, ExperienceLvl = @ExperienceLvl", conn))
             {
-
-                cmd.Parameters.AddWithValue("@CoachInfoID", CoachInfoID);
                 cmd.Parameters.AddWithValue("@CoachID", CoachID);
                 cmd.Parameters.AddWithValue("@Email", Email);
                 cmd.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
@@ -607,7 +587,7 @@ namespace KartBookingSession.Repositories
 
             }
         }
-
+        // runs the sql update kartmanufacturer query
         public int UpdateKartManufacturer(int ManufacturerID, int KartID, string ManufacturerName)
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKartManufacturer SET ManufacturerID = @ManufacturerID, KartID = @KartID, ManufacturerName = @ManufacturerName", conn))
@@ -620,7 +600,7 @@ namespace KartBookingSession.Repositories
 
             }
         }
-
+        // runs the sql update karts query
         public int UpdateKarts(int KartID, string KartName, string KartType, DateTime ProductionDate, double KartPrice)
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKarts SET KartID = @KartID, KartName = @KartName, KartType = @KartType, ProductionDate = @ProductionDate, KartPrice = @KartPrice", conn))
@@ -635,7 +615,7 @@ namespace KartBookingSession.Repositories
 
             }
         }
-
+        // runs the sql update suburb query
         public int UpdateSuburb(int SuburbID, string SuburbName)
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE location.tblSuburb SET SuburbID = @SuburbID, SuburbName = @SuburbName", conn))
@@ -647,7 +627,7 @@ namespace KartBookingSession.Repositories
 
             }
         }
-
+        // runs the sql update tracks query
         public int UpdateTracks(int TrackID, string TrackName, string TrackType)
         {
             using (SqlCommand cmd = new SqlCommand("UPDATE location.tblTracks SET TrackID = @TrackID, TrackName = @TrackName, TrackType = @TrackType", conn))
@@ -661,9 +641,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        //change the table to the right name change the values for each field in your porject and add the console view and program part 
-        //console view part you can just code the writelines in the program.cs with the inputs eg enter a new streetnumber etc for each field in that table 
-        //program part is just you get the inputs for the fields and then call this method parameters of the values 
+        // Inserts a new location into the database
         public int InsertLocation(string LocationName, int CountryID, int SuburbID, int StreetID, int CityID, int StreetNumber)
         {
             bool Active = true;
@@ -684,11 +662,10 @@ namespace KartBookingSession.Repositories
         public int InsertCity(int CityID, string CityName, string Country)
         { 
 
-        using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblCity ( Country, CityName, CityID) VALUES (@Country, @CityName, @CityID); SELECT SCOPE_IDENTITY(); ", conn))
+        using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblCity (Country, CityName) VALUES (@Country, @CityName); SELECT SCOPE_IDENTITY(); ", conn))
             {
                 cmd.Parameters.AddWithValue("@CityName ", CityName);
                 cmd.Parameters.AddWithValue("@Country ", Country);
-                cmd.Parameters.AddWithValue("@CityID ", CityID);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
@@ -696,9 +673,8 @@ namespace KartBookingSession.Repositories
         public int InsertCoach(int CoachID, string FirstName, string LastName, string Gender, int Age)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblCoach ( CoachID , FirstName, LastName, Gender, Age) VALUES (@CoachID, @FirstName, @LastName, @Gender, @Age); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblCoach ( FirstName, LastName, Gender, Age) VALUES (@FirstName, @LastName, @Gender, @Age); SELECT SCOPE_IDENTITY(); ", conn))
             {
-                cmd.Parameters.AddWithValue("@CoachID ", CoachID);
                 cmd.Parameters.AddWithValue("@FirstName ", FirstName);
                 cmd.Parameters.AddWithValue("@LastName ", LastName);
                 cmd.Parameters.AddWithValue("@Gender ", Gender);
@@ -736,7 +712,7 @@ namespace KartBookingSession.Repositories
         public int InsertKarts(int KartID, string KartName, string KartType, DateTime ProductionDate, double KartPrice)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKarts ( KartID, KartName, KartType, ProductionDate, KartPrice) VALUES (@KartID, @KartName, @KartType, @ProductionDate, @KartPrice); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKarts (KartID, KartName, KartType, ProductionDate, KartPrice) VALUES (@KartID, @KartName, @KartType, @ProductionDate, @KartPrice); SELECT SCOPE_IDENTITY(); ", conn))
             {
                 cmd.Parameters.AddWithValue("@KartID ", KartID);
                 cmd.Parameters.AddWithValue("@KartName ", KartName);
@@ -850,15 +826,3 @@ namespace KartBookingSession.Repositories
 
 
 
-/*
-          public int Insert--(string --, int --, int --)
-        {
-
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO ___ ( --------,--------,-------- ) VALUES (--------,--------,--------); SELECT SCOPE_IDENTITY(); ", conn))
-            {
-                cmd.Parameters.AddWithValue("@_______ ", ____);
-                cmd.Parameters.AddWithValue("@_-----  ", ____);
-                return Convert.ToInt32(cmd.ExecuteScalar());
-            }
-        }
-*/
