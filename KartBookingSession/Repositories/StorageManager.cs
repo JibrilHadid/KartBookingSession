@@ -693,7 +693,7 @@ namespace KartBookingSession.Repositories
         public int InsertKartManufacturer(int ManufacturerID, int KartID, string ManufacturerName)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKartManufacturer (KartID, ManufacturerName) VALUES (@ManufacturerName, @KartID); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKartManufacturer (KartID, ManufacturerName) VALUES (@KartID, @ManufacturerName); SELECT SCOPE_IDENTITY(); ", conn))
             {
                 cmd.Parameters.AddWithValue("@KartID ", KartID);
                 cmd.Parameters.AddWithValue("@ManufacturerName ", ManufacturerName);
@@ -715,11 +715,12 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertSuburb(int SuburbID, string SuburbName)
+        public int InsertSuburb(int CityID, string SuburbName)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblSuburb ( SuburbName) VALUES (@SuburbName); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblSuburb (CityID, SuburbName) VALUES (@CityID, @SuburbName); SELECT SCOPE_IDENTITY(); ", conn))
             {
+                cmd.Parameters.AddWithValue("@CityID ", CityID);
                 cmd.Parameters.AddWithValue("@SuburbName ", SuburbName);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
