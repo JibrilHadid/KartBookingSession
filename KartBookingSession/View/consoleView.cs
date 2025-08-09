@@ -160,7 +160,7 @@ namespace KartBookingSession.View
 
                         if (choice == "Y")
                         {
-                            MainMenu();
+                            LoginMenu();
                             return newUsername;
                         }
                         else if (choice == "N")

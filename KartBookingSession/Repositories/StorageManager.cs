@@ -387,7 +387,7 @@ namespace KartBookingSession.Repositories
                         string kartName = reader["KartName"].ToString();
                         string kartType = reader["KartType"].ToString();
                         string dateString = "2025-08-03 12:00:00 PM";
-                        DateTime ProductionDate = DateTime.Parse(dateString);
+                        DateTime ProductionDate = Convert.ToDateTime(reader["ProductionDate"]);
                         double KartPrice = Convert.ToDouble(reader["KartPrice"]);
                         karts.Add(new Karts(KartID, kartName, kartType, ProductionDate, KartPrice));
                     }
@@ -726,12 +726,12 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertTracks(int TrackID, string TrackName, string TrackType)
+        public int InsertTracks(int SuburbID, string TrackName, string TrackType)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblTracks ( TrackID, TrackName, TrackType) VALUES (@TrackID, @TrackName, @TrackType); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblTracks (SuburbID, TrackName, TrackType) VALUES (@SuburbID, @TrackName, @TrackType); SELECT SCOPE_IDENTITY(); ", conn))
             {
-                cmd.Parameters.AddWithValue("@TrackID ", TrackID);
+                cmd.Parameters.AddWithValue("@SuburbID ", SuburbID);
                 cmd.Parameters.AddWithValue("@TrackName ", TrackName);
                 cmd.Parameters.AddWithValue("@TrackType ", TrackType);
                 return Convert.ToInt32(cmd.ExecuteScalar());
