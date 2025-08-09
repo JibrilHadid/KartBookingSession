@@ -450,24 +450,18 @@ namespace KartBookingSession
         // this method is used to insert a new city into the city tbl
         public static void InsertCity()
         {
-            Console.WriteLine("enter the new id you would like to add ");
-            int CityID = view.GetIntInput();
-
             Console.WriteLine("enter the new city name ");
             string CityName = view.GetInput();
 
             Console.WriteLine("enter the new country name ");
             string Country = view.GetInput();
 
-            int rowsaffected = storageManager.InsertCity(CityID, CityName, Country);
+            int rowsaffected = storageManager.InsertCity(CityName, Country);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
         // this method is used to insert a new coach into the coach tbl
         public static void InsertCoach()
         {
-            Console.WriteLine("add the new id you would like to add ");
-            int CoachID = view.GetIntInput();
-
             Console.WriteLine("add the new first name ");
             string FirstName = view.GetInput();
 
@@ -480,16 +474,13 @@ namespace KartBookingSession
             Console.WriteLine("add the new age ");
             int Age = view.GetIntInput();
 
-            int rowsaffected = storageManager.InsertCoach(CoachID, FirstName, LastName, Gender, Age);
+            int rowsaffected = storageManager.InsertCoach(FirstName, LastName, Gender, Age);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
         // this method is used to insert a new coachinfo into the coachinfo tbl
         public static void InsertCoachInfo()
         {
-            Console.WriteLine("add the new coachinfoid you would like to add ");
-            int CoachInfoID = view.GetIntInput();
-
-            Console.WriteLine("add the new coachid you would like to add(same id as the coachinfoid) ");
+            Console.WriteLine("add the new coachid you would like to add ");
             int CoachID = view.GetIntInput();
 
             Console.WriteLine("add the new email ");
@@ -501,30 +492,24 @@ namespace KartBookingSession
             Console.WriteLine("add the new experienceLvl ");
             string ExperienceLvl = view.GetInput();
 
-            int rowsaffected = storageManager.InsertCoachInfo(CoachInfoID, CoachID, Email, PhoneNumber, ExperienceLvl);
+            int rowsaffected = storageManager.InsertCoachInfo(CoachID, Email, PhoneNumber, ExperienceLvl);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
         // this method is used to insert a new kart manufacturer into the kartmanufacturer tbl
         public static void InsertKartManufacturer()
         {
-            Console.WriteLine("add the new manufacturerid you would like to add ");
-            int ManufacturerID = view.GetIntInput();
-
-            Console.WriteLine("add the the new kartid you would like to add (same id as manufacturerid");
+            Console.WriteLine("add the the new kartid you would like to add");
             int KartID = view.GetIntInput();
 
             Console.WriteLine("add the new Manufacturer name ");
             string ManufacturerName = view.GetInput();
 
-            int rowsaffected = storageManager.InsertKartManufacturer(ManufacturerID, KartID, ManufacturerName);
+            int rowsaffected = storageManager.InsertKartManufacturer(KartID, ManufacturerName);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
         // this method is used to insert a new kart into the karts tbl
         public static void InsertKarts()
         {
-            Console.WriteLine("add the new id you would like to add ");
-            int KartID = view.GetIntInput();
-
             Console.WriteLine("add the new kart name ");
             string KartName = view.GetInput();
 
@@ -536,7 +521,7 @@ namespace KartBookingSession
             Console.WriteLine("add the new Kart Price ");
             double KartPrice = Convert.ToDouble(view.GetIntInput());
 
-            int rowsaffected = storageManager.InsertKarts(KartID, KartName, KartType, ProductionDate, KartPrice);
+            int rowsaffected = storageManager.InsertKarts(KartName, KartType, ProductionDate, KartPrice);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
         // this method is used to insert a new suburb into the suburb tbl
@@ -555,7 +540,7 @@ namespace KartBookingSession
         public static void InsertTracks()
         {
             Console.WriteLine("add the new id you would like to add ");
-            int TrackID = view.GetIntInput();
+            int SuburbID = view.GetIntInput();
 
             Console.WriteLine("add the new track name ");
             string TrackName = view.GetInput();
@@ -563,7 +548,7 @@ namespace KartBookingSession
             Console.WriteLine("add the new track type ");
             string TrackType = view.GetInput();
 
-            int rowsaffected = storageManager.InsertTracks(TrackID, TrackName, TrackType);
+            int rowsaffected = storageManager.InsertTracks(SuburbID, TrackName, TrackType);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
 

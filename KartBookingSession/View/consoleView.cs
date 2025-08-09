@@ -38,6 +38,7 @@ namespace KartBookingSession.View
             }
         }
 
+        //Displays the main menu
         public string MainMenu()
         {
             Console.WriteLine("Hello and welcome to the main menu of the KartBookingSession");
@@ -48,6 +49,7 @@ namespace KartBookingSession.View
             return Console.ReadLine();
         }
 
+        //Displays the login menu
         public void LoginMenu()
         {
             while (true)
@@ -93,7 +95,7 @@ namespace KartBookingSession.View
         }
 
 
-
+        //Displays the registration menu
         public string RegisterMenu()
         {
             while (true)
@@ -182,6 +184,7 @@ namespace KartBookingSession.View
             }
         }
 
+        //Displays Admin menu
         public string DisplayAdminMenu()
         {
             Console.Clear();
@@ -325,6 +328,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // displays tblCoachInfo options for Admin
         public void tblCoachInfoForCoach()
         {
             while (true)
@@ -374,6 +378,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // displays tblKartManufacturer options for Admin
         public void tblKartManufacturerForCoach()
         {
             while (true)
@@ -423,6 +428,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // displays tblKarts options for Admin
         public void tblKartsForCoach()
         {
             while (true)
@@ -472,6 +478,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // displays tblSuburb options for Admin
         public void tblSuburbForCoach()
         {
             while (true)
@@ -521,6 +528,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // displays tblTracks options for Admin
         public void tblTracksForCoach()
         {
             while (true)
@@ -646,6 +654,7 @@ namespace KartBookingSession.View
 
         }
 
+        //Displays tblCoachInfo options for driver/user
         public void tblCoachInfoForDriver()
         {
             while (true)
@@ -680,6 +689,7 @@ namespace KartBookingSession.View
             }
         }
 
+        //Displays tblKartManufacturer options for driver/user
         public void tblKartManufacturerForDriver()
         {
             while (true)
@@ -714,6 +724,7 @@ namespace KartBookingSession.View
             }
         }
 
+        //Displays tblKarts options for driver/user
         public void tblKartsForDriver()
         {
             while (true)
@@ -748,6 +759,7 @@ namespace KartBookingSession.View
             }
         }
 
+        //Displays tblSuburb options for driver/user
         public void tblSuburbForDriver()
         {
             while (true)
@@ -782,6 +794,7 @@ namespace KartBookingSession.View
             }
         }
 
+        //Displays tblTracks options for driver/user
         public void tblTracksForDriver()
         {
             while (true)
@@ -816,6 +829,7 @@ namespace KartBookingSession.View
             }
         }
 
+        //Displays the queries menu
         public string DisplayQurys()
         {
             Console.Clear();
@@ -845,6 +859,7 @@ namespace KartBookingSession.View
             throw new NotImplementedException();
         }
 
+        // Displays tblCity fields for Admin and User
         public void DisplayCity(List<City> cityTEMP)
         {
             foreach (City city in cityTEMP)
@@ -853,6 +868,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // Displays tblCoach fields for Admin and User
         public void DisplayCoach(List<Coach> coachTEMP)
         {
             foreach (Coach coach in coachTEMP)
@@ -861,6 +877,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // Displays tblCoachInfo fields for Admin and User
         public void DisplayCoachInfo(List<CoachInfo> coachinfoTEMP)
         {
             foreach (CoachInfo coachinfo in coachinfoTEMP)
@@ -869,6 +886,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // Displays tblCoachLocation fields for Admin and User
         public void DisplayCoachLocation(List<CoachLocation> coachlocationTEMP)
         {
             foreach (CoachLocation coachlocation in coachlocationTEMP)
@@ -885,6 +903,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // Displays tblKarts fields for Admin and User
         public void DisplayKarts(List<Karts> kartsTEMP)
         {
             foreach (Karts karts in kartsTEMP)
@@ -893,6 +912,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // Displays tblSuburb fields for Admin and User
         public void DisplaySuburb(List<Suburb> suburbTEMP)
         {
             foreach (Suburb suburb in suburbTEMP)
@@ -901,6 +921,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // Displays tblTracks fields for Admin and User
         public void DisplayTracks(List<Tracks> tracksTEMP)
         {
             foreach (Tracks tracks in tracksTEMP)
@@ -909,6 +930,7 @@ namespace KartBookingSession.View
             }
         }
 
+        // Gets the input of an string variable and makes it uppercase so it can be used for inputs such as menu options
         public string GetInput()
         {
             string input;
@@ -990,6 +1012,7 @@ namespace KartBookingSession.View
             return true;
         }
 
+        // Closes the database connection if it is open
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)

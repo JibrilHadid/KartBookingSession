@@ -650,8 +650,8 @@ namespace KartBookingSession.Repositories
         }
 
 
-
-        public int InsertCity(int CityID, string CityName, string Country)
+        // Inserts a new city into the database
+        public int InsertCity(string CityName, string Country)
         { 
 
         using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblCity (Country, CityName) VALUES (@Country, @CityName); SELECT SCOPE_IDENTITY(); ", conn))
@@ -662,7 +662,8 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertCoach(int CoachID, string FirstName, string LastName, string Gender, int Age)
+        // Inserts a new coach into the database
+        public int InsertCoach(string FirstName, string LastName, string Gender, int Age)
         {
 
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblCoach ( FirstName, LastName, Gender, Age) VALUES (@FirstName, @LastName, @Gender, @Age); SELECT SCOPE_IDENTITY(); ", conn))
@@ -675,10 +676,11 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertCoachInfo(int CoachInfoID, int CoachID, string Email, int PhoneNumber, string ExperienceLvl)
+        // Inserts a new coach info into the database
+        public int InsertCoachInfo(int CoachID, string Email, int PhoneNumber, string ExperienceLvl)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblCoachInfo ( CoachID, Email, PhoneNumber, ExperienceLvl) VALUES (@CoachID, @Email, @PhoneNumber, @ExperienceLvl); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblCoachInfo (CoachID, Email, PhoneNumber, ExperienceLvl) VALUES (@CoachID, @Email, @PhoneNumber, @ExperienceLvl); SELECT SCOPE_IDENTITY(); ", conn))
             {
                 cmd.Parameters.AddWithValue("@CoachID ", CoachID);
                 cmd.Parameters.AddWithValue("@Email ", Email);
@@ -688,7 +690,8 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertKartManufacturer(int ManufacturerID, int KartID, string ManufacturerName)
+        // Inserts a new kart manufacturer into the database
+        public int InsertKartManufacturer(int KartID, string ManufacturerName)
         {
 
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKartManufacturer (KartID, ManufacturerName) VALUES (@KartID, @ManufacturerName); SELECT SCOPE_IDENTITY(); ", conn))
@@ -699,7 +702,8 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertKarts(int KartID, string KartName, string KartType, DateTime ProductionDate, double KartPrice)
+        // Inserts a new kart into the database
+        public int InsertKarts(string KartName, string KartType, DateTime ProductionDate, double KartPrice)
         {
 
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKarts (KartName, KartType, ProductionDate, KartPrice) VALUES (@KartName, @KartType, @ProductionDate, @KartPrice); SELECT SCOPE_IDENTITY(); ", conn))
@@ -712,7 +716,8 @@ namespace KartBookingSession.Repositories
             }
         }
 
-        public int InsertSuburb(int CityID, string SuburbName)
+        // Inserts a new suburb into the database
+        public int InsertSuburb(int CityID,string SuburbName)
         {
 
             using (SqlCommand cmd = new SqlCommand($"INSERT INTO location.tblSuburb (CityID, SuburbName) VALUES (@CityID, @SuburbName); SELECT SCOPE_IDENTITY(); ", conn))
@@ -723,6 +728,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // Inserts a new track into the database
         public int InsertTracks(int SuburbID, string TrackName, string TrackType)
         {
 
@@ -735,6 +741,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // Deletes a location from the database
         public int DeleteCity(int CityID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM location.tblCity WHERE CityID =@CityID", conn))
@@ -744,6 +751,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // Deletes a coach from the database
         public int DeleteCoach(int CoachID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblCoach WHERE CoachID =@CoachID", conn))
@@ -753,6 +761,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // Deletes a coach info from the database
         public int DeleteCoachInfo(int CoachInfoID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblCoachInfo WHERE CoachInfoID =@CoachInfoID", conn))
@@ -762,6 +771,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // Deletes a kart manufacturer from the database
         public int DeleteKartManufacturer(int ManufacturerID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblKartManufacturer WHERE ManufacturerID =@ManufacturerID", conn))
@@ -771,6 +781,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // Deletes a kart from the database
         public int DeleteKarts(int KartID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM booking.tblKarts WHERE KartID =@KartID", conn))
@@ -780,6 +791,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // Deletes a suburb from the database
         public int DeleteSuburb(int SuburbID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM location.tblSuburb WHERE SuburbID =@SuburbID", conn))
@@ -789,6 +801,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // Deletes a track from the database
         public int DeleteTracks(int TrackID)
         {
             using (SqlCommand cmd = new SqlCommand($"DELETE FROM location.tblTracks WHERE TrackID =@TrackID", conn))
@@ -798,6 +811,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // Closes the database connection
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
