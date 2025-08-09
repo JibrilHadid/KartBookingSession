@@ -34,7 +34,7 @@ namespace KartBookingSession.Repositories
 
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred");
+                Console.WriteLine("An error has occurred");
                 Console.WriteLine(ex.Message);
             }
         }

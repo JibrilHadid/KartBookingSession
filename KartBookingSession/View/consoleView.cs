@@ -33,7 +33,7 @@ namespace KartBookingSession.View
 
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred");
+                Console.WriteLine("An error has occurred");
                 Console.WriteLine(ex.Message);
             }
         }
@@ -99,7 +99,7 @@ namespace KartBookingSession.View
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Welcome to the User Registration");
+                Console.WriteLine("Welcome to the User Menu");
 
                 Console.WriteLine("(Max 50 characters)");
                 Console.Write("Please enter a username: ");
@@ -151,11 +151,11 @@ namespace KartBookingSession.View
 
                 if (rowsInserted > 0)
                 {
-                    Console.WriteLine("Registration successful!");
+                    Console.WriteLine("Registration completed");
 
                     while (true)
                     {
-                        Console.Write("Press Y to go to login or N to exit: ");
+                        Console.Write("Would you like to go to login menu if yes press Y to go to login or N to exit: ");
                         string choice = Console.ReadLine().ToUpper();
 
                         if (choice == "Y")
