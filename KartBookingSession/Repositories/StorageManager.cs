@@ -598,15 +598,13 @@ namespace KartBookingSession.Repositories
             }
         }
         // runs the sql update karts query
-        public int UpdateKarts(int KartID, string KartName, string KartType, DateTime ProductionDate, double KartPrice)
+        public int UpdateKarts(int KartID, string KartName, string KartType, double KartPrice)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKarts SET KartID = @KartID, KartName = @KartName, KartType = @KartType, ProductionDate = @ProductionDate, KartPrice = @KartPrice", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKarts SET KartName = @KartName, KartType = @KartType, KartPrice = @KartPrice", conn))
             {
 
-                cmd.Parameters.AddWithValue("@KartID", KartID);
                 cmd.Parameters.AddWithValue("@KartName", KartName);
                 cmd.Parameters.AddWithValue("@KartType", KartType);
-                cmd.Parameters.AddWithValue("@ProductionDate", ProductionDate);
                 cmd.Parameters.AddWithValue("@KartPrice", KartPrice);
                 return cmd.ExecuteNonQuery();
 
@@ -704,9 +702,8 @@ namespace KartBookingSession.Repositories
         public int InsertKarts(int KartID, string KartName, string KartType, DateTime ProductionDate, double KartPrice)
         {
 
-            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKarts (KartID, KartName, KartType, ProductionDate, KartPrice) VALUES (@KartID, @KartName, @KartType, @ProductionDate, @KartPrice); SELECT SCOPE_IDENTITY(); ", conn))
+            using (SqlCommand cmd = new SqlCommand($"INSERT INTO booking.tblKarts (KartName, KartType, ProductionDate, KartPrice) VALUES (@KartName, @KartType, @ProductionDate, @KartPrice); SELECT SCOPE_IDENTITY(); ", conn))
             {
-                cmd.Parameters.AddWithValue("@KartID ", KartID);
                 cmd.Parameters.AddWithValue("@KartName ", KartName);
                 cmd.Parameters.AddWithValue("@KartType ", KartType);
                 cmd.Parameters.AddWithValue("@ProductionDate ", ProductionDate);

@@ -405,13 +405,10 @@ namespace KartBookingSession
             Console.WriteLine("enter the new kart type for the kart");
             string KartType = view.GetInput();
 
-            Console.WriteLine("enter the new date for the productiondate ");
-            DateTime ProductionDate = Convert.ToDateTime(view.GetIntInput());
-
             Console.WriteLine("enter the new price for the kart");
             double KartPrice = Convert.ToDouble(view.GetIntInput());
 
-            int rowsaffected = storageManager.UpdateKarts(KartID, KartName, KartType, ProductionDate, KartPrice);
+            int rowsaffected = storageManager.UpdateKarts(KartID, KartName, KartType, KartPrice);
             Console.WriteLine($"Rows affected: {rowsaffected}");
         }
         //this method is used to update the suburb tbl
@@ -534,8 +531,7 @@ namespace KartBookingSession
             Console.WriteLine("add the new kart type ");
             string KartType = view.GetInput();
 
-            Console.WriteLine("add the new Production date ");
-            DateTime ProductionDate = Convert.ToDateTime(view.GetIntInput());
+            DateTime ProductionDate = DateTime.Now;
 
             Console.WriteLine("add the new Kart Price ");
             double KartPrice = Convert.ToDouble(view.GetIntInput());
