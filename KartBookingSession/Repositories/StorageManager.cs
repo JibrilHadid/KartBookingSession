@@ -148,7 +148,7 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -170,20 +170,20 @@ namespace KartBookingSession.Repositories
        
         public void AdvancedQry2()
         {
-            string sqlString = "SELECT count(C.coachID) as totalCoaches, T.trackName FROM location.tblTracks AS T, location.tblCoachLocation AS CL, booking.tblCoach as " +
-                "C WHERE T.trackID = CL.trackID AND CL.coachID = C.coachID GROUP BY T.trackName ORDER BY totalCoaches desc;";
+            string sqlString = "SELECT count(C.coachID) as totalCoaches, T.TrackID, T.trackName FROM location.tblTracks AS T, location.tblCoachLocation AS CL, booking.tblCoach as " +
+                "C WHERE T.trackID = CL.trackID AND CL.coachID = C.coachID GROUP BY T.TrackID, T.trackName ORDER BY totalCoaches desc;";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         int coachID = Convert.ToInt32(reader["totalCoaches"]);
                         int TrackID = Convert.ToInt32(reader["TrackID"]);
-                        string TrackName = reader["kartType"].ToString();
-                        Console.WriteLine(coachID);
-                        Console.WriteLine(TrackID);
+                        string TrackName = reader["TrackName"].ToString();
+                        Console.WriteLine($"Amount of coaches:{coachID}");
+                        Console.WriteLine($"TraackID:{TrackID}");
                         Console.WriteLine(TrackName);
                         Console.WriteLine("---------------------");
                     }
@@ -201,7 +201,7 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -227,7 +227,7 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -252,7 +252,7 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -297,7 +297,7 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -357,7 +357,7 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
