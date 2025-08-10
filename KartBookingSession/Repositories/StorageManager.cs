@@ -140,7 +140,7 @@ namespace KartBookingSession.Repositories
                 return cmd.ExecuteNonQuery();
             }
         }
-        // runs advanced queries
+        // runs advanced qry 1
         public void AdvancedQry1()
         {
             string sqlString = "SELECT K.kartID, KM.manufacturerName, K.kartPrice, K.productionDate FROM booking.tblKartManufacturer as KM, " +
@@ -167,7 +167,8 @@ namespace KartBookingSession.Repositories
                 }
             }
         }
-       
+
+        // runs advanced qry 2
         public void AdvancedQry2()
         {
             string sqlString = "SELECT count(C.coachID) as totalCoaches, T.TrackID, T.trackName FROM location.tblTracks AS T, location.tblCoachLocation AS CL, booking.tblCoach as " +
@@ -194,6 +195,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // runs advanced qry 3
         public void AdvancedQry3()
         {
             string sqlString = "SELECT distinct(C.coachID), C.firstName, C.gender, CI.experienceLvl FROM booking.tblCoach as C, booking.tblCoachInfo as CI " +
@@ -220,6 +222,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // runs advanced qry 4
         public void AdvancedQry4()
         {
             string sqlString = "SELECT T.trackType, C.firstName, C.lastName FROM location.tblTracks as T, location.tblCoachLocation as CL, booking.tblCoach as C WHERE T.trackID " +
@@ -245,6 +248,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // runs advanced qry 5
         public void AdvancedQry5()
         {
             string sqlString = "SELECT C.firstName, C.lastName, CI.email, CI.phoneNumber FROM booking.tblCoach as C, booking.tblCoachInfo as CI WHERE C.coachID = " +
@@ -269,7 +273,7 @@ namespace KartBookingSession.Repositories
                 }
             }
         }
-        //runs complex queries
+        //runs complex qry 1
         public void ComplexQry1()
         {
             string sqlString = "SELECT Count(KM.manufacturerID) as totalManufacturers, K.productionDate FROM  booking.tblKarts as K, booking.tblKartManufacturer as KM WHERE K.kartID = KM.kartID AND K.productionDate BETWEEN '2020-01-01' AND '2021-12-31' GROUP BY K.productionDate ORDER BY totalManufacturers, K.productionDate;";
@@ -291,6 +295,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // runs complex qry 2
         public void ComplexQry2()
         {
             string sqlString = "SELECT count(coachID) as totalCoaches, gender FROM booking.tblCoach WHERE gender = 'Female' GROUP BY gender ORDER BY totalcoaches, gender;";
@@ -311,6 +316,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // runs complex qry 3
         public void ComplexQry3()
         {
             string sqlString = "SELECT avg(kartPrice) AS avgKartPrice FROM booking.tblKarts;";
@@ -330,6 +336,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // runs complex qry 4
         public void ComplexQry4()
         {
             string sqlString = "SELECT Count(c.coachID) as totalCoach , CI.experienceLvl FROM booking.tblCoach as C, booking.tblCoachInfo as CI WHERE C.coachID = CI.coachID AND CI.experienceLvl = 'Advanced' GROUP BY CI.experienceLvl ORDER BY totalCoach, CI.experienceLvl;";
@@ -351,6 +358,7 @@ namespace KartBookingSession.Repositories
             }
         }
 
+        // runs complex qry 5
         public void ComplexQry5()
         {
             string sqlString = "SELECT Count(kartType) as totalKart250cc FROM booking.tblKarts WHERE kartType = '250cc' ORDER BY totalKart250cc;";
