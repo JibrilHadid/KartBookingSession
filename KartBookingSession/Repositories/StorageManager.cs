@@ -143,8 +143,7 @@ namespace KartBookingSession.Repositories
         // runs advanced qry 1
         public void AdvancedQry1()
         {
-            string sqlString = "SELECT K.kartID, KM.manufacturerName, K.kartPrice, K.productionDate FROM booking.tblKartManufacturer as KM, " +
-                "booking.tblKarts as K Where K.kartID = KM.kartID AND(kartPrice) <= 190.00;";
+            string sqlString = "SELECT KartID, KartPrice, ProductionDate FROM booking.tblKarts WHERE KartPrice >= 190.00 AND ProductionDate <= '2021-01-01' ";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
@@ -153,12 +152,11 @@ namespace KartBookingSession.Repositories
                     while (reader.Read())
                     {
                         int kartID = Convert.ToInt32(reader["kartID"]);
-                        string dateString = "2025-08-03 12:00:00 PM";
-                        DateTime ProductionDate = DateTime.Parse(dateString);
+                        DateTime ProductionDate = Convert.ToDateTime(reader["ProductionDate"]);
                         double KartPrice = Convert.ToDouble(reader["KartPrice"]);
                         Console.WriteLine($"Kart ID: {kartID}");
                         Console.WriteLine(ProductionDate);
-                        Console.WriteLine($"${ KartPrice}");
+                        Console.WriteLine($"Kart Price:{KartPrice}");
                         Console.WriteLine("---------------------");
                     }
 
