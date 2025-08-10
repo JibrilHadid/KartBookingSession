@@ -283,7 +283,7 @@ namespace KartBookingSession.Repositories
                         int ManufacturerID = Convert.ToInt32(reader["totalManufacturers"]);
                         string dateString = "2025-08-03 12:00:00 PM";
                         DateTime ProductionDate = DateTime.Parse(dateString);
-                        Console.WriteLine(ManufacturerID);
+                        Console.WriteLine($"Total manufacturers:{ ManufacturerID}");
                         Console.WriteLine(ProductionDate);
                         Console.WriteLine("---------------------");
                     }
@@ -313,7 +313,7 @@ namespace KartBookingSession.Repositories
 
         public void ComplexQry3()
         {
-            string sqlString = "SELECT avg(kartPrice) as avgKartPrice FROM booking.tblKarts ORDER BY avgKartPrice;";
+            string sqlString = "SELECT avg(kartPrice) AS avgKartPrice FROM booking.tblKarts;";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
@@ -321,8 +321,8 @@ namespace KartBookingSession.Repositories
                 {
                     while (reader.Read())
                     {
-                        double KartPrice = Convert.ToDouble(reader["KartPrice"]);
-                        Console.WriteLine(KartPrice);
+                        double KartPrice = Convert.ToDouble(reader["avgkartPrice"]);
+                        Console.WriteLine($"Avg kart Price:{ KartPrice}");
                         Console.WriteLine("---------------------");
 
                     }
@@ -353,7 +353,7 @@ namespace KartBookingSession.Repositories
 
         public void ComplexQry5()
         {
-            string sqlString = "SELECT Count(kartType) as totalKart250cc FROM booking.tblKarts WHERE kartType = '50cc' ORDER BY totalKart250cc;";
+            string sqlString = "SELECT Count(kartType) as totalKart250cc FROM booking.tblKarts WHERE kartType = '250cc' ORDER BY totalKart250cc;";
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
