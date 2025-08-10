@@ -276,7 +276,7 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -317,7 +317,7 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -336,7 +336,7 @@ namespace KartBookingSession.Repositories
 
             using (SqlCommand cmd = new SqlCommand(sqlString, conn))
             {
-                SqlDataReader reader = cmd.ExecuteReader();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
