@@ -17,7 +17,7 @@ namespace KartBookingSession
         // the main method and also displaying login/register menu
         static void Main(string[] args)
         {
-            string mdfPath = Path.Combine(AppContext.BaseDirectory, "Databasev2.mdf");
+            string mdfPath = Path.Combine(AppContext.BaseDirectory, "DatabaseV1.mdf");
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={mdfPath};Integrated Security=True;Connect Timeout=30;";
             //string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"kart booking sessions v2\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
