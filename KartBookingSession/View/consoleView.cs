@@ -44,7 +44,7 @@ namespace KartBookingSession.View
             Console.WriteLine("Hello and welcome to the main menu of the KartBookingSession");
             Console.WriteLine("Please enter one of the two options");
             Console.WriteLine("1: Log In");
-            Console.WriteLine("2. Regster");
+            Console.WriteLine("2. Register");
 
             return Console.ReadLine();
         }
