@@ -63,7 +63,7 @@ namespace KartBookingSession.View
                 Console.WriteLine("Please enter your Password: ");
                 string AccountPassword = Console.ReadLine();
 
-                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"kart booking sessions v2\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"DatabaseV4\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
                 storageManager = new StorageManager(connectionString);
                 string Username = storageManager.getUsername(AccountUsername);
                 string Password = storageManager.getPassword(AccountUsername);
@@ -147,7 +147,7 @@ namespace KartBookingSession.View
                     continue;
                 }
 
-                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"kart booking sessions v2\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"DatabaseV4\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
                 storageManager = new StorageManager(connectionString);
                 int rowsInserted = storageManager.RegisterUser(newUsername, newPassword, RoleID: 2, newAge);
 
