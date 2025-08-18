@@ -695,7 +695,3 @@ VALUES
 ('68', 'coach68@email.com', '8901234573', 'Intermediate'),
 ('69', 'coach69@email.com', '9012345684', 'Advanced'),
 ('70', 'coach70@email.com', '0123456795', 'Beginner');
-
-
-
-
