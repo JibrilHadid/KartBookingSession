@@ -21,7 +21,7 @@ namespace KartBookingSession
             string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={mdfPath};Integrated Security=True;Connect Timeout=30;";
             //string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"kart booking sessions v2\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
             storageManager = new StorageManager(connectionString);
-            view = new consoleView(connectionString);
+            view = new consoleView(storageManager);
 
 
 
@@ -55,7 +55,139 @@ namespace KartBookingSession
             storageManager.CloseConnection();
         }
 
+        //Displays the login menu
+        public void LoginMenu()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("(Please enter your login details) ");
 
+                Console.WriteLine("Please enter your Username: ");
+                string AccountUsername = Console.ReadLine();
+
+                Console.WriteLine("Please enter your Password: ");
+                string AccountPassword = Console.ReadLine();
+
+
+                string Username = storageManager.getUsername(AccountUsername);
+                string Password = storageManager.getPassword(AccountUsername);
+                int roleID = storageManager.getRoleID(AccountUsername);
+                int userID = storageManager.getUserID(AccountUsername);
+
+                if (!string.IsNullOrEmpty(Username) && AccountUsername.Equals(Username) && AccountPassword.Equals(Password))
+                {
+                    if (roleID == 1)
+                    {
+                        Program.AdminOnlyMenu();
+                    }
+
+                    else if (roleID == 2)
+                    {
+                        Program.UserMenu();
+                    }
+
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Please re enter your details");
+                    Console.WriteLine("Press enter to retry");
+                    Console.ReadLine();
+                }
+            }
+        }
+
+
+        //Displays the registration menu
+        public string RegisterMenu()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Welcome to the User Menu");
+
+                Console.WriteLine("(Max 50 characters)");
+                Console.Write("Please enter a username: ");
+                string newUsername = Console.ReadLine();
+
+                Console.WriteLine("(Max 50 characters)");
+                Console.Write("Please enter a password: ");
+                string newPassword = Console.ReadLine();
+
+                Console.WriteLine("(minimum age 20, max age 80)");
+                Console.Write("Please enter your age: ");
+                string ageInput = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newPassword))
+                {
+                    Console.WriteLine("Username or Password cannot be empty.");
+                    Console.WriteLine("Press Enter to try again");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                if (newUsername.Length > 50 || newPassword.Length > 50)
+                {
+                    Console.WriteLine("Username/Password must be under 100 characters.");
+                    Console.WriteLine("Press Enter to try again");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                if (!int.TryParse(ageInput, out int newAge) || newAge < 20 || newAge > 80)
+                {
+                    Console.WriteLine("Invalid age. Please enter a number between 20 and 80.");
+                    Console.WriteLine("Press Enter to try again");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                if (newUsername.Length > 50 || newPassword.Length > 50)
+                {
+                    Console.WriteLine("Username/Password must be under 50 characters.");
+                    Console.WriteLine("Press Enter to try again");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"DatabaseV4\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+                storageManager = new StorageManager(connectionString);
+                int rowsInserted = storageManager.RegisterUser(newUsername, newPassword, RoleID: 2, newAge);
+
+                if (rowsInserted > 0)
+                {
+                    Console.WriteLine("Registration completed");
+
+                    while (true)
+                    {
+                        Console.Write("Would you like to go to login menu if yes press Y to go to login or N to exit: ");
+                        string choice = Console.ReadLine().ToUpper();
+
+                        if (choice == "Y")
+                        {
+                            LoginMenu();
+                            return newUsername;
+                        }
+                        else if (choice == "N")
+                        {
+                            storageManager.CloseConnection();
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Please enter Y or N.");
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Registration failed. Please press Enter to try again");
+                    Console.ReadLine();
+                }
+            }
+        }
 
 
         // this method is used to display the user menu and also the admin menu

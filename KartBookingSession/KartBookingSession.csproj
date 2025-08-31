@@ -9,19 +9,21 @@
 
   <ItemGroup>
     <None Remove="Databasev2.mdf" />
+    <None Remove="DatabaseV4.ldf" />
+    <None Remove="DatabaseV4.mdf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="DatabaseV4.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseV4.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="DatabaseV4.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="DatabaseV4.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

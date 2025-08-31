@@ -1,4 +1,5 @@
 ﻿using KartBookingSession.Model;
+using KartBookingSession.View;
 using KartBookingSession.Repositories;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
@@ -9,33 +10,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace KartBookingSession.View
 {
     public class consoleView
     {
+
         private static StorageManager storageManager;
+        private object conn;
 
-        private SqlConnection conn;
-        public consoleView(string connectionString)
+        public consoleView(StorageManager manager)
         {
-            try
-            {
-                conn = new SqlConnection(connectionString);
-                conn.Open();
-                Console.WriteLine("Coneection successful");
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine("Connection NOT successful\n");
-                Console.WriteLine(e.Message);
-                throw;
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine("An error has occurred");
-                Console.WriteLine(ex.Message);
-            }
+            storageManager = manager;
         }
 
         //Displays the main menu
@@ -49,8 +36,7 @@ namespace KartBookingSession.View
             return Console.ReadLine();
         }
 
-        //Displays the login menu
-        public void LoginMenu()
+        public string LoginMenu()
         {
             while (true)
             {
@@ -63,124 +49,29 @@ namespace KartBookingSession.View
                 Console.WriteLine("Please enter your Password: ");
                 string AccountPassword = Console.ReadLine();
 
-                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"DatabaseV4\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-                storageManager = new StorageManager(connectionString);
-                string Username = storageManager.getUsername(AccountUsername);
-                string Password = storageManager.getPassword(AccountUsername);
-                int roleID = storageManager.getRoleID(AccountUsername);
-                int userID = storageManager.getUserID(AccountUsername);
-
-                if (!string.IsNullOrEmpty(Username) && AccountUsername.Equals(Username) && AccountPassword.Equals(Password))
-                {
-                    if (roleID == 1)
-                    {
-                        Program.AdminOnlyMenu();
-                    }
-
-                    else if (roleID == 2)
-                    {
-                        Program.UserMenu();
-                    }
-
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine(" ");
-                    Console.WriteLine("Please re enter your details");
-                    Console.WriteLine("Press enter to retry");
-                    Console.ReadLine();
-                }
+                return Console.ReadLine();
             }
         }
 
-
-        //Displays the registration menu
         public string RegisterMenu()
         {
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Welcome to the User Menu");
-
-                Console.WriteLine("(Max 50 characters)");
-                Console.Write("Please enter a username: ");
-                string newUsername = Console.ReadLine();
-
-                Console.WriteLine("(Max 50 characters)");
-                Console.Write("Please enter a password: ");
-                string newPassword = Console.ReadLine();
-
-                Console.WriteLine("(minimum age 20, max age 80)");
-                Console.Write("Please enter your age: ");
-                string ageInput = Console.ReadLine();
-
-                if (string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newPassword))
-                {
-                    Console.WriteLine("Username or Password cannot be empty.");
-                    Console.WriteLine("Press Enter to try again");
-                    Console.ReadLine();
-                    continue;
-                }
-
-                if (newUsername.Length > 50 || newPassword.Length > 50)
-                {
-                    Console.WriteLine("Username/Password must be under 100 characters.");
-                    Console.WriteLine("Press Enter to try again");
-                    Console.ReadLine();
-                    continue;
-                }
-
-                if (!int.TryParse(ageInput, out int newAge) || newAge < 20 || newAge > 80)
-                {
-                    Console.WriteLine("Invalid age. Please enter a number between 20 and 80.");
-                    Console.WriteLine("Press Enter to try again");
-                    Console.ReadLine();
-                    continue;
-                }
-
-                if (newUsername.Length > 50 || newPassword.Length > 50)
-                {
-                    Console.WriteLine("Username/Password must be under 50 characters.");
-                    Console.WriteLine("Press Enter to try again");
-                    Console.ReadLine();
-                    continue;
-                }
-
-                string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"DatabaseV4\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-                storageManager = new StorageManager(connectionString);
-                int rowsInserted = storageManager.RegisterUser(newUsername, newPassword, RoleID: 2, newAge);
-
-                if (rowsInserted > 0)
-                {
-                    Console.WriteLine("Registration completed");
-
-                    while (true)
-                    {
-                        Console.Write("Would you like to go to login menu if yes press Y to go to login or N to exit: ");
-                        string choice = Console.ReadLine().ToUpper();
-
-                        if (choice == "Y")
-                        {
-                            LoginMenu();
-                            return newUsername;
-                        }
-                        else if (choice == "N")
-                        {
-                            storageManager.CloseConnection();
-                            Environment.Exit(0);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid input. Please enter Y or N.");
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Registration failed. Please press Enter to try again");
-                    Console.ReadLine();
-                }
+                Console.WriteLine("(Please enter your details to register an account) ");
+                Console.WriteLine("Please enter your First Name: ");
+                string FirstName = Console.ReadLine();
+                Console.WriteLine("Please enter your Last Name: ");
+                string LastName = Console.ReadLine();
+                Console.WriteLine("Please enter your Email: ");
+                string Email = Console.ReadLine();
+                Console.WriteLine("Please enter your Username: ");
+                string AccountUsername = Console.ReadLine();
+                Console.WriteLine("Please enter your Password: ");
+                string AccountPassword = Console.ReadLine();
+                Console.WriteLine("Please confirm your Password: ");
+                string ConfirmPassword = Console.ReadLine();
+                return Console.ReadLine();
             }
         }
 
@@ -1012,14 +903,9 @@ namespace KartBookingSession.View
             return true;
         }
 
-        // Closes the database connection if it is open
         public void CloseConnection()
         {
-            if (conn != null && conn.State == ConnectionState.Open)
-            {
-                conn.Close();
-                Console.WriteLine("Connection closed.");
-            }
+            storageManager.CloseConnection();
         }
     }
 }

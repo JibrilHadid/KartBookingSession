@@ -15,7 +15,7 @@ namespace KartBookingSession.Repositories
 {
     public class StorageManager
     {
-        private SqlConnection conn;
+        private static SqlConnection conn;
 
         public StorageManager(string connectionString)
         {
@@ -38,6 +38,9 @@ namespace KartBookingSession.Repositories
                 Console.WriteLine(ex.Message);
             }
         }
+
+       
+
         // gets username from the database
         public string getUsername(string Username)
         {
@@ -182,7 +185,7 @@ namespace KartBookingSession.Repositories
                         int TrackID = Convert.ToInt32(reader["TrackID"]);
                         string TrackName = reader["TrackName"].ToString();
                         Console.WriteLine($"Amount of coaches:{coachID}");
-                        Console.WriteLine($"TraackID:{TrackID}");
+                        Console.WriteLine($"TrackID:{TrackID}");
                         Console.WriteLine(TrackName);
                         Console.WriteLine("---------------------");
                     }
