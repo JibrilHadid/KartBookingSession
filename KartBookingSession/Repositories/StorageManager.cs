@@ -559,7 +559,7 @@ namespace KartBookingSession.Repositories
         // runs the sql update city query
         public int UpdateCity(int CityID, string CityName, string Country)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblCity SET CityName = @CityName, Country = @Country", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblCity SET CityName = @CityName, Country = @Country WHERE CityID =@CityID", conn))
             {
 
                 cmd.Parameters.AddWithValue("@CityID", CityID);
@@ -569,10 +569,13 @@ namespace KartBookingSession.Repositories
 
             }
         }
+
+
+
         // runs the sql update coach query
         public int UpdateCoach(int CoachID, string FirstName, string LastName, string Gender, int Age)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoach SET FirstName = @FirstName, LastName = @LastName, Gender = @Gender, Age = @Age", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoach SET FirstName = @FirstName, LastName = @LastName, Gender = @Gender, Age = @Age WHERE CoachID =@CoachID", conn))
             {
 
                 cmd.Parameters.AddWithValue("@CoachID", CoachID);
@@ -587,8 +590,9 @@ namespace KartBookingSession.Repositories
         // runs the sql update coachinfo query
         public int UpdateCoachInfo(int CoachInfoID, int CoachID, string Email, int PhoneNumber, string ExperienceLvl)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoachInfo SET Email = @Email, PhoneNumber = @PhoneNumber, ExperienceLvl = @ExperienceLvl", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblCoachInfo SET Email = @Email, PhoneNumber = @PhoneNumber, ExperienceLvl = @ExperienceLvl WHERE CoachInfoID =@CoachInfoID", conn))
             {
+                cmd.Parameters.AddWithValue("@CoachInfoID", CoachInfoID);
                 cmd.Parameters.AddWithValue("@Email", Email);
                 cmd.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
                 cmd.Parameters.AddWithValue("@ExperienceLvl", ExperienceLvl);
@@ -599,8 +603,9 @@ namespace KartBookingSession.Repositories
         // runs the sql update kartmanufacturer query
         public int UpdateKartManufacturer(int ManufacturerID, int KartID, string ManufacturerName)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKartManufacturer SET KartID = @KartID, ManufacturerName = @ManufacturerName", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKartManufacturer SET KartID = @KartID, ManufacturerName = @ManufacturerName WHERE ManufacturerID =@ManufacturerID", conn))
             {
+                cmd.Parameters.AddWithValue("@ManufacturerID", ManufacturerID);
                 cmd.Parameters.AddWithValue("@KartID", KartID);
                 cmd.Parameters.AddWithValue("@ManufacturerName", ManufacturerName);
                 return cmd.ExecuteNonQuery();
@@ -610,9 +615,9 @@ namespace KartBookingSession.Repositories
         // runs the sql update karts query
         public int UpdateKarts(int KartID, string KartName, string KartType, double KartPrice)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKarts SET KartName = @KartName, KartType = @KartType, KartPrice = @KartPrice", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE booking.tblKarts SET KartName = @KartName, KartType = @KartType, KartPrice = @KartPrice WHERE KartID =@KartID", conn))
             {
-
+                cmd.Parameters.AddWithValue("@KartID", KartID);
                 cmd.Parameters.AddWithValue("@KartName", KartName);
                 cmd.Parameters.AddWithValue("@KartType", KartType);
                 cmd.Parameters.AddWithValue("@KartPrice", KartPrice);
@@ -623,8 +628,9 @@ namespace KartBookingSession.Repositories
         // runs the sql update suburb query
         public int UpdateSuburb(int SuburbID, string SuburbName)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblSuburb SET SuburbName = @SuburbName", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblSuburb SET SuburbName = @SuburbName WHERE SuburbID =@SuburbID", conn))
             {
+                cmd.Parameters.AddWithValue("@SuburbID", SuburbID);
                 cmd.Parameters.AddWithValue("@SuburbName", SuburbName);
                 return cmd.ExecuteNonQuery();
 
@@ -633,9 +639,9 @@ namespace KartBookingSession.Repositories
         // runs the sql update tracks query
         public int UpdateTracks(int TrackID, string TrackName, string TrackType)
         {
-            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblTracks SET TrackName = @TrackName, TrackType = @TrackType", conn))
+            using (SqlCommand cmd = new SqlCommand("UPDATE location.tblTracks SET TrackName = @TrackName, TrackType = @TrackType WHERE TrackID =@TrackID", conn))
             {
-
+                cmd.Parameters.AddWithValue("@TrackID", TrackID);
                 cmd.Parameters.AddWithValue("@TrackName", TrackName);
                 cmd.Parameters.AddWithValue("@TrackType", TrackType);
                 return cmd.ExecuteNonQuery();
