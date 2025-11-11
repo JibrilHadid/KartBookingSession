@@ -36,21 +36,9 @@ namespace KartBookingSession.View
             return Console.ReadLine();
         }
 
-        public string LoginMenu()
+        public void LoginMenu()
         {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("(Please enter your login details) ");
 
-                Console.WriteLine("Please enter your Username: ");
-                string AccountUsername = Console.ReadLine();
-
-                Console.WriteLine("Please enter your Password: ");
-                string AccountPassword = Console.ReadLine();
-
-                return Console.ReadLine();
-            }
         }
 
         public string RegisterMenu()
@@ -59,18 +47,12 @@ namespace KartBookingSession.View
             {
                 Console.Clear();
                 Console.WriteLine("(Please enter your details to register an account) ");
-                Console.WriteLine("Please enter your First Name: ");
-                string FirstName = Console.ReadLine();
-                Console.WriteLine("Please enter your Last Name: ");
-                string LastName = Console.ReadLine();
-                Console.WriteLine("Please enter your Email: ");
-                string Email = Console.ReadLine();
                 Console.WriteLine("Please enter your Username: ");
                 string AccountUsername = Console.ReadLine();
                 Console.WriteLine("Please enter your Password: ");
                 string AccountPassword = Console.ReadLine();
-                Console.WriteLine("Please confirm your Password: ");
-                string ConfirmPassword = Console.ReadLine();
+                Console.WriteLine("Please enter your Age: ");
+                string Age = Console.ReadLine();
                 return Console.ReadLine();
             }
         }

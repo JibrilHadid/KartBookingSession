@@ -29,7 +29,7 @@ namespace KartBookingSession.Repositories
             {
                 Console.WriteLine("Connection NOT successful\n");
                 Console.WriteLine(e.Message);
-                throw;
+                
             }
 
             catch (Exception ex)
@@ -59,7 +59,7 @@ namespace KartBookingSession.Repositories
                     }
                 }
             }
-            return (Username);
+            return Username;
         }
 
         // gets password from the database
@@ -102,7 +102,7 @@ namespace KartBookingSession.Repositories
                     }
                 }
             }
-            return (roleID);
+            return roleID;
         }
         // gets userID from the database
         public int getUserID(string Username)
@@ -124,7 +124,7 @@ namespace KartBookingSession.Repositories
                     }
                 }
             }
-            return (userID);
+            return userID;
         }
 
         // Registers a new user in the database
@@ -286,8 +286,9 @@ namespace KartBookingSession.Repositories
                     while (reader.Read())
                     {
                         int ManufacturerID = Convert.ToInt32(reader["totalManufacturers"]);
-                        string dateString = "2025-08-03 12:00:00 PM";
-                        DateTime ProductionDate = DateTime.Parse(dateString);
+                        DateTime ProductionDate = Convert.ToDateTime(reader["ProductionDate"]);
+                        //string dateString = "2025-08-03 12:00:00 PM";
+                        //DateTime ProductionDate = DateTime.Parse(dateString);
                         Console.WriteLine($"Total manufacturers:{ ManufacturerID}");
                         Console.WriteLine(ProductionDate);
                         Console.WriteLine("---------------------");

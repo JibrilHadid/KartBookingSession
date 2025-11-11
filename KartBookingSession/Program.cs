@@ -25,7 +25,6 @@ namespace KartBookingSession
 
 
 
-
             bool loop = true;
             do
             {
@@ -36,7 +35,7 @@ namespace KartBookingSession
                 {
                     case "1":
                         {
-                            view.LoginMenu();
+                            LoginMenu();
                             loop = false;
                         }
                         break;
@@ -51,23 +50,27 @@ namespace KartBookingSession
                         break;
                 }
             } while (loop);
-            view.CloseConnection();
-            storageManager.CloseConnection();
+            
+            
         }
 
         //Displays the login menu
-        public void LoginMenu()
+        public static void LoginMenu()
         {
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("(Please enter your login details) ");
 
-                Console.WriteLine("Please enter your Username: ");
-                string AccountUsername = Console.ReadLine();
+                
 
-                Console.WriteLine("Please enter your Password: ");
-                string AccountPassword = Console.ReadLine();
+                    Console.WriteLine("(Please enter your login details) ");
+
+                    Console.WriteLine("Please enter your Username: ");
+                    string AccountUsername = Console.ReadLine();
+
+                    Console.WriteLine("Please enter your Password: ");
+                    string AccountPassword = Console.ReadLine();
+               
 
 
                 string Username = storageManager.getUsername(AccountUsername);
@@ -75,7 +78,8 @@ namespace KartBookingSession
                 int roleID = storageManager.getRoleID(AccountUsername);
                 int userID = storageManager.getUserID(AccountUsername);
 
-                if (!string.IsNullOrEmpty(Username) && AccountUsername.Equals(Username) && AccountPassword.Equals(Password))
+                
+                if (AccountUsername.Equals(Username) && AccountPassword.Equals(Password))
                 {
                     if (roleID == 1)
                     {
@@ -87,7 +91,7 @@ namespace KartBookingSession
                         Program.UserMenu();
                     }
 
-                    break;
+
                 }
                 else
                 {
